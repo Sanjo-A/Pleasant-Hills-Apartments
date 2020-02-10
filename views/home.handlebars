@@ -1,13 +1,9 @@
 <div >
     <h1>{{mainMessage}}</h1>
-    <p>
-        <form action="/action_page.php">
-            <input type="submit" value="Sign in">
-            <input type="checkbox" name="tenant" value="tenant">
-            <label for="tenant"> Tenant </label><br>
-            <input type="checkbox" name="browser" value="browser">
-            <label for="browser"> Just looking</label><br>
-        </form>
-    </p>
+    <button onclick="redirect()">SIGN IN</button> 
+    <input type="radio" name="user" value="tenant" id="tenant">
+    <label for="user"> Tenant </label><br>
+    <input type="radio" name="user" value="browser" id="prospective">
+    <label for="user"> Just looking</label><br>
     
 </div>

@@ -27,7 +27,7 @@ app.get('/', function(req, res, next) {
 //Renders home page
 app.get('/apartment', function(req, res, next) {
     var context = {};
-    context.mainMessage = "Showing all available apartment";
+    context.mainMessage = "Showing all available apartments";
     res.render('apartment', context);
 });
 //Renders home page
