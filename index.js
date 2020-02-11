@@ -7,7 +7,7 @@
 let express = require('express');
 let app = express();
 
-let handlebars = require('express-handlebars').create({defaultLayout:'home'});
+let handlebars = require('express-handlebars').create({defaultLayout:'main'});
 
 var path = require("path");
 app.use(express.static(path.join(__dirname+'/public')));
