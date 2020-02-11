@@ -8,11 +8,9 @@ let express = require('express');
 let app = express();
 
 let handlebars = require('express-handlebars').create({defaultLayout:'home'});
-let bodyParser = require('body-parser');
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(express.static('public'));
+var path = require("path");
+app.use(express.static(path.join(__dirname+'/public')));
 
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');

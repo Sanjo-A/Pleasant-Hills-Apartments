@@ -1,1 +1,19 @@
-<div ><h1>{{mainMessage}}</h1></div>
+<link rel = "stylesheet" href = "/css/actPortal.css" type = "text/css">
+<script src = "./js/actPortal.js"></script>
+
+<div >
+    <h1 id="title">{{mainMessage}}</h1>
+    <p>
+        <p>Submit Repair Request</p>
+        <form id="request" >
+                <p>
+                    <input type="text" placeholder="Describe your issue" required="true" id="description" name="description">
+
+                </p>
+                <p>
+                    <input type="submit" id="submit">
+                </p>
+        </form>
+        <p id="disclaimer">If this is an emergency please contact our number directly at 999-999-9999</p>
+    </p>
+</div>
