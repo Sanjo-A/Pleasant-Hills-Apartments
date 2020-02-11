@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname+'/public')));
 
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
-app.set('port', 8899);
+// app.set('port', 8899);
 
 //Renders home page
 app.get('/', function(req, res, next) {
