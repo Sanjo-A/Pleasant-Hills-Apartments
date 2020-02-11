@@ -46,22 +46,19 @@ app.get('/apartment-details', function(req, res, next) {
     res.render('apartment-details', context);
 });
 
-// //Renders 404 error page
-// app.use(function(req, res) {
-//     let context = {};
-//     context.layout = 'blank';
-//     res.status(404);
-//     res.render('404', context);
-// });
+//Renders 404 error page
+app.use(function(req, res) {
+    res.status(404);
+    res.render('404');
+});
 
-// //Renders 500 error page
-// app.use(function(err, req, res, next) {
-//     let context = {};
-//     context.layout = 'blank';
-//     console.error(err.stack);
-//     res.status(500);
-//     res.render('500', context);
-// });
+//Renders 500 error page
+app.use(function(err, req, res, next) {
+    console.error(err.stack);
+    res.type('plain/text');
+    res.status(500);
+    res.render('500');
+});
 
 //Begins listening for connections
 app.listen(app.get('port'), function() {
