@@ -24,18 +24,21 @@ app.get('/', function(req, res, next) {
     context.mainMessage = "Login";
     res.render('home', context);
 });
-//Renders home page
+
+//Renders apartment page
 app.get('/apartment', function(req, res, next) {
     var context = {};
     context.mainMessage = "Showing all available apartments";
     res.render('apartment', context);
 });
-//Renders home page
+
+//Renders portal page
 app.get('/actPortal', function(req, res, next) {
     var context = {};
     context.mainMessage = "Tenant Portal";
     res.render('actPortal', context);
 });
+
 // //Renders 404 error page
 // app.use(function(req, res) {
 //     let context = {};
