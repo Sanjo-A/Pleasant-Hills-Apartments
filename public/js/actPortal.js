@@ -5,3 +5,7 @@ var submit = document.getElementById("request").addEventListener("submit", funct
     alert("Submitted");
     return false;
 });
+window.addEventListener('load', function(event){
+    alert("Submitted");
+    console.log("jkashfd")
+});
