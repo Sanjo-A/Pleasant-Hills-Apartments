@@ -1,5 +1,5 @@
 /*****************************************************************
- * Name: Sanjo Abraham & Abigail Minchilla 
+ * Name: Sanjo Abraham & Abigail Minchella 
  * Date: 02/09/2020
  * Assignment: CS 340 Step 3
  ****************************************************************/
@@ -37,6 +37,13 @@ app.get('/actPortal', function(req, res, next) {
     var context = {};
     context.mainMessage = "Tenant Portal";
     res.render('actPortal', context);
+});
+
+//Renders apartment-details page
+app.get('/apartment-details', function(req, res, next) {
+    var context = {};
+    context.mainMessage = "More details";
+    res.render('apartment-details', context);
 });
 
 // //Renders 404 error page
