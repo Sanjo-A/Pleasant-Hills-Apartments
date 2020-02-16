@@ -1,6 +1,6 @@
 body {
     background-color: #fafafa;
-    /* width: 1000px; */
+    width: 100%;
     margin: 0 auto;
     text-align: center;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -95,7 +95,7 @@ div.body>ul{
 
 footer {
     position: fixed;
-     left: 0;
+    left: 0;
     bottom: 0;
     width: 100%;
     background-color: darkblue;
