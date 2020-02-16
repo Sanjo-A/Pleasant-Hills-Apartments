@@ -44,6 +44,20 @@ app.get('/apartment-details', function(req, res, next) {
     res.render('apartment-details', context);
 });
 
+//Renders apartment-details page
+app.get('/technician-portal', function(req, res, next) {
+    var context = {};
+    context.mainMessage = "Available work orders";
+    res.render('technician-portal', context);
+});
+
+//Renders apartment-details page
+app.get('/manager-portal', function(req, res, next) {
+    var context = {};
+    context.mainMessage = "Manage listings";
+    res.render('manager-portal', context);
+});
+
 //Renders 404 error page
 app.use(function(req, res) {
     res.status(404);
