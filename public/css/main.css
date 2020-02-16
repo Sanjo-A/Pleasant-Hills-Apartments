@@ -102,3 +102,6 @@ footer {
     color: white;
     text-align: center;
   }
+#featured:hover{
+    cursor: pointer;
+}
