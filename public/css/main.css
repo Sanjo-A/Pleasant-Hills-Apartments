@@ -4,7 +4,8 @@ body {
     margin: 0 auto;
     text-align: center;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    height: 100%;
+    min-height: 100%;
+    /* position: relative; */
 }
 
 div.header{
@@ -68,6 +69,7 @@ div.body{
     /* background-color:#196591; */
     padding: 10px;
     color: #1b1b1b;
+    height: 100%;
 }
 
 table{
@@ -94,7 +96,7 @@ div.body>ul{
 }
 
 footer {
-    position: fixed;
+    position: absolute;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -102,6 +104,7 @@ footer {
     color: white;
     text-align: center;
   }
+
 #featured:hover{
     cursor: pointer;
 }

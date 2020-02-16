@@ -1,14 +1,17 @@
 /* body{
 
 } */
-body{
-    height: 100%;
-}
+/* body{
+} */
 #login{
     display: block;
     text-decoration-color: white;
     padding-bottom: 30px;
+    height: auto;
+
 }
 #featured{
     background-color: #fafafa;
+    height: auto;
+
 }
