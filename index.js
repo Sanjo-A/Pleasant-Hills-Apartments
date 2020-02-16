@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname+'/public')));
 
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
-app.set('port', 8899);
+// app.set('port', 8899);
 
 //Renders home page
 app.get('/', function(req, res, next) {
@@ -59,6 +59,6 @@ app.use(function(err, req, res, next) {
 });
 
 //Begins listening for connections
-app.listen(app.get('port'), function() {
+app.listen(process.env.PORT || 8899, function() {
     console.log('Web server has begun running on port ' + app.get('port') + '; press Ctrl+C to terminate.');
 });
