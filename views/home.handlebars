@@ -1,11 +1,31 @@
 <link rel = "stylesheet" href = "/css/home.css" type = "text/css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <script src = "/js/home.js"></script>
-<div >
-    <h1>{{mainMessage}}</h1>
-    <input type="radio" name="user" value="tenant" id="tenant">
-    <label for="user"> Tenant </label><br>
-    <input type="radio" name="user" value="browser" id="prospective">
-    <label for="user"> Just looking</label><br>
-    <button onclick="redirect()">SIGN IN</button> 
+<div class="container">
+    <div class="row" id="login">
+        <h1>{{mainMessage}}</h1>
+        <input type="radio" name="user" value="tenant" id="tenant">
+        <label for="user"> Tenant </label><br>
+        <input type="radio" name="user" value="browser" id="prospective">
+        <label for="user"> Just looking</label><br>
+        <button onclick="redirect()">SIGN IN</button> 
+    </div>
+    <div class="row">
+
+    </div>
+    <div class="row">
+
+    </div>
+
+</div>
+<div class="container" id="featured">
+    <div class="row">
+        <div class="col-sm" id="photo">
+            <p>Photo</p>
+        </div>
+        <div class="col-sm" id="content">
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias dolorum nam earum voluptate pariatur dolor est, doloribus tenetur neque explicabo placeat quae quod sunt ipsam ex! Nostrum hic fuga iste?</p>
+        </div>
+    </div>
+
 </div>

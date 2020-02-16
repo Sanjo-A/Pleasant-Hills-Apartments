@@ -1,0 +1,13 @@
+/* body{
+
+} */
+body{
+    height: 100%;
+}
+#login{
+    display: block;
+    text-decoration-color: white;
+}
+#featured{
+    background-color: #fafafa;
+}
