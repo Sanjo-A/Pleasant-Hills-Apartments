@@ -1,8 +1,9 @@
 /* body{
 
 } */
-/* body{
-} */
+body{
+    position: relative;
+}
 #login{
     display: block;
     text-decoration-color: white;

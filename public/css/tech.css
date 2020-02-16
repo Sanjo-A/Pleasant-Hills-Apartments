@@ -1,0 +1,17 @@
+table{
+    margin: auto;
+    position: relative;
+}
+
+th, td{
+    padding: 5px;
+}
+
+th{
+    border: 3px solid #1b1b1b;
+    font-weight: bold;
+}
+
+ul{
+    text-align: left;
+}
