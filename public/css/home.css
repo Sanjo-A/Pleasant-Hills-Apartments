@@ -11,8 +11,8 @@ body{
     height: auto;
 
 }
-#featured{
-    background-color: #fafafa;
+.featured{
+    background-color: lightgray;
     height: auto;
 
 }

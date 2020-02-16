@@ -38,8 +38,11 @@ div.menu{
     border-color: white;
     border-style: double;
     top: 10px;
+    width: 100%;
     margin: auto;
     padding: 3px;
+    position: static;
+    left: 0;
 }
 
 div.menu>ul{
