@@ -13,6 +13,6 @@ body{
 }
 .featured{
     background-color: lightgray;
-    height: auto;
+    /* height: auto; */
 
 }

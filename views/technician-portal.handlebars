@@ -1,36 +1,35 @@
 <link rel = "stylesheet" href = "/css/tech.css" type = "text/css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <script src = "/js/tech.js"></script>
+
 <div>
     <h1>{{mainMessage}}</h1>
 </div>
 
-{{!-- <div class="container"> --}}
-    <div class="row">
-        <table>
-            <tr>
-                <th>Order Number</th>
-                <th>Apartment Address</th>
-                <th>Issue Description</th>
-                <th>Set Status</th>
+<div class="row">
+    <table>
+        <tr>
+            <th>Order Number</th>
+            <th>Apartment Address</th>
+            <th>Issue Description</th>
+            <th>Set Status</th>
 
-            </tr>  
-            <tr id="issue1">
-                <th>1</th>
-                <th>123 S Street</th>
-                <th>Sink drains slow</th>
-                <th>
-                    <form>
-                        <input type="radio" name="status" value="unaddressed" id="unaddressed" default>
-                        <label for="status"> Unaddressed </label><br>
-                        <input type="radio" name="status" value="addressed" id="addressed">
-                        <label for="status"> Technician Sent Out </label><br>
-                        <input type="radio" name="status" value="complete" id="complete">
-                        <label for="status"> Completed (will remove upon setting to complete)</label><br>
-                    </form>
-                </th>
+        </tr>  
+        <tr id="issue1">
+            <th>1</th>
+            <th>123 S Street</th>
+            <th>Sink drains slow</th>
+            <th>
+                <form>
+                    <input type="radio" name="status" value="unaddressed" id="unaddressed" default>
+                    <label for="status"> Unaddressed </label><br>
+                    <input type="radio" name="status" value="addressed" id="addressed">
+                    <label for="status"> Technician Sent Out </label><br>
+                    <input type="radio" name="status" value="complete" id="complete">
+                    <label for="status"> Completed (will remove upon setting to complete)</label><br>
+                </form>
+            </th>
 
-            </tr>
-        </table>
-    </div>
-{{!-- </div> --}}
+        </tr>
+    </table>
+</div>
