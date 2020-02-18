@@ -8,6 +8,14 @@
 
 <div>
     <h3>Manage Listings</h3>
+    <form class = "filterListings">
+    <input list="status" name="status" placeholder="Filter by Status">
+    <datalist id="status">
+        <option value="Available"></option>
+        <option value="Unavailable"></option>
+    </datalist>
+    <button type="submit">Filter</button>
+    </form>
     <table>
         <tr>
             <th>Apartment Number</th>
@@ -45,6 +53,15 @@
 </div>
 
 <div>
+    <h3>Manage People</h3>
+    <form class = "filterCustomers">
+    <input list="cust" name="cust" placeholder="Filter by Type of Customer">
+    <datalist id="cust">
+        <option value="Tenant"></option>
+        <option value="Prospective"></option>
+    </datalist>
+    <button type="submit">Filter</button>
+    </form>
     <h3>Manage Customers</h3>
     <table>
         <tr>
@@ -69,6 +86,9 @@
             </td>
         </tr>
     </table>
+</div>
+
+
     <input type = "submit" value = "Submit">
 </div>
 
