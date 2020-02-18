@@ -5,7 +5,15 @@
 <div>
     <h1>{{mainMessage}}</h1>
 </div>
-
+    <form class = "filterOrders">
+        <input list="status" name="status" placeholder="Filter by Status">
+        <datalist id="status">
+            <option value="Unaddressed"></option>
+            <option value="Addressing"></option>
+            <option value="Completed"></option>
+        </datalist>
+        <button type="submit">Filter</button>
+    </form>
 <div class="row">
     <table>
         <tr>
