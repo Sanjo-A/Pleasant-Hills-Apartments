@@ -5,6 +5,32 @@
     <h1>{{mainMessage}}</h1>
 </div>
 <div>
+    
+    <form class = "filterApartments">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    Rent
+                    <input type="number" id="rentMin" name="rentMin" min="0" max="10000" placeholder="MINIMUM"> -
+                    <input type="number" id="rentMax" name="rentMax" min="0" max="10000" placeholder="MAXIMUM"> 
+                </div>
+                <div class="col">
+                    Beds
+                    <input type="number" id="bedMin" name="bedMin" min="0" max="10" placeholder="MINIMUM"> -
+                    <input type="number" id="bedMax" name="bedMax" min="0" max="10" placeholder="MAXIMUM"> 
+                </div>
+                <div class="col">
+                    Baths
+                    <input type="number" id="bathMin" name="bathMin" min="1" max="10" placeholder="MINIMUM"> -
+                    <input type="number" id="bathMax" name="bathMax" min="1" max="10" placeholder="MAXIMUM"> 
+                </div>
+                <div class="col">
+                    <button type="submit">Filter</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
     <table>
         <tr>
             <th>Apartment Number</th>
