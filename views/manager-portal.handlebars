@@ -20,44 +20,15 @@
         <tr>
             <th>Apartment Number</th>
             <th>Apartment Status</th>
-            <th>Change Status</th>
-            <th>Feature?</th>
         </tr>
-        <tr>
+        <tr id="editListingRow">
             <td>123</td>
             <td>Available</td>
-            <td>
-                <form class = "aptStatus">
-                    <input type="radio" name="aptStatus" value="available" id = "available">
-                    <label for = "aptStatus">Available</label></br>
-                    <input type = "radio" name = "aptStatus" value = "rented" id = "rented">
-                    <label for = "aptStatus">Rented</label>
-                    <input type = "radio" name = "aptStatus" value = "delete" id = "delete">
-                    <label for = "aptStatus">Delete Listing</label>
-                </form>
-            </td>
-            <td>
-                <form class = "feature">
-                    <label for = "yes">Yes</label>
-                    <input type = "radio" name = "feature" value = "yes">
-                    <label for = "no">No</label>
-                    <input type = "radio" name = "feature" value = "no">
-                </form>
-            </td>
+        </tr>
+        <tr>
+            <td><a href="/newListing">Add Listing</a></td>
         </tr>
     </table>
-    <h5>Add Listing:</h5>
-    <form>
-        <label for = "aptNumber">Apartment Number:</label>
-        <input type = "number" name = "aptNumber" min = "1" max= "9999">
-        <label for = "rent">Rent:</label>
-        <input type = "number" name = "rent" min = "1" max= "9999">
-        <label for = "dateAvail">Date Available:</label>
-        <input type = "date" name = "dateAvail">
-        <label for = "availStatus">Availability Status:</label>
-        <input type = "text" name = "availStatus">
-        <input type = "submit" value = "submit">
-    </form>
 </div>
 
 <div>
