@@ -21,4 +21,5 @@ ul{
 } */
 #editListingRow:hover{
     cursor: pointer;
+    background-color: #ffff99;
 }
