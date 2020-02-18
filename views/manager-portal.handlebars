@@ -29,10 +29,23 @@
             </td>
         </tr>
     </table>
+    <input type = "submit" value = "Submit">
+    <h5>Add Listing:</h5>
+    <form>
+        <label for = "aptNumber">Apartment Number:</label>
+        <input type = "number" name = "aptNumber" min = "1" max= "9999">
+        <label for = "rent">Rent:</label>
+        <input type = "number" name = "rent" min = "1" max= "9999">
+        <label for = "dateAvail">Date Available:</label>
+        <input type = "date" name = "dateAvail">
+        <label for = "availStatus">Availability Status:</label>
+        <input type = "text" name = "availStatus">
+        <input type = "submit" value = "submit">
+    </form>
 </div>
 
 <div>
-    <h3>Manage People</h3>
+    <h3>Manage Customers</h3>
     <table>
         <tr>
             <th>First Name</th>
@@ -56,4 +69,39 @@
             </td>
         </tr>
     </table>
+    <input type = "submit" value = "Submit">
+</div>
+
+<div>
+    <h3>Manage Technicians</h3>
+    <table>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Delete</th>
+        </tr>
+        <tr>
+            <td>Steve</td>
+            <td>Jones</td>
+            <td>
+                <form class = "techStatus">
+                    <input type = "radio" name = "techStatus" value = "delete" id = "delete">
+                    <label for = "aptStatus">Delete</label>
+                </form>
+            </td>
+        </tr>
+    </table>
+    <input type = "submit" value = "Submit">
+    <h5>Add Technician:</h5>
+    <form>
+        <label for = "firstName">First Name:</label>
+        <input type = "text" name = "firstName" maxlength="30">
+        <label for = "lastName">Last Name:</label>
+        <input type = "text" name = "lastName" maxlength="30">
+        <label for ="email">Email:</label>
+        <input type = "email" name = "email">
+        <label for = "phone">Phone:</label>
+        <input type ="tel" name = "phone">
+        <input type = "submit" value = "Submit">
+    </form>
 </div>

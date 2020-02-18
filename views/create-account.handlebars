@@ -22,6 +22,22 @@
             <input type = "radio" name = "contact" value = "phone">
             <label for = "contact">Phone</label>
         </p>
+        <p>Would you like to create an account?
+            <input type = "radio" name = "account" value = "yes">
+            <label for = "account">Yes</label>
+            <input type = "radio" name = "account" value = "no">
+            <label for = "account">No</label>
+
+            <div class = "reveal-if-yes">
+            <h6>Create Account:</h6>
+            <label for = "username">Username:</label>
+            <input type = "text" name = "username" maxlength = "16">
+            <label for = "password">Choose Password:</label>
+            <input type = "password" name = "password" maxlength = "16">
+            <label for = "password">Confirm Password:</label>
+            <input type = "password" name = "password" maxlength = "16">
+        </div>
+        </p>
         <input type = "submit" value = "Submit">
     </form>
 </div>
