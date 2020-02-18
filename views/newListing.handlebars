@@ -1,0 +1,25 @@
+<link rel = "stylesheet" href = "/css/newListing.css" type = "text/css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src = "/js/newListing.js"></script>
+
+<h5>Add Listing:</h5>
+<form>
+    <label for = "aptNumber">Apartment Number:</label>
+    <input type = "number" name = "aptNumber" min = "1" max= "9999">
+    <label for = "rent">Rent:</label>
+    <input type = "number" name = "rent" min = "1" max= "9999">
+    <label for = "dateAvail">Date Available:</label>
+    <input type = "date" name = "dateAvail">
+    <input list="availStatus" name="availStatus" placeholder="Change Availability">   
+    <datalist id="availStatus">
+        <option value="Available"></option>
+        <option value="Unavailable"></option>
+    </datalist>
+    <select multiple size="6" name="amenities">
+          <option value="Fireplace">Fireplace</option>
+          <option value="Pool">Pool</option>
+          <option value="Gym">Gym</option>
+          <option value="IULaundry">In unit Laundry</option>
+    </select>
+    <button type="subit">Create Listing</button>
+</form>

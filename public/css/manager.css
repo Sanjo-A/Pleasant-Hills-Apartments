@@ -19,3 +19,6 @@ th{
 ul{
     text-align: left;
 } */
+#editListingRow:hover{
+    cursor: pointer;
+}

@@ -65,6 +65,20 @@ app.get('/create-account', function(req, res, next) {
     res.render('create-account', context);
 });
 
+//Renders edit-listings page
+app.get('/editListing', function(req, res, next) {
+    var context = {};
+    // context.mainMessage = "Please enter your information";
+    res.render('editListing', context);
+});
+
+//Renders new-listings page
+app.get('/newListing', function(req, res, next) {
+    var context = {};
+    // context.mainMessage = "";
+    res.render('newListing', context);
+});
+
 //Renders 404 error page
 app.use(function(req, res) {
     res.status(404);
