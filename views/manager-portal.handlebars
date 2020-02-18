@@ -9,12 +9,12 @@
 <div>
     <h3>Manage Listings</h3>
     <form class = "filterListings">
-    <input list="status" name="status" placeholder="Filter by Status">
-    <datalist id="status">
-        <option value="Available"></option>
-        <option value="Unavailable"></option>
-    </datalist>
-    <button type="submit">Filter</button>
+        <input list="status" name="status" placeholder="Filter by Status">
+        <datalist id="status">
+            <option value="Available"></option>
+            <option value="Unavailable"></option>
+        </datalist>
+        <button type="submit">Filter</button>
     </form>
     <table>
         <tr>
@@ -46,7 +46,6 @@
             </td>
         </tr>
     </table>
-    <input type = "submit" value = "Submit">
     <h5>Add Listing:</h5>
     <form>
         <label for = "aptNumber">Apartment Number:</label>
@@ -100,75 +99,75 @@
 </div>
 
 <div>
-    <h3>Manage People</h3>
-    <form class = "filterCustomers">
-    <input list="cust" name="cust" placeholder="Filter by Type of Customer">
-    <datalist id="cust">
-        <option value="Tenant"></option>
-        <option value="Prospective"></option>
-    </datalist>
-    <button type="submit">Filter</button>
-    </form>
-    <h3>Manage Customers</h3>
-    <table>
-        <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Status</th>
-            <th>Change Status</th>
-        </tr>
-        <tr>
-            <td>John</td>
-            <td>Smith</td>
-            <td>Prospective</td>
-            <td>
-                <form class = "custStatus">
-                    <input type="radio" name="custStatus" value="prospective" id = "prospective">
-                    <label for = "aptStatus">Prospective</label></br>
-                    <input type = "radio" name = "custStatus" value = "tenant" id = "tenant">
-                    <label for = "aptStatus">Tenant</label>
-                    <input type = "radio" name = "custStatus" value = "delete" id = "delete">
-                    <label for = "aptStatus">Delete Account</label>
-                </form>
-            </td>
-        </tr>
-    </table>
-</div>
-
-
-    <input type = "submit" value = "Submit">
-</div>
-
-<div>
-    <h3>Manage Technicians</h3>
-    <table>
-        <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Delete</th>
-        </tr>
-        <tr>
-            <td>Steve</td>
-            <td>Jones</td>
-            <td>
-                <form class = "techStatus">
-                    <input type = "radio" name = "techStatus" value = "delete" id = "delete">
-                    <label for = "aptStatus">Delete</label>
-                </form>
-            </td>
-        </tr>
-    </table>
-    <input type = "submit" value = "Submit">
-    <h5>Add Technician:</h5>
-    <form>
-        <label for = "firstName">First Name:</label>
-        <input type = "text" name = "firstName" maxlength="30">
-        <label for = "lastName">Last Name:</label>
-        <input type = "text" name = "lastName" maxlength="30">
-        <label for ="email">Email:</label>
-        <input type = "email" name = "email">
-        <label for = "phone">Phone:</label>
-        <input type ="tel" name = "phone">
+    <h3 >Manage People</h3>
+    <div>
+        <h3 class="indent">Manage Customers</h3>
+        <form class = "filterCustomers">
+            <input list="cust" name="cust" placeholder="Filter by Type of Customer">
+            <datalist id="cust">
+                <option value="Tenant"></option>
+                <option value="Prospective"></option>
+            </datalist>
+            <button type="submit">Filter</button>
+        </form>
+        <table>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Status</th>
+                <th>Change Status</th>
+            </tr>
+            <tr>
+                <td>John</td>
+                <td>Smith</td>
+                <td>Prospective</td>
+                <td>
+                    <form class = "custStatus">
+                        <input type="radio" name="custStatus" value="prospective" id = "prospective">
+                        <label for = "aptStatus">Prospective</label></br>
+                        <input type = "radio" name = "custStatus" value = "tenant" id = "tenant">
+                        <label for = "aptStatus">Tenant</label>
+                        <input type = "radio" name = "custStatus" value = "delete" id = "delete">
+                        <label for = "aptStatus">Delete Account</label>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <h3>Manage Technicians</h3>
+        <table>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Delete</th>
+            </tr>
+            <tr>
+                <td>Steve</td>
+                <td>Jones</td>
+                <td>
+                    <form class = "techStatus">
+                        <input type = "radio" name = "techStatus" value = "delete" id = "delete">
+                        <label for = "aptStatus">Delete</label>
+                    </form>
+                </td>
+            </tr>
+        </table>
         <input type = "submit" value = "Submit">
-    </form>
+        <h5>Add Technician:</h5>
+        <form>
+            <label for = "firstName">First Name:</label>
+            <input type = "text" name = "firstName" maxlength="30">
+            <label for = "lastName">Last Name:</label>
+            <input type = "text" name = "lastName" maxlength="30">
+            <label for ="email">Email:</label>
+            <input type = "email" name = "email">
+            <label for = "phone">Phone:</label>
+            <input type ="tel" name = "phone">
+            <input type = "submit" value = "Submit">
+        </form>
 </div>
+</div>
+
+
+
