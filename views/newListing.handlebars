@@ -5,16 +5,20 @@
 <h5>Add Listing:</h5>
 <form>
     <label for = "aptNumber">Apartment Number:</label>
-    <input type = "number" name = "aptNumber" min = "1" max= "9999">
+        <input type = "number" name = "aptNumber" min = "1" max= "9999">
     <label for = "rent">Rent:</label>
-    <input type = "number" name = "rent" min = "1" max= "9999">
+        <input type = "number" name = "rent" min = "1" max= "9999">
+    <label for = "rent">Beds:</label>
+        <input type = "number" name = "beds" min = "0" max= "10">
+    <label for = "rent">Baths:</label>
+        <input type = "number" name = "bath" min = "0" max= "10">
     <label for = "dateAvail">Date Available:</label>
-    <input type = "date" name = "dateAvail">
+        <input type = "date" name = "dateAvail">
     <input list="availStatus" name="availStatus" placeholder="Change Availability">   
-    <datalist id="availStatus">
-        <option value="Available"></option>
-        <option value="Unavailable"></option>
-    </datalist>
+        <datalist id="availStatus">
+            <option value="Available"></option>
+            <option value="Unavailable"></option>
+        </datalist>
     <select multiple size="6" name="amenities">
           <option value="Fireplace">Fireplace</option>
           <option value="Pool">Pool</option>
