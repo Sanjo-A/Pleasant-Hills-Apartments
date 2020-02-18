@@ -5,3 +5,55 @@
 <div>
     <h1>{{mainMessage}}</h1>
 </div>
+
+<div>
+    <h3>Manage Listings</h3>
+    <table>
+        <tr>
+            <th>Apartment Number</th>
+            <th>Apartment Status</th>
+            <th>Change Status</th>
+        </tr>
+        <tr>
+            <td>123</td>
+            <td>Available</td>
+            <td>
+                <form class = "aptStatus">
+                    <input type="radio" name="aptStatus" value="available" id = "available">
+                    <label for = "aptStatus">Available</label></br>
+                    <input type = "radio" name = "aptStatus" value = "rented" id = "rented">
+                    <label for = "aptStatus">Rented</label>
+                    <input type = "radio" name = "aptStatus" value = "delete" id = "delete">
+                    <label for = "aptStatus">Delete Listing</label>
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div>
+    <h3>Manage People</h3>
+    <table>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Status</th>
+            <th>Change Status</th>
+        </tr>
+        <tr>
+            <td>John</td>
+            <td>Smith</td>
+            <td>Prospective</td>
+            <td>
+                <form class = "custStatus">
+                    <input type="radio" name="custStatus" value="prospective" id = "prospective">
+                    <label for = "aptStatus">Prospective</label></br>
+                    <input type = "radio" name = "custStatus" value = "tenant" id = "tenant">
+                    <label for = "aptStatus">Tenant</label>
+                    <input type = "radio" name = "custStatus" value = "delete" id = "delete">
+                    <label for = "aptStatus">Delete Account</label>
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>

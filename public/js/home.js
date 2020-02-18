@@ -17,7 +17,7 @@ function redirect(){
         window.location.href = window.location.href + "actPortal";
     }
     if(prospCheck.checked){
-        window.location.href = window.location.href + "apartment";
+        window.location.href = window.location.href + "apartments";
     }
     if(managerCheck.checked){
         window.location.href = window.location.href + "manager-portal";

@@ -44,18 +44,25 @@ app.get('/apartment-details', function(req, res, next) {
     res.render('apartment-details', context);
 });
 
-//Renders apartment-details page
+//Renders technician-portal page
 app.get('/technician-portal', function(req, res, next) {
     var context = {};
     context.mainMessage = "Available work orders";
     res.render('technician-portal', context);
 });
 
-//Renders apartment-details page
+//Renders manager-portal page
 app.get('/manager-portal', function(req, res, next) {
     var context = {};
-    context.mainMessage = "Manage listings";
+    context.mainMessage = "Administration Portal";
     res.render('manager-portal', context);
+});
+
+//Renders create-account page
+app.get('/create-account', function(req, res, next) {
+    var context = {};
+    context.mainMessage = "Please enter your information";
+    res.render('create-account', context);
 });
 
 //Renders 404 error page
