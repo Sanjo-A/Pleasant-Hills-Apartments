@@ -5,4 +5,10 @@ window.onload = function(){
     listRow.addEventListener("click", function(event){
         window.location.href = "editListing";
     });
+    custRow.addEventListener("click", function(event){
+        window.location.href = "editCustomer";
+    });
+    techRow.addEventListener("click", function(event){
+        window.location.href = "editTechnician";
+    });
 }

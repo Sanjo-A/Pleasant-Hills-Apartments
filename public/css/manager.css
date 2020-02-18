@@ -23,3 +23,11 @@ ul{
     cursor: pointer;
     background-color: #ffff99;
 }
+#editCustomerRow:hover{
+    cursor: pointer;
+    background-color: #ffff99;
+}
+#editTechnicianRow:hover{
+    cursor: pointer;
+    background-color: #ffff99;
+}

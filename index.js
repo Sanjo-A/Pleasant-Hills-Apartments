@@ -79,6 +79,27 @@ app.get('/newListing', function(req, res, next) {
     res.render('newListing', context);
 });
 
+//Renders edit-customer page
+app.get('/editCustomer', function(req, res, next) {
+    var context = {};
+    // context.mainMessage = "";
+    res.render('editCustomer', context);
+});
+
+//Renders new-technican page
+app.get('/editTechnician', function(req, res, next) {
+    var context = {};
+    // context.mainMessage = "";
+    res.render('editTechnician', context);
+});
+
+//Renders edit-technician page
+app.get('/newTechnician', function(req, res, next) {
+    var context = {};
+    // context.mainMessage = "";
+    res.render('newTechnician', context);
+});
+
 //Renders 404 error page
 app.use(function(req, res) {
     res.status(404);
