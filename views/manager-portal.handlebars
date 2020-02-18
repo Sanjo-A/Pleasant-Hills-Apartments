@@ -9,12 +9,12 @@
 <div>
     <h3>Manage Listings</h3>
     <form class = "filterListings">
-    <input list="status" name="status" placeholder="Filter by Status">
-    <datalist id="status">
-        <option value="Available"></option>
-        <option value="Unavailable"></option>
-    </datalist>
-    <button type="submit">Filter</button>
+        <input list="status" name="status" placeholder="Filter by Status">
+        <datalist id="status">
+            <option value="Available"></option>
+            <option value="Unavailable"></option>
+        </datalist>
+        <button type="submit">Filter</button>
     </form>
     <table>
         <tr>
@@ -37,7 +37,6 @@
             </td>
         </tr>
     </table>
-    <input type = "submit" value = "Submit">
     <h5>Add Listing:</h5>
     <form>
         <label for = "aptNumber">Apartment Number:</label>
@@ -54,15 +53,15 @@
 
 <div>
     <h3>Manage People</h3>
+    <h3 class="indent">Manage Customers</h3>
     <form class = "filterCustomers">
-    <input list="cust" name="cust" placeholder="Filter by Type of Customer">
-    <datalist id="cust">
-        <option value="Tenant"></option>
-        <option value="Prospective"></option>
-    </datalist>
-    <button type="submit">Filter</button>
+        <input list="cust" name="cust" placeholder="Filter by Type of Customer">
+        <datalist id="cust">
+            <option value="Tenant"></option>
+            <option value="Prospective"></option>
+        </datalist>
+        <button type="submit">Filter</button>
     </form>
-    <h3>Manage Customers</h3>
     <table>
         <tr>
             <th>First Name</th>
@@ -88,12 +87,10 @@
     </table>
 </div>
 
-
-    <input type = "submit" value = "Submit">
 </div>
 
 <div>
-    <h3>Manage Technicians</h3>
+    <h3 class="indent">Manage Technicians</h3>
     <table>
         <tr>
             <th>First Name</th>
