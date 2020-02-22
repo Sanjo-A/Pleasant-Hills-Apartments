@@ -6,9 +6,9 @@
     <h1>{{mainMessage}}</h1>
 </div>
 
-<div>
-    <h3>Manage Listings</h3>
-    <form class = "filterListings">
+<h3 class="hideContentTxt">Manage Listings</h3>
+<div class="hiddenContent" class="col-*-*" id="listingContent">
+    <form id="filterListings">
         <input list="status" name="status" placeholder="Filter by Status">
         <datalist id="status">
             <option value="Available"></option>
@@ -31,71 +31,75 @@
     </table>
 </div>
 
-<div>
-    <h3>Manage Amenities</h3>
-    <table>
-        <tr>
-            <th>Amenity Description</th>
-        </tr>
-        <tr>
-            <td>Dishwasher</td>
-        </tr>
-        <tr>
-            <td>Fireplace</td>
-        </tr>
-    </table>
+<h3 class="hideContentTxt">Manage Amenities</h3>
+<div class="hiddenContent" class="col-*-*" id="amenContent">
+        <table>
+            <tr>
+                <th>Amenity Description</th>
+            </tr>
+            <tr>
+                <td>Dishwasher</td>
+            </tr>
+            <tr>
+                <td>Fireplace</td>
+            </tr>
+        </table>
     <h5>Add Amenity:</h5>
-    <form>
-        <label for = "amenDescrip">Amenity Description:</label>
-        <input type = "text" name = "amenDescrip" maxlength="30">
-        <input type = "submit" value = "Submit">
-    </form>
+        <form>
+            <label for = "amenDescrip">Amenity Description:</label>
+            <input type = "text" name = "amenDescrip" maxlength="30">
+            <input type = "submit" value = "Submit">
+        </form>
+
 </div>
 
-<div>
-    <h3>Manage People</h3>
-    <div>
-        <h4 class="indent">Manage Customers</h4>
-        <form class = "filterCustomers">
-            <input list="cust" name="cust" placeholder="Filter by Type of Customer">
-            <datalist id="cust">
-                <option value="Tenant"></option>
-                <option value="Prospective"></option>
-            </datalist>
-            <button type="submit">Filter</button>
-        </form>
-        <table>
-            <tr >
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Status</th>
-            </tr>
-            <tr id="editCustomerRow">
-                <td>John</td>
-                <td>Smith</td>
-                <td>Prospective</td>
-            </tr>
-        </table>
-    </div>
-    <div>
-        <h4>Manage Technicians</h4>
-        <table>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-            </tr>
-            <tr id="editTechnicianRow">
-                <td>Steve</td>
-                <td>Jones</td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="/newTechnician">Add Technician</a>
-                </td>
-            </tr>
-        </table>
-        <input type = "submit" value = "Submit">
-</div>
+<h3 class="hideContentTxt" id="manPeopleTxt">Manage People</h3>
+<div class="hiddenContent" class="col-*-*" id="peopleContent">
+    {{!-- <div id="peopleContent"> --}}
+        <h4 class="hideContentTxt">Manage Customers</h4>
+        <div class="hiddenContent" id="custContent">
+            <form class = "filterCustomers">
+                <input list="cust" name="cust" placeholder="Filter by Type of Customer">
+                <datalist id="cust">
+                    <option value="Tenant"></option>
+                    <option value="Prospective"></option>
+                </datalist>
+                <button type="submit">Filter</button>
+            </form>
+            <table>
+                <tr >
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Status</th>
+                </tr>
+                <tr id="editCustomerRow">
+                    <td>John</td>
+                    <td>Smith</td>
+                    <td>Prospective</td>
+                </tr>
+            </table>
+        </div>
+        
+        <h4 class="hideContentTxt">Manage Technicians</h4>
+        <div class="hiddenContent" id="techContent">
+            <table>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                </tr>
+                <tr id="editTechnicianRow">
+                    <td>Steve</td>
+                    <td>Jones</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="/newTechnician">Add Technician</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    {{!-- </div> --}}
+
 </div>
 
 

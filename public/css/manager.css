@@ -31,3 +31,32 @@ ul{
     cursor: pointer;
     background-color: #ffff99;
 }
+
+/* 
+#manListingContent{
+    display: none;
+    padding-left: 15px;
+}
+#manListingTxt:hover{
+    cursor: pointer;
+    color: gray;
+}
+
+#manAmenContent{
+    display: none;
+    padding-left: 15px;
+}
+#manAmenTxt:hover{
+    cursor: pointer;
+    color: gray;
+} */
+
+
+.hiddenContent{
+    display: none;
+    padding-left: 15px;
+}
+.hideContentTxt:hover{
+    cursor: pointer;
+    color: gray;
+}
