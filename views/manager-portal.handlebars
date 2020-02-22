@@ -6,7 +6,7 @@
     <h1>{{mainMessage}}</h1>
 </div>
 
-<h3 class="hideContentTxt">Manage Listings</h3>
+<h3 class="hideContentTxt" id="listingTxt">Manage Listings</h3>
 <div class="hiddenContent" class="col-*-*" id="listingContent">
     <form id="filterListings">
         <input list="status" name="status" placeholder="Filter by Status">
@@ -31,7 +31,7 @@
     </table>
 </div>
 
-<h3 class="hideContentTxt">Manage Amenities</h3>
+<h3 class="hideContentTxt" id="amenTxt">Manage Amenities</h3>
 <div class="hiddenContent" class="col-*-*" id="amenContent">
         <table>
             <tr>
@@ -56,7 +56,7 @@
 <h3 class="hideContentTxt" id="manPeopleTxt">Manage People</h3>
 <div class="hiddenContent" class="col-*-*" id="peopleContent">
     {{!-- <div id="peopleContent"> --}}
-        <h4 class="hideContentTxt">Manage Customers</h4>
+        <h4 class="hideContentTxt" id="manCustomerTxt">Manage Customers</h4>
         <div class="hiddenContent" id="custContent">
             <form class = "filterCustomers">
                 <input list="cust" name="cust" placeholder="Filter by Type of Customer">
@@ -80,7 +80,7 @@
             </table>
         </div>
         
-        <h4 class="hideContentTxt">Manage Technicians</h4>
+        <h4 class="hideContentTxt" id="manTechTxt">Manage Technicians</h4>
         <div class="hiddenContent" id="techContent">
             <table>
                 <tr>
