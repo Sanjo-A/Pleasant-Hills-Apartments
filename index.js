@@ -4,17 +4,22 @@
  * Assignment: CS 340 Step 3
  ****************************************************************/
 
-let express = require('express');
-let app = express();
+var express = require('express');
+var app = express();
 
-let handlebars = require('express-handlebars').create({defaultLayout:'main'});
+var handlebars = require('express-handlebars').create({defaultLayout:'main'});
+
+var mysql = require('./dbcon.js');
+var bodyParser = require('body-parser');
 
 var path = require("path");
 app.use(express.static(path.join(__dirname+'/public')));
 
 app.engine('handlebars', handlebars.engine);
+app.use(bodyParser.urlencoded({extended:true}));
 app.set('view engine', 'handlebars');
-// app.set('port', 8899);
+app.set('port', process.argv[2]);
+app.set('mysql', mysql);
 
 //Renders home page
 app.get('/', function(req, res, next) {
@@ -24,17 +29,13 @@ app.get('/', function(req, res, next) {
 });
 
 //Renders apartment page
-app.get('/apartment', function(req, res, next) {
-    var context = {};
-    context.mainMessage = "Showing all available apartments";
-    res.render('apartment', context);
-});
+app.use('/apartments', require('./apartments-node.js'));
 
 //Renders portal page
-app.get('/actPortal', function(req, res, next) {
+app.get('/act-portal', function(req, res, next) {
     var context = {};
     context.mainMessage = "Tenant Portal";
-    res.render('actPortal', context);
+    res.render('act-portal', context);
 });
 
 //Renders apartment-details page
@@ -45,60 +46,40 @@ app.get('/apartment-details', function(req, res, next) {
 });
 
 //Renders technician-portal page
-app.get('/technician-portal', function(req, res, next) {
-    var context = {};
-    context.mainMessage = "Available work orders";
-    res.render('technician-portal', context);
-});
+app.use('/technician-portal', require("./technician-node.js"));
 
 //Renders manager-portal page
-app.get('/manager-portal', function(req, res, next) {
-    var context = {};
-    context.mainMessage = "Administration Portal";
-    res.render('manager-portal', context);
-});
+app.use('/manager-portal', require('./manager-node.js'));
 
 //Renders create-account page
-app.get('/create-account', function(req, res, next) {
-    var context = {};
-    context.mainMessage = "Please enter your information";
-    res.render('create-account', context);
-});
+app.use('/create-account', require("./create-account-node.js"));
 
 //Renders edit-listings page
-app.get('/editListing', function(req, res, next) {
+app.get('/edit-listing', function(req, res, next) {
     var context = {};
     // context.mainMessage = "Please enter your information";
-    res.render('editListing', context);
+    res.render('edit-listing', context);
 });
 
 //Renders new-listings page
-app.get('/newListing', function(req, res, next) {
-    var context = {};
-    // context.mainMessage = "";
-    res.render('newListing', context);
-});
+app.use('/new-listing', require("./new-listing-node.js"));
 
 //Renders edit-customer page
-app.get('/editCustomer', function(req, res, next) {
+app.get('/edit-customer', function(req, res, next) {
     var context = {};
     // context.mainMessage = "";
-    res.render('editCustomer', context);
+    res.render('edit-customer', context);
 });
 
-//Renders new-technican page
-app.get('/editTechnician', function(req, res, next) {
+//Renders edit-technican page
+app.get('/edit-technician', function(req, res, next) {
     var context = {};
     // context.mainMessage = "";
-    res.render('editTechnician', context);
+    res.render('edit-technician', context);
 });
 
-//Renders edit-technician page
-app.get('/newTechnician', function(req, res, next) {
-    var context = {};
-    // context.mainMessage = "";
-    res.render('newTechnician', context);
-});
+//Renders new-technician page
+app.use('/new-technician', require("./new-technician-node.js"));
 
 //Renders 404 error page
 app.use(function(req, res) {
@@ -115,6 +96,6 @@ app.use(function(err, req, res, next) {
 });
 
 //Begins listening for connections
-app.listen(process.env.PORT || 8899, function() {
+app.listen(app.get('port'), function() {
     console.log('Web server has begun running on port ' + app.get('port') + '; press Ctrl+C to terminate.');
 });

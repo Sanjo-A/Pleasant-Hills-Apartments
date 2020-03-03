@@ -16,12 +16,15 @@ window.onload = function(){
     listRow.addEventListener("click", function(event){
         window.location.href = "editListing";
     });
+
     custRow.addEventListener("click", function(event){
         window.location.href = "editCustomer";
     });
+
     techRow.addEventListener("click", function(event){
         window.location.href = "editTechnician";
     });
+
     people.addEventListener("click", function(evnet){
         if(peopleContent.style.display == "none"){
             peopleContent.style.display = "block";
@@ -30,6 +33,7 @@ window.onload = function(){
             peopleContent.style.display = "none"
         }
     });
+
     customer.addEventListener("click", function(){
         if(customerContent.style.display == "none"){
             customerContent.style.display = "block";
@@ -38,6 +42,7 @@ window.onload = function(){
             customerContent.style.display = "none"
         }
     });
+
     technician.addEventListener("click", function(){
         if(technicianContent.style.display == "none"){
             technicianContent.style.display = "block";
@@ -46,6 +51,7 @@ window.onload = function(){
             technicianContent.style.display = "none"
         }
     });
+
     amenities.addEventListener("click", function(){
         if(amenitiesContent.style.display == "none"){
             amenitiesContent.style.display = "block";
@@ -54,6 +60,7 @@ window.onload = function(){
             amenitiesContent.style.display = "none"
         }
     });
+
     listings.addEventListener("click", function(){
         if(listingContent.style.display == "none"){
             listingContent.style.display = "block";
@@ -62,6 +69,4 @@ window.onload = function(){
             listingContent.style.display = "none"
         }
     });
-
-
-}
+};

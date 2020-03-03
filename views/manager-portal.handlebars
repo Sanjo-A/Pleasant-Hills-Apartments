@@ -1,5 +1,5 @@
-<link rel = "stylesheet" href = "/css/manager.css" type = "text/css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel = "stylesheet" href = "/css/manager.css" type = "text/css">
 <script src = "/js/manager.js"></script>
 
 <div>
@@ -17,16 +17,33 @@
         <button type="submit">Filter</button>
     </form>
     <table>
+        <thead>
+            <tr>
+                <th>Apartment Number</th>
+                <th>Rent</th>
+                <th>Number of Bedrooms</th>
+                <th>Number of Bathrooms</th>
+                <th>Date Available</th>
+                <th>Apartment Status</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {{#each apartments}}
+            <tr id="editListingRow">
+                <td>{{aptNumber}}</td>
+                <td>{{rent}}</td>
+                <td>{{numBeds}}</td>
+                <td>{{numBaths}}</td>
+                <td>{{dateAvailable}}</td>
+                <td>{{availabilityStatus}}</td>
+                <!--<td><button onclick="deleteApt({{aptID}})">Delete</button></td>
+                <td><a href="/manager-portal/{{aptID}}">Update</a></td>-->
+            </tr>
+            {{/each}}
+        </tbody>
         <tr>
-            <th>Apartment Number</th>
-            <th>Apartment Status</th>
-        </tr>
-        <tr id="editListingRow">
-            <td>123</td>
-            <td>Available</td>
-        </tr>
-        <tr>
-            <td><a href="/newListing">Add Listing</a></td>
+            <td><a href="/new-listing">Add Listing</a></td>
         </tr>
     </table>
 </div>
@@ -34,18 +51,21 @@
 <h3 class="hideContentTxt" id="amenTxt">Manage Amenities</h3>
 <div class="hiddenContent" class="col-*-*" id="amenContent">
         <table>
-            <tr>
-                <th>Amenity Description</th>
-            </tr>
-            <tr>
-                <td>Dishwasher</td>
-            </tr>
-            <tr>
-                <td>Fireplace</td>
-            </tr>
+            <thead>
+                <tr>
+                    <th>Amenity Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each amenities}}
+                <tr>
+                    <td>{{amenDescription}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
         </table>
     <h5>Add Amenity:</h5>
-        <form>
+        <form id = "addAmenity" action = "/manager-portal" method = "post">
             <label for = "amenDescrip">Amenity Description:</label>
             <input type = "text" name = "amenDescrip" maxlength="30">
             <input type = "submit" value = "Submit">
@@ -67,33 +87,53 @@
                 <button type="submit">Filter</button>
             </form>
             <table>
-                <tr >
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Status</th>
-                </tr>
-                <tr id="editCustomerRow">
-                    <td>John</td>
-                    <td>Smith</td>
-                    <td>Prospective</td>
-                </tr>
+                <thead>
+                    <tr >
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each customers}}
+                    <tr id="editCustomerRow">
+                        <td>{{custFName}}</td>
+                        <td>{{custLName}}</td>
+                        <td>{{custEmail}}</td>
+                        <td>{{custPhone}}</td>
+                        <td>{{rentStatus}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
             </table>
         </div>
         
         <h4 class="hideContentTxt" id="manTechTxt">Manage Technicians</h4>
         <div class="hiddenContent" id="techContent">
             <table>
-                <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                </tr>
-                <tr id="editTechnicianRow">
-                    <td>Steve</td>
-                    <td>Jones</td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each technicians}}
+                    <tr id="editTechnicianRow">
+                        <td>{{techFName}}</td>
+                        <td>{{techLName}}</td>
+                        <td>{{techEmail}}</td>
+                        <td>{{techPhone}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
                 <tr>
                     <td>
-                        <a href="/newTechnician">Add Technician</a>
+                        <a href="/new-technician">Add Technician</a>
                     </td>
                 </tr>
             </table>

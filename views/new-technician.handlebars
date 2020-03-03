@@ -3,10 +3,10 @@
 <script src = "/js/newTechnician.js"></script>
 
 <h5>New Technician Info:</h5>
-<form> 
-    <input type="text" placeholder="First Name" id="techFName">
-    <input type="text" placeholder="Last Name" id="techLName">
-    <input type="number" placeholder="(999)-999-9999" id="techPhone">
-    <input type="email" placeholder="Email" id="techEmail">
+<form id = "addTech" action = "/newTechnician" method = "post"> 
+    <input type="text" placeholder="First Name" name = "techFName" id="techFName">
+    <input type="text" placeholder="Last Name" name = "techLName" id="techLName">
+    <input type="number" placeholder="(999)-999-9999" name = "techPhone" id="techPhone">
+    <input type="email" placeholder="Email" name = "techEmail" id="techEmail">
     <button type="subit">Add Technician</button>
 </form>

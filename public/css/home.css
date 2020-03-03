@@ -1,6 +1,3 @@
-/* body{
-
-} */
 body{
     position: relative;
 }
@@ -13,6 +10,4 @@ body{
 }
 .featured{
     background-color: lightgray;
-    /* height: auto; */
-
 }
