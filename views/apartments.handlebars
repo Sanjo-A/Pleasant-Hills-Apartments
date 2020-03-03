@@ -31,7 +31,7 @@
         </div>
     </form>
 
-    <table>
+    {{!-- <table>
         <thead>
             <tr>
                 <th>Apartment Number</th>
@@ -56,29 +56,32 @@
             </tr>
             {{/each}}
         </tbody>
-    </table>
-
-    <div class="card" style="width: 100%;" id="listingCard">
-        <div class="row">
-            <div class="col-md-5" class="card-img-left" id="imgCard">
-                {{!-- <div > --}}
-                    <img src="/images/apartment-sample.jpg" alt="Card image cap" style="width: 100%">
-                {{!-- </div> --}}
-            </div>
-            <div class="col-md-6" id="bodyCard"> 
-                <div class="card-body" >
-                    <ul>
-                        <li>Number of Bedrooms: 1</li>
-                        <li>Apartment Number: 123 </li>
-                        <li>Number of Bathrooms : 1</li>
-                        <li>Date Available: 01/01/2020</li>
-                        <li>Rent: 2000</li>
-                        <li><a href="/create-account">Schedule A Viewing</a></li>
-                        {{!-- <li><a>Schedule a Viewing</a></li> --}}
-                    </ul>
+    </table> --}}
+    <div id="allCards">
+        {{#each apartments}}
+        <div class="listingCard" class="round" class="card"  style="width: 100%;" >
+            <div class="row">
+                <div class="col-md-5" class="card-img-left" id="imgCard">
+                    {{!-- <div > --}}
+                        <img class="round" src="/images/apartment-sample.jpg" alt="Card image cap" style="width: 100%" >
+                    {{!-- </div> --}}
+                </div>
+                <div class="col-md-6" id="bodyCard"> 
+                    <div class="card-body" >
+                        <ul>
+                            <li>Number of Bedrooms: {{numBeds}}</li>
+                            <li>Apartment Number: {{aptNumber}} </li>
+                            <li>Number of Bathrooms: {{numBaths}}</li>
+                            <li>Date Available: {{dateAvailable}}</li>
+                            <li>Rent: {{rent}}</li>
+                            <li><a href="/create-account">Schedule A Viewing</a></li>
+                            {{!-- <li><a>Schedule a Viewing</a></li> --}}
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>  
+        </div>  
+        {{/each}}
+    </div>
 
 </div>

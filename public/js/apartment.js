@@ -1,8 +1,8 @@
 window.onload = function(){
-    var listingCard = document.getElementById("listingCard");
-    listingCard.addEventListener("click",function(event){
-        window.location.href = "/apartment-details";
-    });
+    // var listingCard = document.getElementById("listingCard:id");
+    // listingCard.addEventListener("click",function(event){
+    //     window.location.href = "/apartment-details";
+    // });
     window.addEventListener("resize",function(){
         var width = document.documentElement.clientWidth;
         var bodyCard = document.getElementById("bodyCard");

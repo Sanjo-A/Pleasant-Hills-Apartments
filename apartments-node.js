@@ -45,6 +45,7 @@ module.exports = function(){
     router.get('/', function(req, res){
         var callbackCount = 0;
         var context = {};
+        context.mainMessage = "View apartments";
         var mysql = req.app.get('mysql');
         getAvailableApartments(res, mysql, context, complete);
         function complete(){
@@ -59,6 +60,7 @@ module.exports = function(){
     router.get('/:id', function(req, res){
         callbackCount = 0;
         var context = {};
+        context.mainMessage = "View apartments";
         var mysql = req.app.get('mysql');
         getApartment(res, mysql, context, req.params.id, complete);
         getApartmentAmenities(res, mysql, context, req.params.id, complete)

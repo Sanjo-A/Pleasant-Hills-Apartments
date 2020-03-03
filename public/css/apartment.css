@@ -1,4 +1,13 @@
-#listingCard:hover{
+.round{
+    border-radius: 25px;
+}
+.listingCard{
+    margin-top: 20px;
+    border: 1px solid #cdcdcd;
+    border-radius: 25px;
+
+}
+.listingCard:hover{
     cursor:pointer; 
     background-color: rgb(246, 254, 254);
 }
