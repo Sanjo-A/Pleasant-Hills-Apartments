@@ -32,33 +32,30 @@
     </form>
 
     <table>
-        <tr>
-            <th>Apartment Number</th>
-            <th>Number of Bedrooms</th>
-            <th>Number of Bathrooms</th>
-            <th>Date Available</th>
-            <th>Rent</th>
-            <th>More Info</th>
-            <th>Schedule a Viewing</th>
-        </tr>  
-        <tr>
-            <td>123</td>
-            <td>2</td>
-            <td>2</td>
-            <td>5/14/2020</td>
-            <td>1000</td>
-            <td><a href="/apartment-details">More Info HERE!</a></td>
-            <td><a href="/create-account">Click Here to Request a Viewing</a></td>
-        </tr>
-        <tr>
-            <td>456</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1/01/2020</td>
-            <td>2000</td>
-            <td><a href="/apartment-details">More Info HERE!</a></td>
-            <td><a href="/create-account">Click Here to Request a Viewing</a></td>
-        </tr>
+        <thead>
+            <tr>
+                <th>Apartment Number</th>
+                <th>Number of Bedrooms</th>
+                <th>Number of Bathrooms</th>
+                <th>Date Available</th>
+                <th>Rent</th>
+                <th>More Info</th>
+                <th>Schedule a Viewing</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each apartments}}
+            <tr>
+                <td>{{aptNumber}}</td>
+                <td>{{numBeds}}</td>
+                <td>{{numBaths}}</td>
+                <td>{{dateAvailable}}</td>
+                <td>{{rent}}</td>
+                <td><a href="/apartment-details">More Info HERE!</a></td>
+                <td><a href="/create-account">Click Here to Request a Viewing</a></td>
+            </tr>
+            {{/each}}
+        </tbody>
     </table>
 
     <div class="card" style="width: 100%;" id="listingCard">

@@ -12,9 +12,6 @@ var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 var mysql = require('./dbcon.js');
 var bodyParser = require('body-parser');
 
-var path = require("path");
-app.use(express.static(path.join(__dirname+'/public')));
-
 app.engine('handlebars', handlebars.engine);
 app.use(bodyParser.urlencoded({extended:true}));
 app.use('/static', express.static('public'));
@@ -30,11 +27,7 @@ app.get('/', function(req, res, next) {
 });
 
 //Renders apartment page
-app.get('/apartment', function(req, res, next) {
-    var context = {};
-    context.mainMessage = "Showing all available apartments";
-    res.render('apartment', context);
-});
+app.use('/apartment', require('./apartments-node.js'));
 
 //Renders portal page
 app.get('/actPortal', function(req, res, next) {
