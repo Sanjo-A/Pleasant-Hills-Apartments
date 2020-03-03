@@ -44,11 +44,7 @@ app.get('/apartment-details', function(req, res, next) {
 });
 
 //Renders technician-portal page
-app.get('/technician-portal', function(req, res, next) {
-    var context = {};
-    context.mainMessage = "Available work orders";
-    res.render('technician-portal', context);
-});
+app.use('/technician-portal', require("./technician-node.js"));
 
 //Renders manager-portal page
 app.use('/manager-portal', require('./manager-node.js'));

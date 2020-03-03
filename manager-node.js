@@ -46,7 +46,7 @@ module.exports = function(){
         })
     }
 
-    // Display all apartments
+    // Display all apartments, amenities, customers, and technicians
     router.get('/', function(req, res){
         var callbackCount = 0;
         var context = {};
