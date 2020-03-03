@@ -6,7 +6,7 @@ module.exports = function(){
         var callbackCount = 0;
         var context = {};
         var mysql = req.app.get('mysql');
-        res.render('newTechnician', context);
+        res.render('new-technician', context);
     })
 
     // Add new technician listing

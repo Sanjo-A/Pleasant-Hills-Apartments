@@ -29,13 +29,13 @@ app.get('/', function(req, res, next) {
 });
 
 //Renders apartment page
-app.use('/apartment', require('./apartments-node.js'));
+app.use('/apartments', require('./apartments-node.js'));
 
 //Renders portal page
-app.get('/actPortal', function(req, res, next) {
+app.get('/act-portal', function(req, res, next) {
     var context = {};
     context.mainMessage = "Tenant Portal";
-    res.render('actPortal', context);
+    res.render('act-portal', context);
 });
 
 //Renders apartment-details page
@@ -59,31 +59,31 @@ app.get('/create-account', function(req, res, next) {
 });
 
 //Renders edit-listings page
-app.get('/editListing', function(req, res, next) {
+app.get('/edit-listing', function(req, res, next) {
     var context = {};
     // context.mainMessage = "Please enter your information";
-    res.render('editListing', context);
+    res.render('edit-listing', context);
 });
 
 //Renders new-listings page
-app.use('/newListing', require("./newListing-node.js"));
+app.use('/new-listing', require("./new-listing-node.js"));
 
 //Renders edit-customer page
-app.get('/editCustomer', function(req, res, next) {
+app.get('/edit-customer', function(req, res, next) {
     var context = {};
     // context.mainMessage = "";
-    res.render('editCustomer', context);
+    res.render('edit-customer', context);
 });
 
 //Renders edit-technican page
-app.get('/editTechnician', function(req, res, next) {
+app.get('/edit-technician', function(req, res, next) {
     var context = {};
     // context.mainMessage = "";
-    res.render('editTechnician', context);
+    res.render('edit-technician', context);
 });
 
 //Renders new-technician page
-app.use('/newTechnician', require("./newTechnician-node.js"));
+app.use('/new-technician', require("./new-technician-node.js"));
 
 //Renders 404 error page
 app.use(function(req, res) {
