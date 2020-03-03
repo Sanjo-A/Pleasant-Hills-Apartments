@@ -52,11 +52,7 @@ app.use('/technician-portal', require("./technician-node.js"));
 app.use('/manager-portal', require('./manager-node.js'));
 
 //Renders create-account page
-app.get('/create-account', function(req, res, next) {
-    var context = {};
-    context.mainMessage = "Please enter your information";
-    res.render('create-account', context);
-});
+app.use('/create-account', require("./create-account-node.js"));
 
 //Renders edit-listings page
 app.get('/edit-listing', function(req, res, next) {
