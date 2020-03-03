@@ -22,7 +22,7 @@ module.exports = function(){
         function complete(){
             callbackCount++;
             if(callbackCount >= 1){
-                res.render('apartment', context);
+                res.render('apartments', context);
             }
         }
     })
