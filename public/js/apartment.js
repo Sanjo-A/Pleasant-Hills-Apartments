@@ -14,7 +14,6 @@ window.onload = function(){
             imgCard.classList.add("card-img-top");
             bodyCard.classList.remove("col-md-6");
             bodyCard.classList.add("row");    
-            console.log("ahhh, im shrinking");   
         }
         else{
             imgCard.classList.remove("col-sm-12");
