@@ -12,9 +12,11 @@ var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 var mysql = require('./dbcon.js');
 var bodyParser = require('body-parser');
 
+var path = require("path");
+app.use(express.static(path.join(__dirname+'/public')));
+
 app.engine('handlebars', handlebars.engine);
 app.use(bodyParser.urlencoded({extended:true}));
-app.use('/static', express.static('public'));
 app.set('view engine', 'handlebars');
 app.set('port', process.argv[2]);
 app.set('mysql', mysql);
