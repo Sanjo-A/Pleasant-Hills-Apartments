@@ -6,7 +6,9 @@ module.exports = function(){
         mysql.pool.query("SELECT aptNumber, rent, numBeds, numBaths, dateAvailable, availabilityStatus FROM apartments", function(error, results, fields){
             if (error){
                 res.write(JSON.stringify(error));
-                res.end();
+                // res.end();
+                // next(err);
+                return;
             }
             context.apartments = results;
             complete();
@@ -17,7 +19,9 @@ module.exports = function(){
         mysql.pool.query("SELECT amenDescription FROM amenities", function(error, results, fields){
             if (error){
                 res.write(JSON.stringify(error));
-                res.end();
+                // res.end();
+                // next(err);
+                return;
             }
             context.amenities = results;
             complete();
@@ -28,7 +32,9 @@ module.exports = function(){
         mysql.pool.query("SELECT custFName, custLName, custEmail, custPhone, rentStatus FROM customers", function(error, results, fields){
             if (error){
                 res.write(JSON.stringify(error));
-                res.end();
+                // res.end();
+                // next(err);
+                return;
             }
             context.customers = results;
             complete();
@@ -39,7 +45,9 @@ module.exports = function(){
         mysql.pool.query("SELECT techFName, techLName, techEmail, techPhone FROM technicians", function(error, results, fields){
             if (error){
                 res.write(JSON.stringify(error));
-                res.end();
+                // res.end();
+                // next(err);
+                return;
             }
             context.technicians = results;
             complete();
