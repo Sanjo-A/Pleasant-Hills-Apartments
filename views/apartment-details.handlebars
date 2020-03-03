@@ -12,13 +12,20 @@
     </div>
     <div class="col">
         <ul>
-            <li>Apartment Number: {{aptNum}}</li>
-            <li>Number of Bedrooms: {{bedrooms}}</li>
-            <li>Number of Bathrooms: {{bathrooms}}</li>
-            <li>Square footage: {{sqft}}</li>
-            <li>Date Available: {{date}}</li>
+            {{#each apartment}}
+            <li>Apartment Number: {{aptNumber}}</li>
+            <li>Number of Bedrooms: {{numBeds}}</li>
+            <li>Number of Bathrooms: {{numBath}}</li>
+            <li>Date Available: {{dateAvailable}}</li>
             <li>Rent: {{rent}}</li>
-            <li>Amenities: {{amenities}}</li>
+            {{/each}}
+            <li>Amenities:
+                <ul>
+                    {{#each amenities}}
+                    <li>{{amenDescription}}</li>
+                    {{/each}}
+                </ul>
+            </li>
         </ul>
     </div>
 </div>
