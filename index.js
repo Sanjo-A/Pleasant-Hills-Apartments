@@ -64,11 +64,7 @@ app.get('/editListing', function(req, res, next) {
 });
 
 //Renders new-listings page
-app.get('/newListing', function(req, res, next) {
-    var context = {};
-    // context.mainMessage = "";
-    res.render('newListing', context);
-});
+app.use('/newListing', require("./newListing-node.js"));
 
 //Renders edit-customer page
 app.get('/editCustomer', function(req, res, next) {
@@ -77,19 +73,15 @@ app.get('/editCustomer', function(req, res, next) {
     res.render('editCustomer', context);
 });
 
-//Renders new-technican page
+//Renders edit-technican page
 app.get('/editTechnician', function(req, res, next) {
     var context = {};
     // context.mainMessage = "";
     res.render('editTechnician', context);
 });
 
-//Renders edit-technician page
-app.get('/newTechnician', function(req, res, next) {
-    var context = {};
-    // context.mainMessage = "";
-    res.render('newTechnician', context);
-});
+//Renders new-technician page
+app.use('/newTechnician', require("./newTechnician-node.js"));
 
 //Renders 404 error page
 app.use(function(req, res) {

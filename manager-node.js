@@ -64,5 +64,22 @@ module.exports = function(){
         }
     })
 
+    // Add a new amenity
+    router.post('/', function(req, res){
+        var mysql = req.app.get('mysql');
+        var sql = "INSERT INTO amenities(amenDescription) VALUES (?);";
+        var inserts = [req.body.amenDescrip];
+        sql = mysql.pool.query(sql,inserts,function(error, results, fields){
+            if(error){
+                console.log(JSON.stringify(error))
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            else{
+                res.redirect('/manager-portal');
+            }
+        });
+    });
+
     return router;
 }();

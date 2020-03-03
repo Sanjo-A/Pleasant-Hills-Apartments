@@ -3,15 +3,15 @@
 <script src = "/js/newListing.js"></script>
 
 <h5>Add Listing:</h5>
-<form>
+<form id = "addListing" action = "/newListing" method = "post">
     <label for = "aptNumber">Apartment Number:</label>
         <input type = "number" name = "aptNumber" min = "1" max= "9999">
     <label for = "rent">Rent:</label>
         <input type = "number" name = "rent" min = "1" max= "9999">
     <label for = "rent">Beds:</label>
-        <input type = "number" name = "beds" min = "0" max= "10">
+        <input type = "number" name = "numBeds" min = "0" max= "10">
     <label for = "rent">Baths:</label>
-        <input type = "number" name = "bath" min = "0" max= "10">
+        <input type = "number" name = "numBaths" min = "0" max= "10">
     <label for = "dateAvail">Date Available:</label>
         <input type = "date" name = "dateAvail">
     <input list="availStatus" name="availStatus" placeholder="Change Availability">   
@@ -20,10 +20,9 @@
             <option value="Unavailable"></option>
         </datalist>
     <select multiple size="6" name="amenities">
-          <option value="Fireplace">Fireplace</option>
-          <option value="Pool">Pool</option>
-          <option value="Gym">Gym</option>
-          <option value="IULaundry">In unit Laundry</option>
+        {{#each amenities}}
+        <option value="{{amenID}}">{{amenDescription}}</option>
+        {{/each}}
     </select>
-    <button type="subit">Create Listing</button>
+    <button type="submit">Create Listing</button>
 </form>
