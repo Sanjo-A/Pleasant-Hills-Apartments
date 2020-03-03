@@ -4,17 +4,23 @@
  * Assignment: CS 340 Step 3
  ****************************************************************/
 
-let express = require('express');
-let app = express();
+var express = require('express');
+var app = express();
 
-let handlebars = require('express-handlebars').create({defaultLayout:'main'});
+var handlebars = require('express-handlebars').create({defaultLayout:'main'});
+
+var mysql = require('./dbcon.js');
+var bodyParser = require('body-parser');
 
 var path = require("path");
 app.use(express.static(path.join(__dirname+'/public')));
 
 app.engine('handlebars', handlebars.engine);
+app.use(bodyParser.urlencoded({extended:true}));
+app.use('/static', express.static('public'));
 app.set('view engine', 'handlebars');
-// app.set('port', 8899);
+app.set('port', process.argv[2]);
+app.set('mysql', mysql);
 
 //Renders home page
 app.get('/', function(req, res, next) {
@@ -52,11 +58,7 @@ app.get('/technician-portal', function(req, res, next) {
 });
 
 //Renders manager-portal page
-app.get('/manager-portal', function(req, res, next) {
-    var context = {};
-    context.mainMessage = "Administration Portal";
-    res.render('manager-portal', context);
-});
+app.use('/manager-portal', require('./manager-node.js'));
 
 //Renders create-account page
 app.get('/create-account', function(req, res, next) {
@@ -115,6 +117,6 @@ app.use(function(err, req, res, next) {
 });
 
 //Begins listening for connections
-app.listen(process.env.PORT || 8899, function() {
+app.listen(app.get('port'), function() {
     console.log('Web server has begun running on port ' + app.get('port') + '; press Ctrl+C to terminate.');
 });

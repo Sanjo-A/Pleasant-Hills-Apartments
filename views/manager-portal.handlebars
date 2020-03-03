@@ -17,14 +17,30 @@
         <button type="submit">Filter</button>
     </form>
     <table>
-        <tr>
-            <th>Apartment Number</th>
-            <th>Apartment Status</th>
-        </tr>
-        <tr id="editListingRow">
-            <td>123</td>
-            <td>Available</td>
-        </tr>
+        <thead>
+            <tr>
+                <th>Apartment Number</th>
+                <th>Rent</th>
+                <th>Number of Bedrooms</th>
+                <th>Number of Bathrooms</th>
+                <th>Date Available</th>
+                <th>Apartment Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each apartments}}
+            <tr id="editListingRow">
+                <td>{{aptNumber}}</td>
+                <td>{{rent}}</td>
+                <td>{{numBeds}}</td>
+                <td>{{numBaths}}</td>
+                <td>{{dateAvailable}}</td>
+                <td>{{availabilityStatus}}</td>
+                <!--<td><button onclick="deleteApt({{aptID}})">Delete</button></td>
+                <td><a href="/manager-portal/{{aptID}}">Update</a></td>-->
+            </tr>
+            {{/each}}
+        </tbody>
         <tr>
             <td><a href="/newListing">Add Listing</a></td>
         </tr>

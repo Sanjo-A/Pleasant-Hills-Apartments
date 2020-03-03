@@ -13,15 +13,19 @@ function redirect(){
     var prospCheck = document.getElementById("prospective");
     var managerCheck = document.getElementById("manager");
     var techCheck = document.getElementById("tech");    
+
     if(tenantCheck.checked){
         window.location.href = window.location.href + "actPortal";
     }
+
     if(prospCheck.checked){
         window.location.href = window.location.href + "apartment";
     }
+
     if(managerCheck.checked){
         window.location.href = window.location.href + "manager-portal";
     }
+    
     if(techCheck.checked){
         window.location.href = window.location.href + "technician-portal";
     }
