@@ -18,7 +18,7 @@ app.use(express.static(path.join(__dirname+'/public')));
 app.engine('handlebars', handlebars.engine);
 app.use(bodyParser.urlencoded({extended:true}));
 app.set('view engine', 'handlebars');
-app.set('port', process.argv[2]);
+app.set('port', process.env.PORT || 8899);
 app.set('mysql', mysql);
 
 //Renders home page
