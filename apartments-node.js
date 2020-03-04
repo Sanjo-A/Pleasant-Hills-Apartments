@@ -4,7 +4,7 @@ module.exports = function(){
 
     // Selects all available apartments
     function getAvailableApartments(res, mysql, context, complete){
-        mysql.pool.query("SELECT aptID AS id, aptNumber, numBeds, numBaths, dateAvailable, rent FROM apartments WHERE availabilityStatus = 'Available'", function(error, results, fields){
+        mysql.pool.query("SELECT aptID AS id, aptNumber, numBeds, numBaths, dateAvailable, rent, aptImg FROM apartments WHERE availabilityStatus = 'Available'", function(error, results, fields){
             if (error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -16,7 +16,7 @@ module.exports = function(){
 
     // Selects a specific apartment
     function getApartment(res, mysql, context, id, complete){
-        var sql = "SELECT aptID AS id, aptNumber, numBeds, numBaths, dateAvailable, rent FROM apartments WHERE aptID = ?;";
+        var sql = "SELECT aptID AS id, aptNumber, numBeds, numBaths, dateAvailable, rent, aptImg FROM apartments WHERE aptID = ?;";
         var inserts = [id];
         mysql.pool.query(sql, inserts, function(error, results, fields){
             if (error){

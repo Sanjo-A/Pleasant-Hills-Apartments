@@ -1,6 +1,6 @@
 <link rel = "stylesheet" href = "/css/apartment.css" type = "text/css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
 <script src = "/js/apartment.js"></script>
 
 <div>
@@ -62,11 +62,7 @@
     <div id="allCards">
         {{#each apartments}}
         <div class="listingCard" class="round" class="card"  style="width: 100%;" id="{{this.id}}">
-            {{!-- <script>
-                {{this.aptID}}.addEventListener('click', function(){
-                    window.location.href = '/apartment-details/'+{{aptID}};
-                });
-            </script> --}}
+
             <div class="row">
                 <div class="col-md-5" class="card-img-left" id="imgCard">
                     {{!-- <div > --}}
@@ -82,7 +78,6 @@
                             <li>Date Available: {{dateAvailable}}</li>
                             <li>Rent: {{rent}}</li>
                             <li><a href="/create-account">Schedule A Viewing</a></li>
-                            {{!-- <li><a>Schedule a Viewing</a></li> --}}
                         </ul>
                     </div>
                 </div>
@@ -92,14 +87,3 @@
     </div>
 </div>
 
-{{!-- <script>
-    $('document').ready(function(){
-        $('#allCards > div').on('click',  function(){
-            var url = "/apartment-details/" + $(this).attr('id');
-            alert(this.id);
-            alert($(this).attr('id'));
-            //window.location.href = url;
-        });
-    });
-
-</script> --}}
