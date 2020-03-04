@@ -1,8 +1,17 @@
+
 window.onload = function(){
-    // var listingCard = document.getElementById("listingCard:id");
+    // var listingCard = document.getElementById(":aptId");
     // listingCard.addEventListener("click",function(event){
-    //     window.location.href = "/apartment-details";
+    //     window.location.href = "/apartment-details/"+aptID;
     // });
+    $('document').ready(function(){
+        $('#allCards > div').on('click',  function(){
+            var url = "/apartment-details/" + $(this).attr('id');
+            // alert(this.id);
+            // alert($(this).attr('id'));
+            window.location.href = url;
+        });
+    });
     window.addEventListener("resize",function(){
         var width = document.documentElement.clientWidth;
         var bodyCard = document.getElementById("bodyCard");
