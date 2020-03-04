@@ -39,10 +39,51 @@ app.get('/act-portal', function(req, res, next) {
 });
 
 //Renders apartment-details page
-app.get('/apartment-details', function(req, res, next) {
+app.get('/apartment-details/:id', function(req, res, next) {
     var context = {};
-    context.mainMessage = "More details";
-    res.render('apartment-details', context);
+    mysql.pool.query('SELECT * FROM apartments where aptID =? ',[req.params.id],function(err,results,fields){
+        if(err){
+            console.log("error showing apartment detalis");
+            res.end();
+            return;
+        }           
+        var params = [];
+        for(result in results){
+            var newRow ={
+                'aptNumber': results[result].aptNumber,
+                'rent': results[result].rent,
+                'numBeds': results[result].numBeds,
+                'numBaths': results[result].numBaths,
+                'dateAvailable': results[result].dateAvailable,
+                // 'id':reports[report].id
+            };
+            params.push(newRow);
+        }
+        context.apartment = params;
+        mysql.pool.query('SELECT amenDescription FROM amenities INNER JOIN apartment_amenities ON apartment_amenities.amenID=amenities.amenID WHERE aptID= ?',[req.params.id],function(err,results,fields){
+            if(err){
+                console.log("error showing apartment detalis");
+                res.end();
+                return;
+            }
+            // context.amenities = results;
+            // console.log(context.amenities);
+            var params = [];
+            for(result in results){
+                var newRow ={
+                    'amenDescription': results[result].amenDescription,
+                };
+                params.push(newRow);
+            }
+            context.amenities = params;
+            // console.log(context.amenities);
+            context.mainMessage = "More details";
+            console.log(context);
+            res.render('apartment-details', context);
+        });
+
+    });
+
 });
 
 //Renders technician-portal page

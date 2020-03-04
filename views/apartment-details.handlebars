@@ -2,7 +2,9 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <script src = "/js/apartment-details.js"></script>
 <div>
+    {{#if mainMessage}}
     <h1>{{mainMessage}}</h1>
+    {{/if}}
 </div>
 
 <div class="row">
@@ -13,16 +15,16 @@
     <div class="col">
         <ul>
             {{#each apartment}}
-            <li>Apartment Number: {{aptNumber}}</li>
-            <li>Number of Bedrooms: {{numBeds}}</li>
-            <li>Number of Bathrooms: {{numBath}}</li>
-            <li>Date Available: {{dateAvailable}}</li>
+            <li>Apartment Number: {{this.aptNumber}}</li>
+            <li>Number of Bedrooms: {{this.numBeds}}</li>
+            <li>Number of Bathrooms: {{this.numBath}}</li>
+            <li>Date Available: {{this.dateAvailable}}</li>
             <li>Rent: {{rent}}</li>
             {{/each}}
             <li>Amenities:
                 <ul>
                     {{#each amenities}}
-                    <li>{{amenDescription}}</li>
+                    <li>{{this.amenDescription}}</li>
                     {{/each}}
                 </ul>
             </li>
