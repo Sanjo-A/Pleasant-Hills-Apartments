@@ -25,48 +25,48 @@ window.onload = function(){
         window.location.href = "editTechnician";
     });
 
-    people.addEventListener("click", function(evnet){
-        if(peopleContent.style.display == "none"){
-            peopleContent.style.display = "block";
+    people.addEventListener("click", function(event){
+        if(peopleContent.style.display == "block"){
+            peopleContent.style.display = "none";
         }
         else{
-            peopleContent.style.display = "none"
+            peopleContent.style.display = "block"
         }
     });
 
     customer.addEventListener("click", function(){
-        if(customerContent.style.display == "none"){
-            customerContent.style.display = "block";
+        if(customerContent.style.display == "block"){
+            customerContent.style.display = "none";
         }
         else{
-            customerContent.style.display = "none"
+            customerContent.style.display = "block"
         }
     });
 
     technician.addEventListener("click", function(){
-        if(technicianContent.style.display == "none"){
-            technicianContent.style.display = "block";
+        if(technicianContent.style.display == "block"){
+            technicianContent.style.display = "none";
         }
         else{
-            technicianContent.style.display = "none"
+            technicianContent.style.display = "block"
         }
     });
 
     amenities.addEventListener("click", function(){
-        if(amenitiesContent.style.display == "none"){
-            amenitiesContent.style.display = "block";
+        if(amenitiesContent.style.display == "block"){
+            amenitiesContent.style.display = "none";
         }
         else{
-            amenitiesContent.style.display = "none"
+            amenitiesContent.style.display = "block"
         }
     });
 
     listings.addEventListener("click", function(){
-        if(listingContent.style.display == "none"){
-            listingContent.style.display = "block";
+        if(listingContent.style.display == "block"){
+            listingContent.style.display = "none";
         }
         else{
-            listingContent.style.display = "none"
+            listingContent.style.display = "block"
         }
     });
 };
