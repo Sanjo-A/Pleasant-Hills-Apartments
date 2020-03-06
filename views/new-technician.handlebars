@@ -4,9 +4,9 @@
 
 <h5>New Technician Info:</h5>
 <form id = "addTech" action = "/newTechnician" method = "post"> 
-    <input type="text" placeholder="First Name" name = "techFName" id="techFName">
-    <input type="text" placeholder="Last Name" name = "techLName" id="techLName">
-    <input type="number" placeholder="(999)-999-9999" name = "techPhone" id="techPhone">
-    <input type="email" placeholder="Email" name = "techEmail" id="techEmail">
+    <input type="text" placeholder="First Name" name = "techFName" id="techFName" required>
+    <input type="text" placeholder="Last Name" name = "techLName" id="techLName" required>
+    <input type="tel" placeholder="999-999-9999" name = "techPhone" id="techPhone" pattern="[0-9]{10}|[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+    <input type="email" placeholder="Email" name = "techEmail" id="techEmail" required>
     <button type="subit">Add Technician</button>
 </form>

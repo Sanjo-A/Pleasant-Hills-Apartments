@@ -4,6 +4,10 @@
  * Assignment: CS 340 Step 3
  ****************************************************************/
 
+// IMGUR API STUFF:
+//     CLIENT ID: 6bc5cc08f8dfbcc
+//     CLIENT SECRET: 3087fc9094a520d146cc0efc5dce0f1c117a45e2
+
 var express = require('express');
 var app = express();
 
