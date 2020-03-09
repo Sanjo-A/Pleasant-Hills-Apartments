@@ -42,7 +42,7 @@ module.exports = function(){
     }
 
     function getTechnicians(res, mysql, context, complete){
-        mysql.pool.query("SELECT techFName, techLName, techEmail, techPhone FROM technicians", function(error, results, fields){
+        mysql.pool.query("SELECT techID, techFName, techLName, techEmail, techPhone FROM technicians", function(error, results, fields){
             if (error){
                 res.write(JSON.stringify(error));
                 // res.end();

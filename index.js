@@ -118,10 +118,18 @@ app.get('/edit-customer', function(req, res, next) {
 });
 
 //Renders edit-technican page
-app.get('/edit-technician', function(req, res, next) {
+app.get('/edit-technician:techID', function(req, res, next) {
     var context = {};
-    // context.mainMessage = "";
-    res.render('edit-technician', context);
+    context.mainMessage = "Edit Technician: ";
+    mysql.pool.query('SELECT techFName, techLName, techEmail, techPhone FROM technicians WHERE techid = ?',[req.params.techID],function(err,results,fields){
+        if(err){
+            console.log("error showing apartment detalis");
+            res.end();
+            return;
+        }
+        context.technican = results;
+        res.render('edit-technician', context);
+    });
 });
 
 //Renders new-technician page

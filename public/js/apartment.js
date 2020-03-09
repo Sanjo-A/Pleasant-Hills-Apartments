@@ -20,16 +20,20 @@ window.onload = function(){
     filterButton.addEventListener("click",function(event){
         event.preventDefault();
         var filter = $('#filters').serialize();
-        console.log("showing filtered")
-        console.log(filter);
+        // console.log("showing filtered")
+        // console.log(filter);
         // let req = new XMLHttpRequest();
         // req.open("GET", "/apartments?" + filter, true);
-        // req.addEventListener('load', function() {
-        //     if (req.status < 400) {
-        //         console.log("success");
+        // req.setRequestHeader('Content-Type','application/json');
+        // req.onreadystatechange = function() {
+        //     if (this.readyState == 4 && this.status == 200) {
+        //        // Typical action to be performed when the document is ready:
+        //        document.body.innerHTML = req.responseText;
+        //        var data = JSON.parse(JSON.stringify(req.responseText));
+        //        console.log(JSON.parse(JSON.stringify(req.responseText)))
         //     }
-        // });
-        // req.send();
+        // };
+        // req.send(null);
         location.href = "/apartments?" + filter;
     });
     
