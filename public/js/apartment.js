@@ -22,14 +22,15 @@ window.onload = function(){
         var filter = $('#filters').serialize();
         console.log("showing filtered")
         console.log(filter);
-        let req = new XMLHttpRequest();
-        req.open("GET", "/apartments?" + filter, true);
-        req.addEventListener('load', function() {
-            if (req.status < 400) {
-                console.log("success");
-            }
-        });
-        req.send(null);
+        // let req = new XMLHttpRequest();
+        // req.open("GET", "/apartments?" + filter, true);
+        // req.addEventListener('load', function() {
+        //     if (req.status < 400) {
+        //         console.log("success");
+        //     }
+        // });
+        // req.send();
+        location.href = "/apartments?" + filter;
     });
     
     window.addEventListener("resize",function(){
