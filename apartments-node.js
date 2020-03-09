@@ -14,31 +14,35 @@ module.exports = function(){
         })
     }
 
-    // Selects a specific apartment
-    function getApartment(res, mysql, context, id, complete){
-        var sql = "SELECT aptID AS id, aptNumber, numBeds, numBaths, dateAvailable, rent, aptImg FROM apartments WHERE aptID = ?;";
-        var inserts = [id];
-        mysql.pool.query(sql, inserts, function(error, results, fields){
-            if (error){
-                res.write(JSON.stringify(error));
-                res.end();
-            }
-            context.apartment = results;
-            complete();
-        })
-    }
+
 
     // Selects the amenities for a specific apartment
-    function getApartmentAmenities(res, mysql, context, id, complete){
-        var sql = "SELECT aptID AS id, amenID, amenities.amenDescription FROM apartments INNER JOIN apartment_amenities on apartments.aptID = apartment_amenities.aptID INNER JOIN amenities ON apartment_amenities.amenID = amenities.amenID WHERE aptID = ?;";
-        mysql.pool.query(sql, inserts, function(error, results, fields){
-            if (error){
-                res.write(JSON.stringify(error));
-                res.end();
-            }
-            context.amenities = results;
-            complete();
-        })
+    function filterApartments(res, req, mysql, context, complete){
+        // console.log(req.query);
+        if(Object.keys(req.query).length > 0){
+            console.log(req.query);
+            mysql.pool.query("SELECT aptID AS id, aptNumber, numBeds, numBaths, dateAvailable, rent, aptImg FROM apartments WHERE availabilityStatus = 'Available' AND (rent BETWEEN ? AND ?) AND (numBeds BETWEEN ? AND ?) AND (numBaths BETWEEN ? AND ?)", [req.query.rentMin, req.query.rentMax, req.query.bedMin, req.query.bedMax, req.query.bathMin, req.query.bathMax], function(error, results, fields){
+                if (error){
+                    res.write(JSON.stringify(error));
+                    res.end();
+                    console.log('error');
+                }
+                context.apartments = results; 
+                complete();
+            })
+        }
+        else{
+            console.log("showing everything");
+            mysql.pool.query("SELECT aptID AS id, aptNumber, numBeds, numBaths, dateAvailable, rent, aptImg FROM apartments WHERE availabilityStatus = 'Available'", function(error, results, fields){
+                if (error){
+                    res.write(JSON.stringify(error));
+                    res.end();
+                }
+                context.apartments = results;
+                complete();
+            })
+        }
+
     }
 
     // Display all available apartments
@@ -47,7 +51,8 @@ module.exports = function(){
         var context = {};
         context.mainMessage = "View apartments";
         var mysql = req.app.get('mysql');
-        getAvailableApartments(res, mysql, context, complete);
+        // getAvailableApartments(res, mysql, context, complete);
+        filterApartments(res, req, mysql, context, complete);
         function complete(){
             callbackCount++;
             if(callbackCount >= 1){
@@ -56,22 +61,7 @@ module.exports = function(){
         }
     })
 
-   // Display details on a specific apartment
-    router.get('/:id', function(req, res){
-        callbackCount = 0;
-        var context = {};
-        context.mainMessage = "View apartments";
-        var mysql = req.app.get('mysql');
-        getApartment(res, mysql, context, req.params.id, complete);
-        getApartmentAmenities(res, mysql, context, req.params.id, complete)
-        function complete(){
-            callbackCount++;
-            if(callbackCount >= 2){
-                res.render('apartment-details', context);
-            }
 
-        }
-    });
 
     return router;
 }();
