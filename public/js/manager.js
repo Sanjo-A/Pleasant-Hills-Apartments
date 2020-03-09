@@ -1,7 +1,6 @@
 window.onload = function(){
     var listRow = document.getElementById("editListingRow");
     var custRow = document.getElementById("editCustomerRow");
-    // var techRow = document.getElementById("editTechnicianRow");
     var people = document.getElementById("manPeopleTxt");
     var peopleContent = document.getElementById("peopleContent");
     var customer = document.getElementById("manCustomerTxt");
@@ -21,9 +20,6 @@ window.onload = function(){
         window.location.href = "editCustomer";
     });
 
-    // techRow.addEventListener("click", function(event){
-    //     window.location.href = "editTechnician";
-    // });
 
     people.addEventListener("click", function(event){
         if(peopleContent.style.display == "block"){
@@ -77,7 +73,7 @@ window.onload = function(){
         );
 
         $('#allTechs > tr').on('click',  function(){
-            var url = "/edit-technician/" + $(this).attr('techID');
+            var url = "/edit-technician/" + $(this).attr('id');
             window.location.href = url;
         });
     });

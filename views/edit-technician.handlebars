@@ -1,19 +1,19 @@
 <link rel = "stylesheet" href = "/css/editTechnician.css" type = "text/css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<script src = "/js/editTechnician.js"></script>
-{{!-- {{#if technican}} --}}
+<script src = "/js/edit-technician.js"></script>
+
 {{#each technican}}
-<h5>{{mainMessage}}{{techFName}}</h5>
-<form> 
-    <input type="text" placeholder="{{techFName}}">
-    <input type="text" placeholder="{{techLName}}">
-    <input type="number" placeholder="{{techPhone}}">
-    <input type="email" placeholder="{{techEmail}}">
+<h5>Editing: {{techFName}} {{techLName}}</h5>
+<form id="saveTechnician" action="/edit-technicians" method="GET"> 
+    <input type="hidden" value="{{techID}}" id="techID" name="techID">
+    <input type="text" value="{{techFName}}" id="techFName" name="techFName">
+    <input type="text" value="{{techLName}}" id="techLName" name="techLName">
+    <input type="number" value="{{techPhone}}" id="techPhone" name="techPhone">
+    <input type="email" value="{{techEmail}}" id="techEmail" name="techEmail">
     <button type="subit">Save Changes</button>
 </form>
 
 <form id="deleteTechnician">
-    <button type="subit">Delete Customer</button>
+    <button type="subit">Remove Technician</button>
 </form>
 {{/each}}
-{{!-- {{#if}} --}}

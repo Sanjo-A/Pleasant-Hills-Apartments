@@ -118,18 +118,35 @@ app.get('/edit-customer', function(req, res, next) {
 });
 
 //Renders edit-technican page
-app.get('/edit-technician:techID', function(req, res, next) {
+app.get('/edit-technician/:id', function(req, res, next) {
     var context = {};
     context.mainMessage = "Edit Technician: ";
-    mysql.pool.query('SELECT techFName, techLName, techEmail, techPhone FROM technicians WHERE techid = ?',[req.params.techID],function(err,results,fields){
+    mysql.pool.query('SELECT techID, techFName, techLName, techEmail, techPhone FROM technicians WHERE techid = ?',[req.params.id],function(err,results,fields){
         if(err){
-            console.log("error showing apartment detalis");
+            console.log("error showing technican");
             res.end();
             return;
         }
         context.technican = results;
         res.render('edit-technician', context);
     });
+});
+app.get('/edit-technicians',function(req,res,next){
+    console.log("Updated Technican"); 
+    var sql = 'UPDATE technicians SET techFName = '+[JSON.stringify(req.query.techFName)]+', techLName = '+[JSON.stringify(req.query.techLName)]+', techPhone = '
+        +[JSON.stringify(req.query.techPhone)]+', techEmail = '+[JSON.stringify(req.query.techEmail)]+' WHERE techID = '+[JSON.stringify(req.query.techID)];
+    mysql.pool.query(sql,function(err,results){
+        if(err){
+            console.log("error editing technician");
+            console.log(err);
+            res.end();
+            return;
+        }
+        context= {};
+        context.mainMessage = "Manager Portal";
+        res.redirect('manager-portal');
+    });
+
 });
 
 //Renders new-technician page
