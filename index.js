@@ -51,19 +51,6 @@ app.get('/apartment-details/:id', function(req, res, next) {
             res.end();
             return;
         }           
-        // var params = [];
-        // for(result in results){
-        //     var newRow ={
-        //         'aptNumber': results[result].aptNumber,
-        //         'rent': results[result].rent,
-        //         'numBeds': results[result].numBeds,
-        //         'numBaths': results[result].numBaths,
-        //         'dateAvailable': results[result].dateAvailable,
-        //         'aptImg': results[result].aptImg
-        //         // 'id':reports[report].id
-        //     };
-        //     params.push(newRow);
-        // }
         context.apartment = results;
         mysql.pool.query('SELECT amenDescription FROM amenities INNER JOIN apartment_amenities ON apartment_amenities.amenID=amenities.amenID WHERE aptID= ?',[req.params.id],function(err,results,fields){
             if(err){
@@ -71,8 +58,6 @@ app.get('/apartment-details/:id', function(req, res, next) {
                 res.end();
                 return;
             }
-            // context.amenities = results;
-            // console.log(context.amenities);
             var params = [];
             for(result in results){
                 var newRow ={
@@ -81,7 +66,6 @@ app.get('/apartment-details/:id', function(req, res, next) {
                 params.push(newRow);
             }
             context.amenities = params;
-            // console.log(context.amenities);
             context.mainMessage = "More details";
             console.log(context);
             res.render('apartment-details', context);
