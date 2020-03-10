@@ -13,7 +13,8 @@
     <button type="subit">Save Changes</button>
 </form>
 
-<form id="deleteTechnician">
-    <button type="subit">Remove Technician</button>
+<form id="deleteTechnician" action="/delete-technicians" method="GET">
+    <input type="hidden" value="{{techID}}" name="techID">
+    <button type="submit">Remove Technician</button>
 </form>
 {{/each}}

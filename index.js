@@ -131,6 +131,7 @@ app.get('/edit-technician/:id', function(req, res, next) {
         res.render('edit-technician', context);
     });
 });
+//update technician
 app.get('/edit-technicians',function(req,res,next){
     console.log("Updated Technican"); 
     var sql = 'UPDATE technicians SET techFName = '+[JSON.stringify(req.query.techFName)]+', techLName = '+[JSON.stringify(req.query.techLName)]+', techPhone = '
@@ -146,9 +147,21 @@ app.get('/edit-technicians',function(req,res,next){
         context.mainMessage = "Manager Portal";
         res.redirect('manager-portal');
     });
-
 });
-
+//delete technicians
+app.get('/delete-technicians',function(req,res,next){
+    console.log("Deleting Technican"); 
+    var sql = 'DELETE FROM technicians WHERE techID = '+[JSON.stringify(req.query.techID)];
+    mysql.pool.query(sql,function(err,results){
+        if(err){
+            console.log("error deleting technician");
+            console.log(err);
+            res.end();
+            return;
+        }
+        res.redirect('manager-portal');
+    });
+});
 //Renders new-technician page
 app.use('/new-technician', require("./new-technician-node.js"));
 
