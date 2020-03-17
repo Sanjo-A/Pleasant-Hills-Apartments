@@ -32,6 +32,18 @@ app.get('/', function(req, res, next) {
     res.render('home', context);
 });
 
+app.get('/api/get-apartments', function(req,res, next){
+    var context = {};
+    mysql.pool.query("SELECT aptNumber, rent, numBeds, numBaths, dateAvailable, availabilityStatus FROM apartments", function(error, results, fields){
+        if (error){
+            res.write(JSON.stringify(error));
+            return;
+        }
+        context.apartments = results;
+        res.send(context.apartments);
+    });
+
+})
 //Renders apartment page
 app.use('/apartments', require('./apartments-node.js'));
 
