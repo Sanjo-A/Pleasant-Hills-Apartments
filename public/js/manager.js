@@ -84,17 +84,19 @@ window.onload = function(){
             type: "GET",
             success: function(allData){
                 $.each(allData, function(i,data){
-                    var apartment = $('<tr> <td>'
-                        +data.aptNumber+'</td> <td>'
-                        +data.rent+'</td>  <td>'
-                        +data.numBeds+'</td> <td>'
-                        +data.numBaths+'</td> <td>'
-                        +data.dateAvailable+'</td> <td>'
-                        +data.availabilityStatus+'</td></tr>');
-
-                    apartment.attr('id', 'aptID');
+                    var apartment = $('<tr><form>'
+                        +'<td> <input type="number" value="'+data.aptNumber+'"></td>'
+                        +'<td><input type="number" value="'+data.rent+'"></td>'
+                        +'<td><input type="number" value="'+data.numBeds+'"></td>'
+                        +'<td><input type="number" value="'+data.numBaths+'"></td>'
+                        +'<td><input type="date" value="'+data.dateAvailable+'"></td>'
+                        +'<td><input type="text" value="'+data.availabilityStatus+'"></td> </form></tr>');
+                    apartment.attr('id', ''+data.aptID+'');
                     $allApts.append(apartment);
                 });
+            },
+            error: function(){
+                alert('something went wrong');
             }
          });
 
