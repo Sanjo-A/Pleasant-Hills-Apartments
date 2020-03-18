@@ -35,7 +35,7 @@ app.get('/', function(req, res, next) {
 app.route('/api/apartments')
     .get(function(req,res, next){
         var context = {};
-        mysql.pool.query("SELECT aptNumber, rent, numBeds, numBaths, dateAvailable, availabilityStatus FROM apartments", function(error, results, fields){
+        mysql.pool.query("SELECT aptID, aptNumber, rent, numBeds, numBaths, dateAvailable, availabilityStatus FROM apartments", function(error, results, fields){
             if (error){
                 res.write(JSON.stringify(error));
                 return;
@@ -45,21 +45,28 @@ app.route('/api/apartments')
         });
     })
     .post(function(req,res,next){
-        console.log('here');
+        console.log(req.body);
         var context = {};
-        var sql = "UPDATE apartment SET ? WHERE aptID = "+[req.params.id];
-        var post  = {
-            aptNumber: aptNumber,
-            rent: rent,
-            numBeds: numBeds,
-            dateAvailable:dateAvailable,
-            availabilityStatus:availabilityStatus
-          };
+        // var sql = "UPDATE apartment SET aptNumber = ?, rent = ?, numBeds = ?, numBath = ?, dateAvailable = ?, availabilityStatus = ? WHERE aptID = ?";
+        var sql = "UPDATE apartments SET aptNumber = " + [JSON.stringify(req.body.aptNumber)] +", rent = "+[JSON.stringify(req.body.rent)]+", numBeds = "
+        +[JSON.stringify(req.body.numBeds)]+", numBaths = "+[JSON.stringify(req.body.numBaths)]+", dateAvailable = "+[JSON.stringify(req.body.dateAvailable)]
+        +", availabilityStatus = "+[JSON.stringify(req.body.availabilityStatus)]+" WHERE aptID = "+[JSON.stringify(req.body.aptID)];
+
+        var post  = [
+            req.body.aptNumber,
+            req.body.rent,
+            req.body.numBeds,
+            req.body.numBaths,
+            req.body.dateAvailable,
+            req.body.availabilityStatus,
+            req.body.aptID
+        ];
+
         // var values = [
         //     [JSON.stringify(req.query.aptNumber),]
         // ]
-        console.log(post);
-        mysql.pool.query(sql,post, function(error, results, fields){
+        console.log(sql);
+        mysql.pool.query(sql, function(error, results, fields){
             if (error){
                 res.write(JSON.stringify(error));
                 return;
@@ -83,8 +90,8 @@ app.route('/api/apartments')
                 res.write(JSON.stringify(error));
                 return;
             }
-            context.apartments = results;
-            res.send(context.apartments);
+            // context.apartments = results;
+            // res.send(context.apartments);
         });
     })
     // .delete(function(req,res,next){
@@ -185,6 +192,7 @@ app.get('/edit-technician/:id', function(req, res, next) {
 //update technician
 app.get('/edit-technicians',function(req,res,next){
     console.log("Updated Technican"); 
+    console.log(req.query);
     var sql = 'UPDATE technicians SET techFName = '+[JSON.stringify(req.query.techFName)]+', techLName = '+[JSON.stringify(req.query.techLName)]+', techPhone = '
         +[JSON.stringify(req.query.techPhone)]+', techEmail = '+[JSON.stringify(req.query.techEmail)]+' WHERE techID = '+[JSON.stringify(req.query.techID)];
     mysql.pool.query(sql,function(err,results){
