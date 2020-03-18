@@ -17,46 +17,46 @@ window.onload = function(){
     //     window.location.href = "editListing";
     // });
 
-    // custRow.addEventListener("click", function(event){
-    //     window.location.href = "editCustomer";
-    // });
+    custRow.addEventListener("click", function(event){
+        window.location.href = "editCustomer";
+    });
 
 
-    // people.addEventListener("click", function(event){
-    //     if(peopleContent.style.display == "block"){
-    //         peopleContent.style.display = "none";
-    //     }
-    //     else{
-    //         peopleContent.style.display = "block"
-    //     }
-    // });
+    people.addEventListener("click", function(event){
+        if(peopleContent.style.display == "block"){
+            peopleContent.style.display = "none";
+        }
+        else{
+            peopleContent.style.display = "block"
+        }
+    });
 
-    // customer.addEventListener("click", function(){
-    //     if(customerContent.style.display == "block"){
-    //         customerContent.style.display = "none";
-    //     }
-    //     else{
-    //         customerContent.style.display = "block"
-    //     }
-    // });
+    customer.addEventListener("click", function(){
+        if(customerContent.style.display == "block"){
+            customerContent.style.display = "none";
+        }
+        else{
+            customerContent.style.display = "block"
+        }
+    });
 
-    // technician.addEventListener("click", function(){
-    //     if(technicianContent.style.display == "block"){
-    //         technicianContent.style.display = "none";
-    //     }
-    //     else{
-    //         technicianContent.style.display = "block"
-    //     }
-    // });
+    technician.addEventListener("click", function(){
+        if(technicianContent.style.display == "block"){
+            technicianContent.style.display = "none";
+        }
+        else{
+            technicianContent.style.display = "block"
+        }
+    });
 
-    // amenities.addEventListener("click", function(){
-    //     if(amenitiesContent.style.display == "block"){
-    //         amenitiesContent.style.display = "none";
-    //     }
-    //     else{
-    //         amenitiesContent.style.display = "block"
-    //     }
-    // });
+    amenities.addEventListener("click", function(){
+        if(amenitiesContent.style.display == "block"){
+            amenitiesContent.style.display = "none";
+        }
+        else{
+            amenitiesContent.style.display = "block"
+        }
+    });
 
     listings.addEventListener("click", function(){
         if(listingContent.style.display == "block"){
@@ -67,6 +67,7 @@ window.onload = function(){
         }
     });
 };
+
 $('document').ready(function(){
     $('#allTechs > tr').hover(function(){
         $(this).css("cursor", "pointer");
@@ -81,7 +82,7 @@ $('document').ready(function(){
 
     var $allApts = $("#allApts");
     $.ajax({
-        url: "/api/get-apartments",
+        url: "/api/apartments",
         type: "GET",
         success: function(allData){
             $.each(allData, function(i,data){
@@ -102,5 +103,31 @@ $('document').ready(function(){
             alert('something went wrong');
         }
      });
+     $("#save").on('click', function(){
+         console.log("clicked");
+        $.ajax({
+            url:"/api/apartments",
+            type:"POST",
+            success: function(i,data){
+                console.log(data);
+            },
+            error: function(){
+                alert('something went updating sql');
+            }
+        });
+     });
+    //  $(".delete").on('click', function(){
+    //     $.ajax({
+    //         url:"/api/apartments",
+    //         type:"DELETE",
+    //     });
+    // });
+    // $(".new").on('click', function(){
+    //     $.ajax({
+    //         url:"/api/apartments",
+    //         type:"PUT",
+            
+    //     });
+    // });
 
 });

@@ -32,18 +32,73 @@ app.get('/', function(req, res, next) {
     res.render('home', context);
 });
 
-app.get('/api/get-apartments', function(req,res, next){
-    var context = {};
-    mysql.pool.query("SELECT aptNumber, rent, numBeds, numBaths, dateAvailable, availabilityStatus FROM apartments", function(error, results, fields){
-        if (error){
-            res.write(JSON.stringify(error));
-            return;
-        }
-        context.apartments = results;
-        res.send(context.apartments);
-    });
+app.route('/api/apartments')
+    .get(function(req,res, next){
+        var context = {};
+        mysql.pool.query("SELECT aptNumber, rent, numBeds, numBaths, dateAvailable, availabilityStatus FROM apartments", function(error, results, fields){
+            if (error){
+                res.write(JSON.stringify(error));
+                return;
+            }
+            context.apartments = results;
+            res.send(context.apartments);
+        });
+    })
+    .post(function(req,res,next){
+        console.log('here');
+        var context = {};
+        var sql = "UPDATE apartment SET ? WHERE aptID = "+[req.params.id];
+        var post  = {
+            aptNumber: aptNumber,
+            rent: rent,
+            numBeds: numBeds,
+            dateAvailable:dateAvailable,
+            availabilityStatus:availabilityStatus
+          };
+        // var values = [
+        //     [JSON.stringify(req.query.aptNumber),]
+        // ]
+        console.log(post);
+        mysql.pool.query(sql,post, function(error, results, fields){
+            if (error){
+                res.write(JSON.stringify(error));
+                return;
+            }
+            context.apartments = results;
+            res.send(context.apartments);
+        });
+    })
+    .put(function(req,res,next){
+        var context = {};
+        var sql = "INSERT INTO apartments VALUES ?";
+        var put  = {
+            aptNumber: aptNumber,
+            rent: rent,
+            numBeds: numBeds,
+            dateAvailable:dateAvailable,
+            availabilityStatus:availabilityStatus
+          };
+        mysql.pool.query(sql,put, function(error, results, fields){
+            if (error){
+                res.write(JSON.stringify(error));
+                return;
+            }
+            context.apartments = results;
+            res.send(context.apartments);
+        });
+    })
+    // .delete(function(req,res,next){
+    //     var context = {};
+    //     mysql.pool.query("SELECT aptNumber, rent, numBeds, numBaths, dateAvailable, availabilityStatus FROM apartments", function(error, results, fields){
+    //         if (error){
+    //             res.write(JSON.stringify(error));
+    //             return;
+    //         }
+    //         context.apartments = results;
+    //         res.send(context.apartments);
+    //     });
+    // })
 
-})
 //Renders apartment page
 app.use('/apartments', require('./apartments-node.js'));
 
