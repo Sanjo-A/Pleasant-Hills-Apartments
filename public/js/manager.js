@@ -66,69 +66,41 @@ window.onload = function(){
             listingContent.style.display = "block"
         }
     });
-    $('document').ready(function(){
-        $('#allTechs > tr').hover(function(){
-            $(this).css("cursor", "pointer");
-            $(this).css("background-color", "#ffff99")},function(){
-                $(this).css("background-color", "#fafafa");}
-        );
+};
+$('document').ready(function(){
+    $('#allTechs > tr').hover(function(){
+        $(this).css("cursor", "pointer");
+        $(this).css("background-color", "#ffff99")},function(){
+            $(this).css("background-color", "#fafafa");}
+    );
 
-        $('#allTechs > tr').on('click',  function(){
-            var url = "/edit-technician/" + $(this).attr('id');
-            window.location.href = url;
-        });
-
-        var $allApts = $("#allApts");
-        $.ajax({
-            url: "/api/get-apartments",
-            type: "GET",
-            success: function(allData){
-                $.each(allData, function(i,data){
-                    var apartment = $('<tr><form>'
-                        +'<td> <input type="number" value="'+data.aptNumber+'"></td>'
-                        +'<td><input type="number" value="'+data.rent+'"></td>'
-                        +'<td><input type="number" value="'+data.numBeds+'"></td>'
-                        +'<td><input type="number" value="'+data.numBaths+'"></td>'
-                        +'<td><input type="date" value="'+data.dateAvailable+'"></td>'
-                        +'<td><input type="text" value="'+data.availabilityStatus+'"></td> </form></tr>');
-                    apartment.attr('id', ''+data.aptID+'');
-                    $allApts.append(apartment);
-                });
-            },
-            error: function(){
-                alert('something went wrong');
-            }
-         });
-
+    $('#allTechs > tr').on('click',  function(){
+        var url = "/edit-technician/" + $(this).attr('id');
+        window.location.href = url;
     });
 
-};
+    var $allApts = $("#allApts");
+    $.ajax({
+        url: "/api/get-apartments",
+        type: "GET",
+        success: function(allData){
+            $.each(allData, function(i,data){
+                var apartment = $('<tr><form>'
+                    +'<td> <input type="number" value="'+data.aptNumber+'"></td>'
+                    +'<td><input type="number" value="'+data.rent+'"></td>'
+                    +'<td><input type="number" value="'+data.numBeds+'"></td>'
+                    +'<td><input type="number" value="'+data.numBaths+'"></td>'
+                    +'<td><input type="date" value="'+data.dateAvailable+'"></td>'
+                    +'<td><input type="text" value="'+data.availabilityStatus+'"></td>'
+                    +'<td><button type="submit" id="save"><img src="/icons/save.png" height="24" width="24"></button></td>'
+                    +'<td><button type="submit" id="delete"><img src="/icons/delete.png" height="24" width="24"></button></td> </form></tr>');
+                apartment.attr('id', ''+data.aptID+'');
+                $allApts.append(apartment);
+            });
+        },
+        error: function(){
+            alert('something went wrong');
+        }
+     });
 
-// function loadApartments(){
-//     var $allApts = $("#allApts");
-//     $.ajax({
-//         url: "/api/get-apartments",
-//         type: "GET",
-//         success: function(data){
-//             $.each($allApts, fucntion(data){
-
-//             })
-//             // for (apt in data){
-//             //     var aptNumber = apt.aptNumber;
-//             //     var rent = apt.rent;
-//             //     var numBeds = apt.numBeds;
-//             //     var numBaths = apt.numBaths;
-//             //     var datAvailable = apt.datAvailable;
-//             //     var availabilityStatus = apt.availabilityStatus;
-//             //     var ID = apt.aptID;
-//             //     var apartment = $('<div/>', {
-//             //         id: ID,
-//             //     });
-//             //     apartment.
-//             //    allApts.append(apartment);
-//             // }
-
-
-//         }
-//       })
-// };
+});
