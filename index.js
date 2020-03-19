@@ -48,7 +48,15 @@ app.route('/api/amenities')
 
     })
     .put(function(req,res,next){ //insert new data
-
+        var context = {};
+        var sql = "INSERT INTO amenities (amenDescription) VALUES("+JSON.stringify(req.body.amenDescription)+")"
+        mysql.pool.query(sql, function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                return;
+            }
+            res.end();
+        });
     })
     .delete(function(req,res,next){ //remove data
 
