@@ -104,7 +104,7 @@ $(window).on('load',function(){
     $(".saveApt").on('submit', function(e){
         e.preventDefault();
         // count++;
-        console.log("saving");
+        console.log("saving listing");
         // var $current = $(this).parent('.form');
         // console.log($current > $(".aptID").text())
         $.ajax({
@@ -236,8 +236,20 @@ $(window).on('load',function(){
             })
         })
     })
-    $(".saveAmenitiy").on("click", function(){
-
+    $(".saveAmenity").on("submit", function(e){
+        e.preventDefault();
+        console.log("saving amenity");
+        $.ajax({
+            url:"/api/amenities",
+            type:"POST",
+            data: $(this).serialize(),
+            success: function(i,data){
+                console.log(data);
+            },
+            error: function(){
+                alert('something went updating database');
+            }
+        })
     })
     $(".deleteAmenitiy").on("click", function(){
 

@@ -45,7 +45,17 @@ app.route('/api/amenities')
         });
     })
     .post(function(req,res,next){ //update current data
-
+        console.log(req.body);
+        var context = {};
+        var sql = "UPDATE amenities SET amenDescription = " + [JSON.stringify(req.body.amenDescription)] +" WHERE amenID = "+[JSON.stringify(req.body.amenID)];
+        mysql.pool.query(sql, function(error, results, fields){
+            if (error){
+                res.write(JSON.stringify(error));
+                return;
+            }
+            context.apartments = results;
+            res.send(context.apartments);
+        });
     })
     .put(function(req,res,next){ //insert new data
         var context = {};

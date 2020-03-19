@@ -18,7 +18,7 @@ module.exports = function(){
     }
 
     function getAmenities(res, mysql, context, complete){
-        mysql.pool.query("SELECT amenDescription FROM amenities", function(error, results, fields){
+        mysql.pool.query("SELECT * FROM amenities", function(error, results, fields){
             if (error){
                 res.write(JSON.stringify(error));
                 // res.end();
@@ -31,7 +31,7 @@ module.exports = function(){
     }
 
     function getCustomers(res, mysql, context, complete){
-        mysql.pool.query("SELECT custFName, custLName, custEmail, custPhone, rentStatus FROM customers", function(error, results, fields){
+        mysql.pool.query("SELECT * FROM customers", function(error, results, fields){
             if (error){
                 res.write(JSON.stringify(error));
                 // res.end();
@@ -44,7 +44,7 @@ module.exports = function(){
     }
 
     function getTechnicians(res, mysql, context, complete){
-        mysql.pool.query("SELECT techID, techFName, techLName, techEmail, techPhone FROM technicians", function(error, results, fields){
+        mysql.pool.query("SELECT * FROM technicians", function(error, results, fields){
             if (error){
                 res.write(JSON.stringify(error));
                 // res.end();
