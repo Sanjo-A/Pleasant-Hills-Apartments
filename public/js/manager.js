@@ -120,7 +120,7 @@ $(window).on('load',function(){
     //        }
     //     });
     // }
-    
+
     $(".saveApt").on('submit', function(e){
         e.preventDefault();
         // count++;
@@ -142,23 +142,22 @@ $(window).on('load',function(){
 
     // });
 
-    //     // $(".delete").on('click', function(){
-    //     //     console.log("delete clicked");
-    //     //     $.ajax({
-    //     //         url:"/api/apartments",
-    //     //         type:"DELETE",
-    //     //         data:{
-    //     //             aptID: $("#aptID").val()
-    //     //         },
-    //     //         success: function(i,data){
-    //     //             console.log(data);
-    //     //             $(this).parents('.tr').remove();
-    //     //         },
-    //     //         error: function(){
-    //     //             alert('something went deleting from database');
-    //     //         }
-    //     //     });
-    //     // });
+        $(".deleteApt").on('submit', function(e){
+            e.preventDefault();
+            console.log("delete clicked");
+            $.ajax({
+                url:"/api/apartments",
+                type:"DELETE",
+                // data: $(this).serialize(),
+                success: function(i,data){
+                    console.log("fake delete");
+                    $(this).parents('tr').remove();
+                },
+                error: function(){
+                    alert('something went deleting from database');
+                }
+            });
+        });
 
     //     },
     //     error: function(){

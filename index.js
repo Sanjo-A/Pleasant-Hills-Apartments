@@ -95,11 +95,14 @@ app.route('/api/apartments')
     .delete(function(req,res,next){
         console.log(req.body);
         var context = {};
-        mysql.pool.query("DELETE FROM apartments WHERE aptID = ?",[JSON.stringify(req.body.aptID)], function(error, results, fields){
+        var sql = "DELETE FROM apartments WHERE aptID = "+[JSON.stringify(req.body.aptID)]
+        console.log(sql);
+        mysql.pool.query(sql, function(error, results, fields){
             if (error){
                 res.write(JSON.stringify(error));
                 return;
             }
+            res.end();
         });
     })
 
