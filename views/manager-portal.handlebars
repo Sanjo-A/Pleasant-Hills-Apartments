@@ -42,22 +42,18 @@
                     <td><input type="number" value="{{numBaths}}" name="numBaths" min = "1" max= "10"></td>
                     <td><input type="date" value="{{dateAvailable}}" name="dateAvailable"></td>
                     <td><input type="text" value="{{availabilityStatus}}" name="availabilityStatus"></td>
-                    <td><button type="submit" value="save" class="save"><img src="/icons/save.png" height="24" width="24"></button></td>
+                    <td><button type="submit" value="save" class="saveApt"><img src="/icons/save.png" height="24" width="24"></button></td>
                 </form>
-                {{!-- <form class="deleteApt"> --}}
                 <td>
-                    {{!-- <input type="hidden" value="{{aptID}}" name="aptID"> --}}
-                    <button type="submit" value="delete" class="delete"><img src="/icons/delete.png" height="24" width="24"></button>
+                    <button type="submit" value="delete" class="deleteApt"><img src="/icons/delete.png" height="24" width="24"></button>
                 </td>
-                {{!-- </form> --}}
-
             </tr>
             {{/each}}
 
         </tbody>
         <tr>
             {{!-- <td><a href="/new-listing">Add Listing</a></td> --}}
-            <td><button class="new">New Listing</button></td>
+            <td><button class="newApt">New Listing</button></td>
         </tr>
     </table>
 </div>
@@ -72,8 +68,15 @@
             </thead>
             <tbody>
                 {{#each amenities}}
-                <tr>
-                    <td>{{amenDescription}}</td>
+                <tr id="{{amenID}}">
+                    <form class="saveAmenity">
+                        <td>
+                        <input type="hidden" value="{{amenID}}" name="amenID">
+                        <input type="text" value="{{amenDescription}}" name="amenDescription">
+                        </td>
+                        <td><button type="submit" class="save"><img src="/icons/save.png" height="24" width="24"></button></td>
+                    </form>
+                    <td><button class="deleteAmenity" type="submit"><img src="/icons/delete.png" height="24" width="24"></button></td>
                 </tr>
                 {{/each}}
             </tbody>
@@ -89,7 +92,6 @@
 
 <h3 class="hideContentTxt" id="manPeopleTxt">Manage People</h3>
 <div class="hiddenContent" class="col-*-*" id="peopleContent">
-    {{!-- <div id="peopleContent"> --}}
         <h4 class="hideContentTxt" id="manCustomerTxt">Manage Customers</h4>
         <div class="hiddenContent" id="custContent">
             <form class = "filterCustomers">
@@ -112,12 +114,16 @@
                 </thead>
                 <tbody>
                     {{#each customers}}
-                    <tr id="editCustomerRow">
-                        <td>{{custFName}}</td>
-                        <td>{{custLName}}</td>
-                        <td>{{custEmail}}</td>
-                        <td>{{custPhone}}</td>
-                        <td>{{rentStatus}}</td>
+                    <tr id="{{custID}}">
+                        <form class="saveCustomer">
+                            <td><input type="text" value="{{custFName}}" name="custFName" required></td>
+                            <td><input type="text" value="{{custLName}}" name="custLName" required></td>
+                            <td><input type="email" value="{{custEmail}}" name="custEmail" required></td>
+                            <td><input type="number" value="{{custPhone}}" name="custPhone" pattern="[0-9]{10}|[0-9]{3}-[0-9]{3}-[0-9]{4}"></td>
+                            <td><input type="text" value="{{rentStatus}}" name="rentStatus" required></td>
+                            <td><button type="submit" class="save"><img src="/icons/save.png" height="24" width="24"></button></td>
+                        </form>
+                        <td><button class="deleteCustomer" type="submit"><img src="/icons/delete.png" height="24" width="24"></button></td>
                     </tr>
                     {{/each}}
                 </tbody>
@@ -138,21 +144,24 @@
                 <tbody id="allTechs">
                     {{#each technicians}}
                     <tr id="{{this.techID}}">
-                        <td>{{techFName}}</td>
-                        <td>{{techLName}}</td>
-                        <td>{{techEmail}}</td>
-                        <td>{{techPhone}}</td>
+                        <form class="saveTechnican">
+                            <td><input type="text" value="{{techFName}}" name="techFName" required></td>
+                            <td><input type="text" value="{{techLName}}" name="techLName" required></td>
+                            <td><input type="email" value="{{techEmail}}" name="techEmail" required></td>
+                            <td><input type="number" value="{{techPhone}}" name="techPhone" pattern="[0-9]{10}|[0-9]{3}-[0-9]{3}-[0-9]{4}" required></td>
+                            <td><button type="submit" class="save"><img src="/icons/save.png" height="24" width="24"></button></td>
+                        </form>
+                        <td><button class="deleteTechnician" type="submit"><img src="/icons/delete.png" height="24" width="24"></button></td>
                     </tr>
                     {{/each}}
                 </tbody>
-                <tr>
+                {{!-- <tr>
                     <td>
                         <a href="/new-technician">Add Technician</a>
                     </td>
-                </tr>
+                </tr> --}}
             </table>
         </div>
-    {{!-- </div> --}}
 
 </div>
 
