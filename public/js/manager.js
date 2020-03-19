@@ -204,6 +204,7 @@ $(window).on('load',function(){
                 success: function(i,data){
                     console.log("Added to DB");
                     $(".new").show();
+                    $(".create").remove();
                 },
                 error: function(){
                     alert("Could not add to database");
