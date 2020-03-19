@@ -32,6 +32,48 @@ app.get('/', function(req, res, next) {
     res.render('home', context);
 });
 
+app.route('/api/amenities')
+    .get(function(req,res,next){
+
+    })
+    .post(function(req,res,next){
+
+    })
+    .put(function(req,res,next){
+
+    })
+    .delete(function(req,res,next){
+
+    })
+
+app.route('/api/technicians')
+    .get(function(req,res,next){
+
+    })
+    .post(function(req,res,next){
+
+    })
+    .put(function(req,res,next){
+
+    })
+    .delete(function(req,res,next){
+
+    })
+
+app.route('/api/customers')
+    .get(function(req,res,next){
+
+    })
+    .post(function(req,res,next){
+
+    })
+    .put(function(req,res,next){
+
+    })
+    .delete(function(req,res,next){
+
+    })
+
 app.route('/api/apartments')
     .get(function(req,res, next){
         var context = {};

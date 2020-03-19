@@ -74,7 +74,19 @@ $(document).ready(function(){
 });
 $(window).on('load',function(){
     var $allApts = $("#allApts");
+    // var amenities;
+    // $.ajax({
+    //     url:"/api/amenities",
+    //     type:"GET",
+    //     success: function(allAmenities){
+    //         $.each(allAmenities, function(i,data){
 
+    //         })
+    //     },
+    //     error: function(){
+
+    //     }
+    // });
 
     $(".newApartment").hide();
 
@@ -88,43 +100,6 @@ $(window).on('load',function(){
         var url = "/edit-technician/" + $(this).attr('id');
         window.location.href = url;
     });
-    // var rows = 0;
-    // var count = 0;
-    // if(count > 0){
-    //     var $allApts = $("#allApts");
-    //     $.ajax({
-    //         url: "/api/apartments",
-    //         type: "GET",
-    //         success: function(allData){
-    //             $.each(allData, function(i,data){
-    //                 var apartment = $(
-    //                     '<tr>'
-    //                         +'<form class="saveApt">'
-    //                             +'<td>'
-    //                                 +'<input type="hidden" class="aptID" value="'+data.aptID+'">'
-    //                                 + '<input type="number" class="aptNumber" value="'+data.aptNumber+'">'
-    //                             +'</td>'
-    //                             +'<td><input type="number" class="rent" value="'+data.rent+'"></td>'
-    //                             +'<td><input type="number" class="numBeds" value="'+data.numBeds+'"></td>'
-    //                             +'<td><input type="number" class="numBaths" value="'+data.numBaths+'"></td>'
-    //                             +'<td><input type="date" class="dateAvailable" value="'+data.dateAvailable+'"></td>'
-    //                             +'<td><input type="text" class="availabilityStatus" value="'+data.availabilityStatus+'"></td>'
-    //                             +'<td><button type="submit" class="save" value="save"><img src="/icons/save.png" height="24" width="24"></button></td>'
-    //                         +'</form>'
-    //                         +'<form class="deleteApt">'
-    //                             +'<td>'
-    //                                     +'<input type="hidden" class="aptID" value="'+data.aptID+'">'
-    //                                     +'<button type="submit" class="delete" value="delete"><img src="/icons/delete.png" height="24" width="24"></button>'
-    //                             +'</td>'
-    //                         +'</form>'
-    //                     +'</tr>'
-    //                     );
-    //                 apartment.attr('id', ''+data.aptID+'');
-    //                 $allApts.append(apartment);
-    //             })
-    //        }
-    //     });
-    // }
 
     $(".saveApt").on('submit', function(e){
         e.preventDefault();
@@ -212,58 +187,6 @@ $(window).on('load',function(){
             });
         });
     });
-
-    //     },
-    //     error: function(){
-    //         alert('something went wrong');
-    //     }
-    //  });
-    
-    //  $('.aptForms').on("submit", function(){
-    //         var val = $("input[type=submit][clicked=true]").val();
-    //         if(val === "save"){
-    //             $.ajax({
-    //                     url:"/api/apartments",
-    //                     type:"POST",
-    //                     data:{
-    //                         aptID: $(this).closest('td').next().find('input .aptID').val(),
-    //                         aptNumber: $(this).closest('td').next().find('input .aptNumber').val(),
-    //                         rent: $(this).closest('td').next().find('input .rent').val(),
-    //                         numBeds: $(this).closest('td').next().find('input .numBeds').val(),
-    //                         numBaths: $(this).closest('td').next().find('input .numBaths').val(),
-    //                         dateAvailable: $(this).closest('td').next().find('input .dateAvailable').val(),
-    //                         availabilityStatus: $(this).closest('td').next().find('input .availabilityStatus').val()
-    //                     },
-    //                     success: function(i,data){
-    //                         console.log(data);
-    //                         console.log('blah')
-
-    //                     },
-    //                     error: function(){
-    //                         alert('something went updating database');
-    //                     }
-    //             });
-    //         }
-    //         else{
-    //             $.ajax({
-    //                 url:"/api/apartments",
-    //                 type:"DELETE",
-    //                 data:{
-    //                     aptID: $("#aptID").val()
-    //                 },
-    //                 success: function(i,data){
-    //                     console.log(data);
-    //                     $(this).parents('.tr').remove();
-    //                 },
-    //                 error: function(){
-    //                     alert('something went deleting from database');
-    //                 }
-    //             });
-    //         }
-    //  });
-
-
-
 
 
 });
