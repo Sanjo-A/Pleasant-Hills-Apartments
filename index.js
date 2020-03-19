@@ -32,10 +32,52 @@ app.get('/', function(req, res, next) {
     res.render('home', context);
 });
 
+app.route('/api/amenities')
+    .get(function(req,res,next){
+
+    })
+    .post(function(req,res,next){
+
+    })
+    .put(function(req,res,next){
+
+    })
+    .delete(function(req,res,next){
+
+    })
+
+app.route('/api/technicians')
+    .get(function(req,res,next){
+
+    })
+    .post(function(req,res,next){
+
+    })
+    .put(function(req,res,next){
+
+    })
+    .delete(function(req,res,next){
+
+    })
+
+app.route('/api/customers')
+    .get(function(req,res,next){
+
+    })
+    .post(function(req,res,next){
+
+    })
+    .put(function(req,res,next){
+
+    })
+    .delete(function(req,res,next){
+
+    })
+
 app.route('/api/apartments')
     .get(function(req,res, next){
         var context = {};
-        mysql.pool.query("SELECT aptNumber, rent, numBeds, numBaths, dateAvailable, availabilityStatus FROM apartments", function(error, results, fields){
+        mysql.pool.query("SELECT aptID, aptNumber, rent, numBeds, numBaths, DATE_FORMAT(dateAvailable, '%Y-%m-%d') AS dateAvailable, availabilityStatus FROM apartments", function(error, results, fields){
             if (error){
                 res.write(JSON.stringify(error));
                 return;
@@ -45,21 +87,12 @@ app.route('/api/apartments')
         });
     })
     .post(function(req,res,next){
-        console.log('here');
+        console.log(req.body.aptNumber);
         var context = {};
-        var sql = "UPDATE apartment SET ? WHERE aptID = "+[req.params.id];
-        var post  = {
-            aptNumber: aptNumber,
-            rent: rent,
-            numBeds: numBeds,
-            dateAvailable:dateAvailable,
-            availabilityStatus:availabilityStatus
-          };
-        // var values = [
-        //     [JSON.stringify(req.query.aptNumber),]
-        // ]
-        console.log(post);
-        mysql.pool.query(sql,post, function(error, results, fields){
+        var sql = "UPDATE apartments SET aptNumber = " + [JSON.stringify(req.body.aptNumber)] +", rent = "+[JSON.stringify(req.body.rent)]+", numBeds = "
+            +[JSON.stringify(req.body.numBeds)]+", numBaths = "+[JSON.stringify(req.body.numBaths)]+", dateAvailable = "+[JSON.stringify(req.body.dateAvailable)]
+            +", availabilityStatus = "+[JSON.stringify(req.body.availabilityStatus)]+" WHERE aptID = "+[JSON.stringify(req.body.aptID)];
+        mysql.pool.query(sql, function(error, results, fields){
             if (error){
                 res.write(JSON.stringify(error));
                 return;
@@ -70,34 +103,30 @@ app.route('/api/apartments')
     })
     .put(function(req,res,next){
         var context = {};
-        var sql = "INSERT INTO apartments VALUES ?";
-        var put  = {
-            aptNumber: aptNumber,
-            rent: rent,
-            numBeds: numBeds,
-            dateAvailable:dateAvailable,
-            availabilityStatus:availabilityStatus
-          };
-        mysql.pool.query(sql,put, function(error, results, fields){
+        var sql = "INSERT INTO apartments(aptNumber, rent, numBeds, numBaths, dateAvailable, availabilityStatus) VALUES("+JSON.stringify(req.body.aptNumber)+","+JSON.stringify(req.body.rent)+","+JSON.stringify(req.body.numBeds)+","
+            +JSON.stringify(req.body.numBaths)+","+JSON.stringify(req.body.dateAvailable)+","+JSON.stringify(req.body.availabilityStatus)+");";
+
+        mysql.pool.query(sql, function(error, results, fields){
             if (error){
                 res.write(JSON.stringify(error));
                 return;
             }
-            context.apartments = results;
-            res.send(context.apartments);
+            console.log(results,fields);
+            res.end();
         });
     })
-    // .delete(function(req,res,next){
-    //     var context = {};
-    //     mysql.pool.query("SELECT aptNumber, rent, numBeds, numBaths, dateAvailable, availabilityStatus FROM apartments", function(error, results, fields){
-    //         if (error){
-    //             res.write(JSON.stringify(error));
-    //             return;
-    //         }
-    //         context.apartments = results;
-    //         res.send(context.apartments);
-    //     });
-    // })
+    .delete(function(req,res,next){
+        console.log(req.body);
+        var context = {};
+        var sql = "DELETE FROM apartments WHERE aptID = "+[JSON.stringify(req.body.aptID)]
+        mysql.pool.query(sql, function(error, results, fields){
+            if (error){
+                res.write(JSON.stringify(error));
+                return;
+            }
+            res.end();
+        });
+    })
 
 //Renders apartment page
 app.use('/apartments', require('./apartments-node.js'));
@@ -185,6 +214,7 @@ app.get('/edit-technician/:id', function(req, res, next) {
 //update technician
 app.get('/edit-technicians',function(req,res,next){
     console.log("Updated Technican"); 
+    console.log(req.query);
     var sql = 'UPDATE technicians SET techFName = '+[JSON.stringify(req.query.techFName)]+', techLName = '+[JSON.stringify(req.query.techLName)]+', techPhone = '
         +[JSON.stringify(req.query.techPhone)]+', techEmail = '+[JSON.stringify(req.query.techEmail)]+' WHERE techID = '+[JSON.stringify(req.query.techID)];
     mysql.pool.query(sql,function(err,results){

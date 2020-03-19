@@ -66,9 +66,30 @@ window.onload = function(){
             listingContent.style.display = "block"
         }
     });
+    
 };
+$(document).ready(function(){
 
-$('document').ready(function(){
+
+});
+$(window).on('load',function(){
+    var $allApts = $("#allApts");
+    // var amenities;
+    // $.ajax({
+    //     url:"/api/amenities",
+    //     type:"GET",
+    //     success: function(allAmenities){
+    //         $.each(allAmenities, function(i,data){
+
+    //         })
+    //     },
+    //     error: function(){
+
+    //     }
+    // });
+
+    $(".newApartment").hide();
+
     $('#allTechs > tr').hover(function(){
         $(this).css("cursor", "pointer");
         $(this).css("background-color", "#ffff99")},function(){
@@ -80,54 +101,93 @@ $('document').ready(function(){
         window.location.href = url;
     });
 
-    var $allApts = $("#allApts");
-    $.ajax({
-        url: "/api/apartments",
-        type: "GET",
-        success: function(allData){
-            $.each(allData, function(i,data){
-                var apartment = $('<tr><form>'
-                    +'<td> <input type="number" value="'+data.aptNumber+'"></td>'
-                    +'<td><input type="number" value="'+data.rent+'"></td>'
-                    +'<td><input type="number" value="'+data.numBeds+'"></td>'
-                    +'<td><input type="number" value="'+data.numBaths+'"></td>'
-                    +'<td><input type="date" value="'+data.dateAvailable+'"></td>'
-                    +'<td><input type="text" value="'+data.availabilityStatus+'"></td>'
-                    +'<td><button type="submit" id="save"><img src="/icons/save.png" height="24" width="24"></button></td>'
-                    +'<td><button type="submit" id="delete"><img src="/icons/delete.png" height="24" width="24"></button></td> </form></tr>');
-                apartment.attr('id', ''+data.aptID+'');
-                $allApts.append(apartment);
-            });
-        },
-        error: function(){
-            alert('something went wrong');
-        }
-     });
-     $("#save").on('click', function(){
-         console.log("clicked");
+    $(".saveApt").on('submit', function(e){
+        e.preventDefault();
+        // count++;
+        console.log("saving");
+        // var $current = $(this).parent('.form');
+        // console.log($current > $(".aptID").text())
         $.ajax({
             url:"/api/apartments",
             type:"POST",
+            data: $(this).serialize(),
             success: function(i,data){
                 console.log(data);
             },
             error: function(){
-                alert('something went updating sql');
+                alert('something went updating database');
             }
-        });
-     });
-    //  $(".delete").on('click', function(){
-    //     $.ajax({
-    //         url:"/api/apartments",
-    //         type:"DELETE",
-    //     });
-    // });
-    // $(".new").on('click', function(){
-    //     $.ajax({
-    //         url:"/api/apartments",
-    //         type:"PUT",
-            
-    //     });
+        })
+    });
+
     // });
 
+        $(".delete").on('click', function(e){
+            e.preventDefault();
+            console.log("delete clicked");
+            console.log($(this).val());
+            $(this).parents('tr').hide();
+            $.ajax({
+                url:"/api/apartments",
+                type:"DELETE",
+                data: {
+                    aptID: $(this).parents('tr').attr('id')
+                },
+                success: function(i,data){
+                    $(this).parents('tr').remove();
+                },
+                error: function(){
+                    $(this).parents('tr').show();
+                    alert('something went deleting from database');
+                }
+            });
+        });
+
+    $(".new").on('click', function(){
+        $(this).hide();
+        // $(".newApartment").show();
+        var newApt = $(
+            '<tr class="newApartment">'
+                +'<form class="createForm">'
+                    +'<td class="aptNumber">'
+                        + '<input type="number" name="aptNumber" min = "1" max= "9999" placeholder="Apartment Number">'
+                    +'</td>'
+                    +'<td class="rent"><input type="number" name="rent" min = "1" max= "9999" placeholder="Rent"></td>'
+                    +'<td class="numBeds"><input type="number" name="numBeds" min = "0" max= "10" placeholder="Beds"></td>'
+                    +'<td class="numBaths"><input type="number" name="numBaths" min = "0" max= "10" placeholder="Baths"></td>'
+                    +'<td class="dateAvailable"><input type="date" name="dateAvailable"></td>'
+                    +'<td class="availabilityStatus"><input type="text" name="availabilityStatus" placeholder="Select Availability"></td>'
+                    +'<td><button type="submit" class="create" value="save"><img src="/icons/save.png" height="24" width="24"></button></td>'
+                +'</form>'
+            +'</tr>'
+        );
+        $allApts.append(newApt);
+        $(".create").on('click', function(e){
+            e.preventDefault();
+            console.log("trying to create");
+            $.ajax({
+                url:"/api/apartments",
+                type:"PUT",
+                data:{
+                    aptNumber: $(this).parents('td').siblings('.aptNumber').find("input").val(),
+                    rent:  $(this).parents('td').siblings('.rent').find("input").val(),
+                    numBeds:  $(this).parents('td').siblings('.numBeds').find("input").val(),
+                    numBaths:  $(this).parents('td').siblings('.numBaths').find("input").val(),
+                    dateAvailable:  $(this).parents('td').siblings('.dateAvailable').find("input").val(),
+                    availabilityStatus:  $(this).parents('td').siblings('.availabilityStatus').find("input").val()
+                },
+                success: function(i,data){
+                    console.log("Added to DB");
+                    $(".new").show();
+                    $(".create").remove();
+                },
+                error: function(){
+                    alert("Could not add to database");
+                }
+            });
+        });
+    });
+
+
 });
+

@@ -11,7 +11,7 @@
     <label for = "rent">Beds:</label>
         <input type = "number" name = "numBeds" min = "0" max= "10">
     <label for = "rent">Baths:</label>
-        <input type = "number" name = "numBaths" min = "0" max= "10">
+        <input type = "number" name = "numBaths" min = "1" max= "10">
     <label for = "dateAvail">Date Available:</label>
         <input type = "date" name = "dateAvail">
     <input list="availStatus" name="availStatus" placeholder="Select Availability">   
@@ -19,7 +19,7 @@
             <option value="Available"></option>
             <option value="Rented"></option>
         </datalist>
-    <select multiple size="6" name="amenities">
+    <select multiple size="4" name="amenities">
         {{#each amenities}}
         <option value="{{amenID}}">{{amenDescription}}</option>
         {{/each}}
