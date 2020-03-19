@@ -3,7 +3,7 @@ module.exports = function(){
     var router = express.Router();
 
     function getApartments(res, mysql, context, complete){
-        mysql.pool.query("SELECT aptNumber, rent, numBeds, numBaths, availabilityStatus,  DATE_FORMAT(dateAvailable, '%Y-%m-%d') AS dateAvailable FROM apartments", function(error, results, fields){
+        mysql.pool.query("SELECT aptID, aptNumber, rent, numBeds, numBaths, availabilityStatus,  DATE_FORMAT(dateAvailable, '%Y-%m-%d') AS dateAvailable FROM apartments", function(error, results, fields){
             if (error){
                 res.write(JSON.stringify(error));
                 // res.end();
@@ -11,7 +11,7 @@ module.exports = function(){
                 return;
             }
             context.apartments = results;
-            console.log(results)
+            // console.log(results)
             complete();
 
         })

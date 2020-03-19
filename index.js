@@ -35,7 +35,7 @@ app.get('/', function(req, res, next) {
 app.route('/api/apartments')
     .get(function(req,res, next){
         var context = {};
-        mysql.pool.query("SELECT aptID, aptNumber, rent, numBeds, numBaths, dateAvailable, availabilityStatus FROM apartments", function(error, results, fields){
+        mysql.pool.query("SELECT aptID, aptNumber, rent, numBeds, numBaths, DATE_FORMAT(dateAvailable, '%Y-%m-%d') AS dateAvailable, availabilityStatus FROM apartments", function(error, results, fields){
             if (error){
                 res.write(JSON.stringify(error));
                 return;
