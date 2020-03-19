@@ -116,11 +116,11 @@
                     {{#each customers}}
                     <tr id="{{custID}}">
                         <form class="saveCustomer">
-                            <td>{{custFName}}</td>
-                            <td>{{custLName}}</td>
-                            <td>{{custEmail}}</td>
-                            <td>{{custPhone}}</td>
-                            <td>{{rentStatus}}</td>
+                            <td><input type="text" value="{{custFName}}"></td>
+                            <td><input type="text" value="{{custLName}}"></td>
+                            <td><input type="email" value="{{custEmail}}"></td>
+                            <td><input type="number" value="{{custPhone}}"></td>
+                            <td><input type="text" value="{{rentStatus}}"></td>
                             <td><button type="submit" class="save"><img src="/icons/save.png" height="24" width="24"></button></td>
                         </form>
                         <td><button class="deleteCustomer" type="submit"><img src="/icons/delete.png" height="24" width="24"></button></td>
@@ -145,10 +145,10 @@
                     {{#each technicians}}
                     <tr id="{{this.techID}}">
                         <form class="saveTechnican">
-                            <td>{{techFName}}</td>
-                            <td>{{techLName}}</td>
-                            <td>{{techEmail}}</td>
-                            <td>{{techPhone}}</td>
+                            <td><input type="text" value="{{techFName}}"></td>
+                            <td><input type="text" value="{{techLName}}"></td>
+                            <td><input type="email" value="{{techEmail}}"></td>
+                            <td><input type="number" value="{{techPhone}}"></td>
                             <td><button type="submit" class="save"><img src="/icons/save.png" height="24" width="24"></button></td>
                         </form>
                         <td><button class="deleteTechnician" type="submit"><img src="/icons/delete.png" height="24" width="24"></button></td>
