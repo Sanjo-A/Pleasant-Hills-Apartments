@@ -73,6 +73,7 @@ $(document).ready(function(){
 
 });
 $(window).on('load',function(){
+    var $allApts = $("#allApts");
     $('#allTechs > tr').hover(function(){
         $(this).css("cursor", "pointer");
         $(this).css("background-color", "#ffff99")},function(){
@@ -163,6 +164,43 @@ $(window).on('load',function(){
             });
         });
 
+    $(".new").on('click', function(){
+        //add new row 
+        $(this).hide();
+        var newApt = $(
+            '<tr>'
+                +'<form class="create">'
+                    +'<td>'
+                        + '<input type="number" name="aptNumber" min = "1" max= "9999" placeholder="Apartment Number">'
+                    +'</td>'
+                    +'<td><input type="number" name="rent" min = "1" max= "9999" placeholder="Rent"></td>'
+                    +'<td><input type="number" name="numBeds" min = "0" max= "10" placeholder="Beds"></td>'
+                    +'<td><input type="number" name="numBaths" min = "0" max= "10" placeholder="Baths"></td>'
+                    +'<td><input type="date" name="dateAvailable" ></td>'
+                    +'<td><input type="text" name="availabilityStatus" placeholder="Select Availability"></td>'
+                    +'<td><button type="submit" class="create" value="save"><img src="/icons/save.png" height="24" width="24"></button></td>'
+                +'</form>'
+            +'</tr>'
+        );
+        $allApts.append(newApt);
+        $(".create").on("submit", function(e){
+            e.preventDefault();
+            console.log("trying to create");
+            $.ajax({
+                url:"/api/apartments",
+                type:"PUT",
+                data: $(this).serialize(),
+                success: function(i,data){
+                    console.log("Added to DB");
+                    $(this).show();
+                },
+                error: function(){
+                    alert("Could not add to database");
+                }
+            });
+        });
+    });
+
     //     },
     //     error: function(){
     //         alert('something went wrong');
@@ -214,13 +252,7 @@ $(window).on('load',function(){
 
 
 
-    // $(".new").on('click', function(){
-    //     $.ajax({
-    //         url:"/api/apartments",
-    //         type:"PUT",
-            
-    //     });
-    // });
+
 
 });
 

@@ -33,6 +33,7 @@ module.exports = function(){
         var sql = "INSERT INTO apartments(aptNumber, rent, numBeds, numBaths, dateAvailable, availabilityStatus) VALUES(?, ?, ?, ?, ?, ?);";
         var inserts = [req.body.aptNumber, req.body.rent, req.body.numBeds, req.body.numBaths, req.body.dateAvail, req.body.availStatus];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
+            console.log(results);
             if(error){
                 console.log(JSON.stringify(error))
                 res.write(JSON.stringify(error));

@@ -74,6 +74,7 @@ app.route('/api/apartments')
         });
     })
     .put(function(req,res,next){
+        console.log(req.body);
         var context = {};
         var sql = "INSERT INTO apartments VALUES ?";
         var put  = {
