@@ -87,16 +87,16 @@ $(window).on('load',function(){
 
     $(".newApartment").hide();//
 
-    $('#allTechs > tr').hover(function(){
-        $(this).css("cursor", "pointer");
-        $(this).css("background-color", "#ffff99")},function(){
-            $(this).css("background-color", "#fafafa");}
-    );
+    // $('#allTechs > tr').hover(function(){
+    //     $(this).css("cursor", "pointer");
+    //     $(this).css("background-color", "#ffff99")},function(){
+    //         $(this).css("background-color", "#fafafa");}
+    // );
 
-    $('#allTechs > tr').on('click',  function(){
-        var url = "/edit-technician/" + $(this).attr('id');
-        window.location.href = url;
-    });
+    // $('#allTechs > tr').on('click',  function(){
+    //     var url = "/edit-technician/" + $(this).attr('id');
+    //     window.location.href = url;
+    // });
 
     $(".saveApt").on('submit', function(e){
         e.preventDefault();
