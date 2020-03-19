@@ -251,8 +251,25 @@ $(window).on('load',function(){
             }
         })
     })
-    $(".deleteAmenitiy").on("click", function(){
-
+    $(".deleteAmenity").on("click", function(e){
+        e.preventDefault();
+        console.log("delete clicked");
+        console.log($(this).parents('tr').attr('id'))
+        $(this).parents('tr').hide();
+        $.ajax({
+            url:"/api/amenities",
+            type:"DELETE",
+            data: {
+                amenID: $(this).parents('tr').attr('id')
+            },
+            success: function(i,data){
+                $(this).parents('tr').remove();
+            },
+            error: function(){
+                $(this).parents('tr').show();
+                alert('something went deleting from database');
+            }
+        });
     })
 
     $(".newTechnician").on("click", function(){

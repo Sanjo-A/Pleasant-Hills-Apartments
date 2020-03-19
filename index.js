@@ -69,7 +69,15 @@ app.route('/api/amenities')
         });
     })
     .delete(function(req,res,next){ //remove data
-
+        var context = {};
+        var sql = "DELETE FROM amenities WHERE amenID ="+JSON.stringify(req.body.amenID);
+        mysql.pool.query(sql, function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                return;
+            }
+            res.end();
+        })
     })
 
 app.route('/api/technicians')
