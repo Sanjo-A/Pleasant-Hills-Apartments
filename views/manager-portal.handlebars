@@ -66,7 +66,7 @@
                     <th>Amenity Description</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="allAmenities">
                 {{#each amenities}}
                 <tr id="{{amenID}}">
                     <form class="saveAmenity">
@@ -80,13 +80,16 @@
                 </tr>
                 {{/each}}
             </tbody>
+            <tr>
+                <td><button class="newAmenity">New Amenity</button></td>
+            </tr>
         </table>
-    <h5>Add Amenity:</h5>
+    {{!-- <h5>Add Amenity:</h5>
         <form id = "addAmenity" action = "/manager-portal" method = "post">
             <label for = "amenDescrip">Amenity Description:</label>
             <input type = "text" name = "amenDescrip" maxlength="30">
             <input type = "submit" value = "Submit">
-        </form>
+        </form> --}}
 
 </div>
 
@@ -112,7 +115,7 @@
                         <th>Status</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="allCustomers">
                     {{#each customers}}
                     <tr id="{{custID}}">
                         <form class="saveCustomer">
@@ -141,7 +144,7 @@
                         <th>Phone</th>
                     </tr>
                 </thead>
-                <tbody id="allTechs">
+                <tbody id="allTechnicians">
                     {{#each technicians}}
                     <tr id="{{this.techID}}">
                         <form class="saveTechnican">

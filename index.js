@@ -45,13 +45,39 @@ app.route('/api/amenities')
         });
     })
     .post(function(req,res,next){ //update current data
-
+        console.log(req.body);
+        var context = {};
+        var sql = "UPDATE amenities SET amenDescription = " + [JSON.stringify(req.body.amenDescription)] +" WHERE amenID = "+[JSON.stringify(req.body.amenID)];
+        mysql.pool.query(sql, function(error, results, fields){
+            if (error){
+                res.write(JSON.stringify(error));
+                return;
+            }
+            context.apartments = results;
+            res.send(context.apartments);
+        });
     })
     .put(function(req,res,next){ //insert new data
-
+        var context = {};
+        var sql = "INSERT INTO amenities (amenDescription) VALUES("+JSON.stringify(req.body.amenDescription)+")"
+        mysql.pool.query(sql, function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                return;
+            }
+            res.end();
+        });
     })
     .delete(function(req,res,next){ //remove data
-
+        var context = {};
+        var sql = "DELETE FROM amenities WHERE amenID ="+JSON.stringify(req.body.amenID);
+        mysql.pool.query(sql, function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                return;
+            }
+            res.end();
+        })
     })
 
 app.route('/api/technicians')

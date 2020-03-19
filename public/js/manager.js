@@ -68,13 +68,16 @@ $(document).ready(function(){
 
 });
 $(window).on('load',function(){
-    var $allApts = $("#allApts");//cache 
-    var amenities =""
+    var $allApts = $("#allApts");//cache container of apartments
+    var $allAmenities = $('#allAmenities'); //cache container of ameniteis
+    var $allTechnicians =$("#allTechnicians");
+    var $allCustomers = $("#allCustomers");
+    var amenities = "";
     $.ajax({ //grab initial amenities
         url:"/api/amenities",
         type:"GET",
         success: function(allAmenities){
-            amenities+= '<td class="amenities"> <select multiple size="4" name="amenities">';
+            amenities+= '<td class="amenities"> <select multiple size="4" name="amenities" required>';
             $.each(allAmenities, function(i,data){
                 amenities += '<option value ='+data.amenDescription+'>'+data.amenDescription+'</option>';
             })
@@ -101,7 +104,7 @@ $(window).on('load',function(){
     $(".saveApt").on('submit', function(e){
         e.preventDefault();
         // count++;
-        console.log("saving");
+        console.log("saving listing");
         // var $current = $(this).parent('.form');
         // console.log($current > $(".aptID").text())
         $.ajax({
@@ -140,18 +143,17 @@ $(window).on('load',function(){
 
     $(".newApt").on('click', function(){
         $(this).hide();
-        // $(".newApartment").show();
         var newApt = $(
             '<tr class="newApartment">'
                 +'<form class="createForm">'
                     +'<td class="aptNumber">'
-                        + '<input type="number" name="aptNumber" min = "1" max= "9999" placeholder="Apartment Number">'
+                        + '<input type="number" name="aptNumber" min = "1" max= "9999" placeholder="Apartment Number" required>'
                     +'</td>'
-                    +'<td class="rent"><input type="number" name="rent" min = "1" max= "9999" placeholder="Rent"></td>'
-                    +'<td class="numBeds"><input type="number" name="numBeds" min = "0" max= "10" placeholder="Beds"></td>'
-                    +'<td class="numBaths"><input type="number" name="numBaths" min = "0" max= "10" placeholder="Baths"></td>'
-                    +'<td class="dateAvailable"><input type="date" name="dateAvailable"></td>'
-                    +'<td class="availabilityStatus"><input type="text" name="availabilityStatus" placeholder="Select Availability"></td>'
+                    +'<td class="rent"><input type="number" name="rent" min = "1" max= "9999" placeholder="Rent" required></td>'
+                    +'<td class="numBeds"><input type="number" name="numBeds" min = "0" max= "10" placeholder="Beds" required></td>'
+                    +'<td class="numBaths"><input type="number" name="numBaths" min = "0" max= "10" placeholder="Baths" required></td>'
+                    +'<td class="dateAvailable"><input type="date" name="dateAvailable" required></td>'
+                    +'<td class="availabilityStatus"><input type="text" name="availabilityStatus" placeholder="Select Availability" required></td>'
                     +amenities
                     +'<td><button type="submit" class="createApt" value="save"><img src="/icons/save.png" height="24" width="24"></button></td>'
                 +'</form>'
@@ -186,14 +188,88 @@ $(window).on('load',function(){
     });
 
 
-    $(".newAmenitiy").on("click", function(){
-
+    $(".newAmenity").on("click", function(){
+        $(this).hide();
+        var newAmenitiy = $(
+            '<tr class="newAmenity">'
+                +'<form class="createForm">'
+                    +'<td class="amenDescription">'
+                        + '<input type="text" name="amenDescription" placeholder="Amenity Name" maxlength="40" minlength="1" required>'
+                    +'</td>'
+                    +'<td><button type="submit" class="createAmenity" value="save"><img src="/icons/save.png" height="24" width="24"></button></td>'
+                +'</form>'
+            +'</tr>'
+        );
+        $allAmenities.append(newAmenitiy);
+        $(".createAmenity").on("click", function(e){
+            e.preventDefault();
+            console.log("trying to create");
+            $.ajax({
+                url:"/api/amenities",
+                type: "PUT",
+                data: {
+                    amenDescription: $(this).parents('td').siblings('.amenDescription').find("input").val(),
+                },
+                success: function(i,data){
+                    console.log("Added to DB");
+                    $(".newAmenity").show();
+                    $(".createAmenity").remove();
+                    amenities = "";
+                    $.ajax({ //grab new list of amenities
+                        url:"/api/amenities",
+                        type:"GET",
+                        success: function(allAmenities){
+                            amenities+= '<td class="amenities"> <select multiple size="4" name="amenities" required>';
+                            $.each(allAmenities, function(i,data){
+                                amenities += '<option value ='+data.amenDescription+'>'+data.amenDescription+'</option>';
+                            })
+                            amenities += '</select></td>';
+                        },
+                        error: function(){
+                            alert("Couldn't find amenities");
+                        }
+                    });                    
+                },
+                error: function(){
+                    alert("Could not add amenity to database");
+                }
+            })
+        })
     })
-    $(".saveAmenitiy").on("click", function(){
-
+    $(".saveAmenity").on("submit", function(e){
+        e.preventDefault();
+        console.log("saving amenity");
+        $.ajax({
+            url:"/api/amenities",
+            type:"POST",
+            data: $(this).serialize(),
+            success: function(i,data){
+                console.log(data);
+            },
+            error: function(){
+                alert('something went updating database');
+            }
+        })
     })
-    $(".deleteAmenitiy").on("click", function(){
-
+    $(".deleteAmenity").on("click", function(e){
+        e.preventDefault();
+        console.log("delete clicked");
+        console.log($(this).parents('tr').attr('id'))
+        $(this).parents('tr').hide();
+        $.ajax({
+            url:"/api/amenities",
+            type:"DELETE",
+            data: {
+                amenID: $(this).parents('tr').attr('id')
+            },
+            success: function(i,data){
+                $(this).parents('tr').remove();
+            },
+            error: function(){
+                $(this).parents('tr').show();
+                alert('something went deleting from database');
+            }
+        });
     })
 
     $(".newTechnician").on("click", function(){
