@@ -68,7 +68,7 @@ window.onload = function(){
     });
 };
 
-$('document').ready(function(){
+$('window').on('load',function(){
     $('#allTechs > tr').hover(function(){
         $(this).css("cursor", "pointer");
         $(this).css("background-color", "#ffff99")},function(){
@@ -79,63 +79,117 @@ $('document').ready(function(){
         var url = "/edit-technician/" + $(this).attr('id');
         window.location.href = url;
     });
+    // var rows = 0;
+    // var $allApts = $("#allApts");
+    // $.ajax({
+    //     url: "/api/apartments",
+    //     type: "GET",
+    //     success: function(allData){
+    //         $.each(allData, function(i,data){
+    //             var apartment = $('<tr><form>'
+    //                 // +'<td> <input type="hidden" id="aptID" value="'+data.aptID+'"></td>'
+    //                 +'<td><input type="hidden" class="aptID" value="'+data.aptID+'">'
+    //                     + '<input type="number" class="aptNumber" value="'+data.aptNumber+'"></td>'
+    //                 +'<td><input type="number" class="rent" value="'+data.rent+'"></td>'
+    //                 +'<td><input type="number" class="numBeds" value="'+data.numBeds+'"></td>'
+    //                 +'<td><input type="number" class="numBaths" value="'+data.numBaths+'"></td>'
+    //                 +'<td><input type="date" class="dateAvailable" value="'+data.dateAvailable+'"></td>'
+    //                 +'<td><input type="text" class="availabilityStatus" value="'+data.availabilityStatus+'"></td>'
+    //                 +'<td><button type="submit" class="save" value="save"><img src="/icons/save.png" height="24" width="24"></button></td>'
+    //                 +'<td><button type="submit" class="delete" value="delete"><img src="/icons/delete.png" height="24" width="24"></button></td> </form></tr>');
+    //             apartment.attr('id', ''+data.aptID+'');
+    //             $allApts.append(apartment);
+    //         });
 
-    var $allApts = $("#allApts");
-    $.ajax({
-        url: "/api/apartments",
-        type: "GET",
-        success: function(allData){
-            $.each(allData, function(i,data){
-                var apartment = $('<tr><form>'
-                    // +'<td> <input type="hidden" id="aptID" value="'+data.aptID+'"></td>'
-                    +'<td><input type="hidden" id="aptID" value="'+data.aptID+'">'
-                        + '<input type="number" id="aptNumber" value="'+data.aptNumber+'"></td>'
-                    +'<td><input type="number" id="rent" value="'+data.rent+'"></td>'
-                    +'<td><input type="number" id="numBeds" value="'+data.numBeds+'"></td>'
-                    +'<td><input type="number" id="numBaths" value="'+data.numBaths+'"></td>'
-                    +'<td><input type="date" id="dateAvailable" value="'+data.dateAvailable+'"></td>'
-                    +'<td><input type="text" id="availabilityStatus" value="'+data.availabilityStatus+'"></td>'
-                    +'<td><button type="submit" id="save"><img src="/icons/save.png" height="24" width="24"></button></td>'
-                    +'<td><button type="submit" id="delete"><img src="/icons/delete.png" height="24" width="24"></button></td> </form></tr>');
-                apartment.attr('id', ''+data.aptID+'');
-                $allApts.append(apartment);
-            });
+    //     //     $(".save").on('click', function(){
+    //     //         console.log("saving");
+    //     //         var $current = $(this).parent('.form');
+    //     //         console.log($current > $(".aptID").text())
+    //     //        $.ajax({
+    //     //             url:"/api/apartments",
+    //     //             type:"POST",
+    //     //             data:{
+    //     //                 aptID: $current > $(".aptID").text(),
+    //     //                 aptNumber: $current > $(".aptNumber").text(),
+    //     //                 rent: $current > $(".rent").text(),
+    //     //                 numBeds: $current > $(".numBeds").text(),
+    //     //                 numBaths: $current > $(".numBaths").text(),
+    //     //                 dateAvailable: $current > $(".dateAvailable").text(),
+    //     //                 availabilityStatus: $current > $(".availabilityStatus").text()
+    //     //             },
+    //     //             success: function(i,data){
+    //     //                 console.log(data);
+    //     //             },
+    //     //             error: function(){
+    //     //                 alert('something went updating database');
+    //     //             }
+    //     //         });
+    //     //     });
 
-            $("#save").on('click', function(){
-                console.log("clicked");
-               $.ajax({
+    //     // $(".delete").on('click', function(){
+    //     //     console.log("delete clicked");
+    //     //     $.ajax({
+    //     //         url:"/api/apartments",
+    //     //         type:"DELETE",
+    //     //         data:{
+    //     //             aptID: $("#aptID").val()
+    //     //         },
+    //     //         success: function(i,data){
+    //     //             console.log(data);
+    //     //             $(this).parents('.tr').remove();
+    //     //         },
+    //     //         error: function(){
+    //     //             alert('something went deleting from database');
+    //     //         }
+    //     //     });
+    //     // });
+
+    //     },
+    //     error: function(){
+    //         alert('something went wrong');
+    //     }
+    //  });
+     $('form').on("submit", function(){
+            console.log('blah');
+            var val = $("input[type=submit][clicked=true]").val();
+            if(val == "save"){
+                $.ajax({
+                        url:"/api/apartments",
+                        type:"POST",
+                        data:{
+                            aptID: $(this).closest('td').next().find('input .aptID').val(),
+                            aptNumber: $(this).closest('td').next().find('input .aptNumber').val(),
+                            rent: $(this).closest('td').next().find('input .rent').val(),
+                            numBeds: $(this).closest('td').next().find('input .numBeds').val(),
+                            numBaths: $(this).closest('td').next().find('input .numBaths').val(),
+                            dateAvailable: $(this).closest('td').next().find('input .dateAvailable').val(),
+                            availabilityStatus: $(this).closest('td').next().find('input .availabilityStatus').val()
+                        },
+                        success: function(i,data){
+                            console.log(data);
+                        },
+                        error: function(){
+                            alert('something went updating database');
+                        }
+                });
+            }
+            else{
+                $.ajax({
                     url:"/api/apartments",
-                    type:"POST",
+                    type:"DELETE",
                     data:{
-                        aptID: $("#aptID").val(),
-                        aptNumber: $("#aptNumber").val(),
-                        rent: $("#rent").val(),
-                        numBeds: $("#numBeds").val(),
-                        numBaths: $("#numBaths").val(),
-                        dateAvailable: $("#dateAvailable").val(),
-                        availabilityStatus: $("#availabilityStatus").val()
+                        aptID: $("#aptID").val()
                     },
                     success: function(i,data){
                         console.log(data);
+                        $(this).parents('.tr').remove();
                     },
                     error: function(){
-                        alert('something went updating sql');
+                        alert('something went deleting from database');
                     }
                 });
-            });
-
-    //  $(".delete").on('click', function(){
-    //     $.ajax({
-    //         url:"/api/apartments",
-    //         type:"DELETE",
-    //     });
-    // });
-        },
-        error: function(){
-            alert('something went wrong');
-        }
+            }
      });
-
     // $(".new").on('click', function(){
     //     $.ajax({
     //         url:"/api/apartments",
@@ -145,3 +199,4 @@ $('document').ready(function(){
     // });
 
 });
+

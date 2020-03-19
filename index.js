@@ -47,20 +47,18 @@ app.route('/api/apartments')
     .post(function(req,res,next){
         console.log(req.body);
         var context = {};
-        // var sql = "UPDATE apartment SET aptNumber = ?, rent = ?, numBeds = ?, numBath = ?, dateAvailable = ?, availabilityStatus = ? WHERE aptID = ?";
         var sql = "UPDATE apartments SET aptNumber = " + [JSON.stringify(req.body.aptNumber)] +", rent = "+[JSON.stringify(req.body.rent)]+", numBeds = "
-        +[JSON.stringify(req.body.numBeds)]+", numBaths = "+[JSON.stringify(req.body.numBaths)]+", dateAvailable = "+[JSON.stringify(req.body.dateAvailable)]
-        +", availabilityStatus = "+[JSON.stringify(req.body.availabilityStatus)]+" WHERE aptID = "+[JSON.stringify(req.body.aptID)];
-
-        var post  = [
-            req.body.aptNumber,
-            req.body.rent,
-            req.body.numBeds,
-            req.body.numBaths,
-            req.body.dateAvailable,
-            req.body.availabilityStatus,
-            req.body.aptID
-        ];
+            +[JSON.stringify(req.body.numBeds)]+", numBaths = "+[JSON.stringify(req.body.numBaths)]+", dateAvailable = "+[JSON.stringify(req.body.dateAvailable)]
+            +", availabilityStatus = "+[JSON.stringify(req.body.availabilityStatus)]+" WHERE aptID = "+[JSON.stringify(req.body.aptID)];
+        // var post  = [
+        //     req.body.aptNumber,
+        //     req.body.rent,
+        //     req.body.numBeds,
+        //     req.body.numBaths,
+        //     req.body.dateAvailable,
+        //     req.body.availabilityStatus,
+        //     req.body.aptID
+        // ];
 
         // var values = [
         //     [JSON.stringify(req.query.aptNumber),]
@@ -94,17 +92,16 @@ app.route('/api/apartments')
             // res.send(context.apartments);
         });
     })
-    // .delete(function(req,res,next){
-    //     var context = {};
-    //     mysql.pool.query("SELECT aptNumber, rent, numBeds, numBaths, dateAvailable, availabilityStatus FROM apartments", function(error, results, fields){
-    //         if (error){
-    //             res.write(JSON.stringify(error));
-    //             return;
-    //         }
-    //         context.apartments = results;
-    //         res.send(context.apartments);
-    //     });
-    // })
+    .delete(function(req,res,next){
+        console.log(req.body);
+        var context = {};
+        mysql.pool.query("DELETE FROM apartments WHERE aptID = ?",[JSON.stringify(req.body.aptID)], function(error, results, fields){
+            if (error){
+                res.write(JSON.stringify(error));
+                return;
+            }
+        });
+    })
 
 //Renders apartment page
 app.use('/apartments', require('./apartments-node.js'));
