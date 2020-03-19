@@ -45,25 +45,11 @@ app.route('/api/apartments')
         });
     })
     .post(function(req,res,next){
-        console.log(req.body);
+        console.log(req.body.aptNumber);
         var context = {};
         var sql = "UPDATE apartments SET aptNumber = " + [JSON.stringify(req.body.aptNumber)] +", rent = "+[JSON.stringify(req.body.rent)]+", numBeds = "
             +[JSON.stringify(req.body.numBeds)]+", numBaths = "+[JSON.stringify(req.body.numBaths)]+", dateAvailable = "+[JSON.stringify(req.body.dateAvailable)]
             +", availabilityStatus = "+[JSON.stringify(req.body.availabilityStatus)]+" WHERE aptID = "+[JSON.stringify(req.body.aptID)];
-        // var post  = [
-        //     req.body.aptNumber,
-        //     req.body.rent,
-        //     req.body.numBeds,
-        //     req.body.numBaths,
-        //     req.body.dateAvailable,
-        //     req.body.availabilityStatus,
-        //     req.body.aptID
-        // ];
-
-        // var values = [
-        //     [JSON.stringify(req.query.aptNumber),]
-        // ]
-        console.log(sql);
         mysql.pool.query(sql, function(error, results, fields){
             if (error){
                 res.write(JSON.stringify(error));
@@ -74,30 +60,23 @@ app.route('/api/apartments')
         });
     })
     .put(function(req,res,next){
-        console.log(req.body);
         var context = {};
-        var sql = "INSERT INTO apartments VALUES ?";
-        var put  = {
-            aptNumber: aptNumber,
-            rent: rent,
-            numBeds: numBeds,
-            dateAvailable:dateAvailable,
-            availabilityStatus:availabilityStatus
-          };
-        mysql.pool.query(sql,put, function(error, results, fields){
+        var sql = "INSERT INTO apartments(aptNumber, rent, numBeds, numBaths, dateAvailable, availabilityStatus) VALUES("+JSON.stringify(req.body.aptNumber)+","+JSON.stringify(req.body.rent)+","+JSON.stringify(req.body.numBeds)+","
+            +JSON.stringify(req.body.numBaths)+","+JSON.stringify(req.body.dateAvailable)+","+JSON.stringify(req.body.availabilityStatus)+");";
+
+        mysql.pool.query(sql, function(error, results, fields){
             if (error){
                 res.write(JSON.stringify(error));
                 return;
             }
-            // context.apartments = results;
-            // res.send(context.apartments);
+            console.log(results,fields);
+            res.end();
         });
     })
     .delete(function(req,res,next){
         console.log(req.body);
         var context = {};
         var sql = "DELETE FROM apartments WHERE aptID = "+[JSON.stringify(req.body.aptID)]
-        console.log(sql);
         mysql.pool.query(sql, function(error, results, fields){
             if (error){
                 res.write(JSON.stringify(error));
