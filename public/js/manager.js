@@ -66,8 +66,12 @@ window.onload = function(){
             listingContent.style.display = "block"
         }
     });
+    
 };
+$(document).ready(function(){
 
+
+});
 $(window).on('load',function(){
     $('#allTechs > tr').hover(function(){
         $(this).css("cursor", "pointer");
@@ -80,60 +84,63 @@ $(window).on('load',function(){
         window.location.href = url;
     });
     // var rows = 0;
-    // var $allApts = $("#allApts");
-    // $.ajax({
-    //     url: "/api/apartments",
-    //     type: "GET",
-    //     success: function(allData){
-    //         $.each(allData, function(i,data){
-    //             var apartment = $('<tr><form>'
-    //                 // +'<td> <input type="hidden" id="aptID" value="'+data.aptID+'"></td>'
-    //                 +'<td><input type="hidden" class="aptID" value="'+data.aptID+'">'
-    //                     + '<input type="number" class="aptNumber" value="'+data.aptNumber+'"></td>'
-    //                 +'<td><input type="number" class="rent" value="'+data.rent+'"></td>'
-    //                 +'<td><input type="number" class="numBeds" value="'+data.numBeds+'"></td>'
-    //                 +'<td><input type="number" class="numBaths" value="'+data.numBaths+'"></td>'
-    //                 +'<td><input type="date" class="dateAvailable" value="'+data.dateAvailable+'"></td>'
-    //                 +'<td><input type="text" class="availabilityStatus" value="'+data.availabilityStatus+'"></td>'
-    //                 +'<td><button type="submit" class="save" value="save"><img src="/icons/save.png" height="24" width="24"></button></td>'
-    //                 +'<td><button type="submit" class="delete" value="delete"><img src="/icons/delete.png" height="24" width="24"></button></td> </form></tr>');
-    //             apartment.attr('id', ''+data.aptID+'');
-    //             $allApts.append(apartment);
-    //         });
+    // var count = 0;
+    // if(count > 0){
+    //     var $allApts = $("#allApts");
+    //     $.ajax({
+    //         url: "/api/apartments",
+    //         type: "GET",
+    //         success: function(allData){
+    //             $.each(allData, function(i,data){
+    //                 var apartment = $(
+    //                     '<tr>'
+    //                         +'<form class="saveApt">'
+    //                             +'<td>'
+    //                                 +'<input type="hidden" class="aptID" value="'+data.aptID+'">'
+    //                                 + '<input type="number" class="aptNumber" value="'+data.aptNumber+'">'
+    //                             +'</td>'
+    //                             +'<td><input type="number" class="rent" value="'+data.rent+'"></td>'
+    //                             +'<td><input type="number" class="numBeds" value="'+data.numBeds+'"></td>'
+    //                             +'<td><input type="number" class="numBaths" value="'+data.numBaths+'"></td>'
+    //                             +'<td><input type="date" class="dateAvailable" value="'+data.dateAvailable+'"></td>'
+    //                             +'<td><input type="text" class="availabilityStatus" value="'+data.availabilityStatus+'"></td>'
+    //                             +'<td><button type="submit" class="save" value="save"><img src="/icons/save.png" height="24" width="24"></button></td>'
+    //                         +'</form>'
+    //                         +'<form class="deleteApt">'
+    //                             +'<td>'
+    //                                     +'<input type="hidden" class="aptID" value="'+data.aptID+'">'
+    //                                     +'<button type="submit" class="delete" value="delete"><img src="/icons/delete.png" height="24" width="24"></button>'
+    //                             +'</td>'
+    //                         +'</form>'
+    //                     +'</tr>'
+    //                     );
+    //                 apartment.attr('id', ''+data.aptID+'');
+    //                 $allApts.append(apartment);
+    //             })
+    //        }
+    //     });
+    // }
+    
+    $(".saveApt").on('submit', function(e){
+        e.preventDefault();
+        // count++;
+        console.log("saving");
+        // var $current = $(this).parent('.form');
+        // console.log($current > $(".aptID").text())
+        $.ajax({
+            url:"/api/apartments",
+            type:"POST",
+            data: $(this).serialize(),
+            success: function(i,data){
+                console.log(data);
+            },
+            error: function(){
+                alert('something went updating database');
+            }
+        })
+    });
 
-            $(".saveApt").on('submit', function(){
-                console.log("saving");
-                // var $current = $(this).parent('.form');
-                // console.log($current > $(".aptID").text())
-               $.ajax({
-                    url:"/api/apartments",
-                    type:"POST",
-                    data: $(this).serialize(),
-                    // data:{
-
-                    //         aptID: $(this).closest('.aptID').val(),
-                    //         aptNumber: $(this).closest('td').next().find('input .aptNumber').val(),
-                    //         rent: $(this).closest('td').next().find('input .rent').val(),
-                    //         numBeds: $(this).closest('td').next().find('input .numBeds').val(),
-                    //         numBaths: $(this).closest('td').next().find('input .numBaths').val(),
-                    //         dateAvailable: $(this).closest('td').next().find('input .dateAvailable').val(),
-                    //         availabilityStatus: $(this).closest('td').next().find('input .availabilityStatus').val()
-                    // //     aptID: $current > $(".aptID").text(),
-                    // //     aptNumber: $current > $(".aptNumber").text(),
-                    // //     rent: $current > $(".rent").text(),
-                    // //     numBeds: $current > $(".numBeds").text(),
-                    // //     numBaths: $current > $(".numBaths").text(),
-                    // //     dateAvailable: $current > $(".dateAvailable").text(),
-                    // //     availabilityStatus: $current > $(".availabilityStatus").text()
-                    // },
-                    success: function(i,data){
-                        console.log(data);
-                    },
-                    error: function(){
-                        alert('something went updating database');
-                    }
-                });
-            });
+    // });
 
     //     // $(".delete").on('click', function(){
     //     //     console.log("delete clicked");
