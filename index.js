@@ -33,49 +33,73 @@ app.get('/', function(req, res, next) {
 });
 
 app.route('/api/amenities')
-    .get(function(req,res,next){
+    .get(function(req,res,next){//returns the entire database + any filters
+        var context = {};
+        mysql.pool.query("SELECT * FROM amenities", function(error, results, fields){
+            if (error){
+                res.write(JSON.stringify(error));
+                return;
+            }
+            context.amenities = results;
+            res.send(context.amenities);
+        });
+    })
+    .post(function(req,res,next){ //update current data
 
     })
-    .post(function(req,res,next){
+    .put(function(req,res,next){ //insert new data
 
     })
-    .put(function(req,res,next){
-
-    })
-    .delete(function(req,res,next){
+    .delete(function(req,res,next){ //remove data
 
     })
 
 app.route('/api/technicians')
-    .get(function(req,res,next){
+    .get(function(req,res,next){//returns the entire database + any filters
+        var context = {};
+        mysql.pool.query("SELECT * FROM technicians", function(error, results, fields){
+            if (error){
+                res.write(JSON.stringify(error));
+                return;
+            }
+            context.technicians = results;
+            res.send(context.technicians);
+        });
+    })
+    .post(function(req,res,next){ //update current data
 
     })
-    .post(function(req,res,next){
+    .put(function(req,res,next){ //insert new data
 
     })
-    .put(function(req,res,next){
-
-    })
-    .delete(function(req,res,next){
+    .delete(function(req,res,next){ //remove data
 
     })
 
 app.route('/api/customers')
-    .get(function(req,res,next){
+    .get(function(req,res,next){//returns the entire database + any filters
+        var context = {};
+        mysql.pool.query("SELECT custFName,custLName,custEmail, custPhone, rentStatus FROM customers", function(error, results, fields){
+            if (error){
+                res.write(JSON.stringify(error));
+                return;
+            }
+            context.customers = results;
+            res.send(context.customers);
+        });
+    })
+    .post(function(req,res,next){ //update current data
 
     })
-    .post(function(req,res,next){
+    .put(function(req,res,next){ //insert new data
 
     })
-    .put(function(req,res,next){
-
-    })
-    .delete(function(req,res,next){
+    .delete(function(req,res,next){ //remove data
 
     })
 
 app.route('/api/apartments')
-    .get(function(req,res, next){
+    .get(function(req,res, next){//returns the entire database + any filters
         var context = {};
         mysql.pool.query("SELECT aptID, aptNumber, rent, numBeds, numBaths, DATE_FORMAT(dateAvailable, '%Y-%m-%d') AS dateAvailable, availabilityStatus FROM apartments", function(error, results, fields){
             if (error){
@@ -86,7 +110,7 @@ app.route('/api/apartments')
             res.send(context.apartments);
         });
     })
-    .post(function(req,res,next){
+    .post(function(req,res,next){ //update current data
         console.log(req.body.aptNumber);
         var context = {};
         var sql = "UPDATE apartments SET aptNumber = " + [JSON.stringify(req.body.aptNumber)] +", rent = "+[JSON.stringify(req.body.rent)]+", numBeds = "
@@ -101,7 +125,7 @@ app.route('/api/apartments')
             res.send(context.apartments);
         });
     })
-    .put(function(req,res,next){
+    .put(function(req,res,next){//insert new data
         var context = {};
         var sql = "INSERT INTO apartments(aptNumber, rent, numBeds, numBaths, dateAvailable, availabilityStatus) VALUES("+JSON.stringify(req.body.aptNumber)+","+JSON.stringify(req.body.rent)+","+JSON.stringify(req.body.numBeds)+","
             +JSON.stringify(req.body.numBaths)+","+JSON.stringify(req.body.dateAvailable)+","+JSON.stringify(req.body.availabilityStatus)+");";
@@ -115,7 +139,7 @@ app.route('/api/apartments')
             res.end();
         });
     })
-    .delete(function(req,res,next){
+    .delete(function(req,res,next){ //remove data
         console.log(req.body);
         var context = {};
         var sql = "DELETE FROM apartments WHERE aptID = "+[JSON.stringify(req.body.aptID)]

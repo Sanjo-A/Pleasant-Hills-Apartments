@@ -1,5 +1,4 @@
-window.onload = function(){
-    // loadApartments();
+window.onload = function(){ //ability to show and hide elements
     var listRow = document.getElementById("editListingRow");
     var custRow = document.getElementById("editCustomerRow");
     var people = document.getElementById("manPeopleTxt");
@@ -13,13 +12,9 @@ window.onload = function(){
     var listings = document.getElementById("listingTxt");
     var listingContent = document.getElementById("listingContent");
 
-    // listRow.addEventListener("click", function(event){
-    //     window.location.href = "editListing";
+    // custRow.addEventListener("click", function(event){
+    //     window.location.href = "editCustomer";
     // });
-
-    custRow.addEventListener("click", function(event){
-        window.location.href = "editCustomer";
-    });
 
 
     people.addEventListener("click", function(event){
@@ -73,22 +68,24 @@ $(document).ready(function(){
 
 });
 $(window).on('load',function(){
-    var $allApts = $("#allApts");
-    // var amenities;
-    // $.ajax({
-    //     url:"/api/amenities",
-    //     type:"GET",
-    //     success: function(allAmenities){
-    //         $.each(allAmenities, function(i,data){
+    var $allApts = $("#allApts");//cache 
+    var amenities =""
+    $.ajax({ //grab initial amenities
+        url:"/api/amenities",
+        type:"GET",
+        success: function(allAmenities){
+            amenities+= '<td class="amenities"> <select multiple size="4" name="amenities">';
+            $.each(allAmenities, function(i,data){
+                amenities += '<option value ='+data.amenDescription+'>'+data.amenDescription+'</option>';
+            })
+            amenities += '</select></td>';
+        },
+        error: function(){
+            alert("Couldn't find amenities");
+        }
+    });
 
-    //         })
-    //     },
-    //     error: function(){
-
-    //     }
-    // });
-
-    $(".newApartment").hide();
+    $(".newApartment").hide();//
 
     $('#allTechs > tr').hover(function(){
         $(this).css("cursor", "pointer");
@@ -120,30 +117,28 @@ $(window).on('load',function(){
         })
     });
 
-    // });
-
-        $(".delete").on('click', function(e){
-            e.preventDefault();
-            console.log("delete clicked");
-            console.log($(this).val());
-            $(this).parents('tr').hide();
-            $.ajax({
-                url:"/api/apartments",
-                type:"DELETE",
-                data: {
-                    aptID: $(this).parents('tr').attr('id')
-                },
-                success: function(i,data){
-                    $(this).parents('tr').remove();
-                },
-                error: function(){
-                    $(this).parents('tr').show();
-                    alert('something went deleting from database');
-                }
-            });
+    $(".deleteApt").on('click', function(e){
+        e.preventDefault();
+        console.log("delete clicked");
+        console.log($(this).val());
+        $(this).parents('tr').hide();
+        $.ajax({
+            url:"/api/apartments",
+            type:"DELETE",
+            data: {
+                aptID: $(this).parents('tr').attr('id')
+            },
+            success: function(i,data){
+                $(this).parents('tr').remove();
+            },
+            error: function(){
+                $(this).parents('tr').show();
+                alert('something went deleting from database');
+            }
         });
+    });
 
-    $(".new").on('click', function(){
+    $(".newApt").on('click', function(){
         $(this).hide();
         // $(".newApartment").show();
         var newApt = $(
@@ -157,12 +152,13 @@ $(window).on('load',function(){
                     +'<td class="numBaths"><input type="number" name="numBaths" min = "0" max= "10" placeholder="Baths"></td>'
                     +'<td class="dateAvailable"><input type="date" name="dateAvailable"></td>'
                     +'<td class="availabilityStatus"><input type="text" name="availabilityStatus" placeholder="Select Availability"></td>'
-                    +'<td><button type="submit" class="create" value="save"><img src="/icons/save.png" height="24" width="24"></button></td>'
+                    +amenities
+                    +'<td><button type="submit" class="createApt" value="save"><img src="/icons/save.png" height="24" width="24"></button></td>'
                 +'</form>'
             +'</tr>'
         );
         $allApts.append(newApt);
-        $(".create").on('click', function(e){
+        $(".createApt").on('click', function(e){
             e.preventDefault();
             console.log("trying to create");
             $.ajax({
@@ -178,8 +174,9 @@ $(window).on('load',function(){
                 },
                 success: function(i,data){
                     console.log("Added to DB");
-                    $(".new").show();
-                    $(".create").remove();
+                    $(".newApt").show();
+                    $(".createApt").remove();
+                    $(".amenities").hide();
                 },
                 error: function(){
                     alert("Could not add to database");
@@ -188,6 +185,36 @@ $(window).on('load',function(){
         });
     });
 
+
+    $(".newAmenitiy").on("click", function(){
+
+    })
+    $(".saveAmenitiy").on("click", function(){
+
+    })
+    $(".deleteAmenitiy").on("click", function(){
+
+    })
+
+    $(".newTechnician").on("click", function(){
+
+    })
+    $(".saveTechnician").on("click", function(){
+
+    })
+    $(".deleteTechnician").on("click", function(){
+
+    })
+
+    $(".newCustomer").on("click", function(){
+
+    })
+    $(".saveCustomer").on("click", function(){
+
+    })
+    $(".deleteCustomer").on("click", function(){
+
+    })
 
 });
 
