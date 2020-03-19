@@ -142,18 +142,22 @@ $(window).on('load',function(){
 
     // });
 
-        $(".deleteApt").on('submit', function(e){
+        $(".delete").on('click', function(e){
             e.preventDefault();
             console.log("delete clicked");
+            console.log($(this).val());
+            $(this).parents('tr').hide();
             $.ajax({
                 url:"/api/apartments",
                 type:"DELETE",
-                // data: $(this).serialize(),
+                data: {
+                    aptID: $(this).parents('tr').attr('id')
+                },
                 success: function(i,data){
-                    console.log("fake delete");
                     $(this).parents('tr').remove();
                 },
                 error: function(){
+                    $(this).parents('tr').show();
                     alert('something went deleting from database');
                 }
             });

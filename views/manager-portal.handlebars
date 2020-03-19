@@ -31,8 +31,8 @@
         </thead>
         <tbody id="allApts">
             {{#each apartments}}
-            <tr>
-                <form  id="{{aptID}}" class="saveApt">
+            <tr id="{{aptID}}">
+                <form class="saveApt">
                     <td>
                         <input type="hidden" value="{{aptID}}" name="aptID">
                         <input type="number" value="{{aptNumber}}" name="aptNumber">
@@ -44,12 +44,12 @@
                     <td><input type="text" value="{{availabilityStatus}}" name="availabilityStatus"></td>
                     <td><button type="submit" value="save" class="save"><img src="/icons/save.png" height="24" width="24"></button></td>
                 </form>
-                <form class="deleteApt">
-                    <td>
-                        <input type="hidden" value="{{aptID}}" name="aptID">
-                        <button type="submit" value="delete" class="delete"><img src="/icons/delete.png" height="24" width="24"></button>
-                    </td>
-                </form>
+                {{!-- <form class="deleteApt"> --}}
+                <td>
+                    {{!-- <input type="hidden" value="{{aptID}}" name="aptID"> --}}
+                    <button type="submit" value="delete" class="delete"><img src="/icons/delete.png" height="24" width="24"></button>
+                </td>
+                {{!-- </form> --}}
 
             </tr>
             {{/each}}
