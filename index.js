@@ -93,13 +93,40 @@ app.route('/api/technicians')
         });
     })
     .post(function(req,res,next){ //update current data
-
+        console.log(req.body);
+        var context = {};
+        var sql = "UPDATE technicians SET techFName = " + [JSON.stringify(req.body.techFName)] +", techLName = "+JSON.stringify(req.body.techLName)+", techEmail = "+JSON.stringify(req.body.techEmail)+", techPhone = "+JSON.stringify(req.body.techPhone)+" WHERE techID = "+[JSON.stringify(req.body.techID)];
+        mysql.pool.query(sql, function(error, results, fields){
+            if (error){
+                res.write(JSON.stringify(error));
+                return;
+            }
+            context.apartments = results;
+            res.send(context.apartments);
+        });
     })
     .put(function(req,res,next){ //insert new data
-
+        var context = {};
+        var sql = "INSERT INTO technicians (techFName, techLName, techEmail, techPhone) VALUES("+JSON.stringify(req.body.techFName)+", "
+            +JSON.stringify(req.body.techLName)+", "+JSON.stringify(req.body.techEmail)+", "+JSON.stringify(req.body.techPhone)+")"
+        mysql.pool.query(sql, function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                return;
+            }
+            res.end();
+        })
     })
     .delete(function(req,res,next){ //remove data
-
+        var context = {};
+        var sql = "DELETE FROM technicians WHERE techID ="+JSON.stringify(req.body.techID);
+        mysql.pool.query(sql, function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                return;
+            }
+            res.end();
+        })
     })
 
 app.route('/api/customers')
@@ -115,13 +142,28 @@ app.route('/api/customers')
         });
     })
     .post(function(req,res,next){ //update current data
-
-    })
-    .put(function(req,res,next){ //insert new data
-
+        console.log(req.body);
+        var context = {};
+        var sql = "UPDATE customers SET custFName = " + [JSON.stringify(req.body.custFName)] +", custLName = "+JSON.stringify(req.body.custLName)
+            +", custEmail = "+JSON.stringify(req.body.custEmail)+", custPhone = "+JSON.stringify(req.body.custPhone)+", rentStatus = "+JSON.stringify(req.body.rentStatus)+" WHERE custID = "+[JSON.stringify(req.body.custID)];
+        mysql.pool.query(sql, function(error, results, fields){
+            if (error){
+                res.write(JSON.stringify(error));
+                return;
+            }
+            res.end();
+        });
     })
     .delete(function(req,res,next){ //remove data
-
+        var context = {};
+        var sql = "DELETE FROM customers WHERE custID ="+JSON.stringify(req.body.custID);
+        mysql.pool.query(sql, function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                return;
+            }
+            res.end();
+        })
     })
 
 app.route('/api/apartments')
@@ -137,7 +179,7 @@ app.route('/api/apartments')
         });
     })
     .post(function(req,res,next){ //update current data
-        console.log(req.body.aptNumber);
+        console.log(req.body);
         var context = {};
         var sql = "UPDATE apartments SET aptNumber = " + [JSON.stringify(req.body.aptNumber)] +", rent = "+[JSON.stringify(req.body.rent)]+", numBeds = "
             +[JSON.stringify(req.body.numBeds)]+", numBaths = "+[JSON.stringify(req.body.numBaths)]+", dateAvailable = "+[JSON.stringify(req.body.dateAvailable)]

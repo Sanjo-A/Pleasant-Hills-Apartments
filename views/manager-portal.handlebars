@@ -35,13 +35,13 @@
                 <form class="saveApt">
                     <td>
                         <input type="hidden" value="{{aptID}}" name="aptID">
-                        <input type="number" value="{{aptNumber}}" name="aptNumber" min = "1" max= "9999">
+                        <input type="number" value="{{aptNumber}}" name="aptNumber" min = "1" max= "9999" required>
                     </td>
-                    <td><input type="number" value="{{rent}}" name="rent" min = "1" max= "9999"></td>
-                    <td><input type="number" value="{{numBeds}}" name="numBeds" min = "0" max= "10"></td>
-                    <td><input type="number" value="{{numBaths}}" name="numBaths" min = "1" max= "10"></td>
-                    <td><input type="date" value="{{dateAvailable}}" name="dateAvailable"></td>
-                    <td><input type="text" value="{{availabilityStatus}}" name="availabilityStatus"></td>
+                    <td><input type="number" value="{{rent}}" name="rent" min = "1" max= "9999" required></td>
+                    <td><input type="number" value="{{numBeds}}" name="numBeds" min = "0" max= "10" required></td>
+                    <td><input type="number" value="{{numBaths}}" name="numBaths" min = "1" max= "10" required></td>
+                    <td><input type="date" value="{{dateAvailable}}" name="dateAvailable" required></td>
+                    <td><input type="text" value="{{availabilityStatus}}" name="availabilityStatus" required></td>
                     <td><button type="submit" value="save" class="saveApt"><img src="/icons/save.png" height="24" width="24"></button></td>
                 </form>
                 <td>
@@ -52,7 +52,6 @@
 
         </tbody>
         <tr>
-            {{!-- <td><a href="/new-listing">Add Listing</a></td> --}}
             <td><button class="newApt">New Listing</button></td>
         </tr>
     </table>
@@ -72,7 +71,7 @@
                     <form class="saveAmenity">
                         <td>
                         <input type="hidden" value="{{amenID}}" name="amenID">
-                        <input type="text" value="{{amenDescription}}" name="amenDescription">
+                        <input type="text" value="{{amenDescription}}" name="amenDescription" required>
                         </td>
                         <td><button type="submit" class="save"><img src="/icons/save.png" height="24" width="24"></button></td>
                     </form>
@@ -84,12 +83,6 @@
                 <td><button class="newAmenity">New Amenity</button></td>
             </tr>
         </table>
-    {{!-- <h5>Add Amenity:</h5>
-        <form id = "addAmenity" action = "/manager-portal" method = "post">
-            <label for = "amenDescrip">Amenity Description:</label>
-            <input type = "text" name = "amenDescrip" maxlength="30">
-            <input type = "submit" value = "Submit">
-        </form> --}}
 
 </div>
 
@@ -119,7 +112,10 @@
                     {{#each customers}}
                     <tr id="{{custID}}">
                         <form class="saveCustomer">
-                            <td><input type="text" value="{{custFName}}" name="custFName" required></td>
+                            <td>
+                                <input type="hidden" value="{{custID}}" name="custID">
+                                <input type="text" value="{{custFName}}" name="custFName" required>
+                            </td>
                             <td><input type="text" value="{{custLName}}" name="custLName" required></td>
                             <td><input type="email" value="{{custEmail}}" name="custEmail" required></td>
                             <td><input type="number" value="{{custPhone}}" name="custPhone" pattern="[0-9]{10}|[0-9]{3}-[0-9]{3}-[0-9]{4}"></td>
@@ -148,7 +144,10 @@
                     {{#each technicians}}
                     <tr id="{{this.techID}}">
                         <form class="saveTechnican">
-                            <td><input type="text" value="{{techFName}}" name="techFName" required></td>
+                            <td>
+                                <input type="hidden" value="{{techID}}" name="techID">
+                                <input type="text" value="{{techFName}}" name="techFName" required>
+                            </td>
                             <td><input type="text" value="{{techLName}}" name="techLName" required></td>
                             <td><input type="email" value="{{techEmail}}" name="techEmail" required></td>
                             <td><input type="number" value="{{techPhone}}" name="techPhone" pattern="[0-9]{10}|[0-9]{3}-[0-9]{3}-[0-9]{4}" required></td>
@@ -158,11 +157,9 @@
                     </tr>
                     {{/each}}
                 </tbody>
-                {{!-- <tr>
-                    <td>
-                        <a href="/new-technician">Add Technician</a>
-                    </td>
-                </tr> --}}
+                <tr>
+                    <td><button class="newTechnician">New Technicians</button></td>
+                </tr>
             </table>
         </div>
 
