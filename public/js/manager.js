@@ -68,6 +68,7 @@ $(document).ready(function(){
 
 });
 $(window).on('load',function(){
+    $.cloudinary.config({ cloud_name: 'dh7pmyskb', api_key: '222898946679494'});
     var $allApts = $("#allApts");//cache container of apartments
     var $allAmenities = $('#allAmenities'); //cache container of ameniteis
     var $allTechnicians =$("#allTechnicians");
@@ -154,12 +155,30 @@ $(window).on('load',function(){
                     +'<td class="numBaths"><input type="number" name="numBaths" min = "0" max= "10" placeholder="Baths" required></td>'
                     +'<td class="dateAvailable"><input type="date" name="dateAvailable" required></td>'
                     +'<td class="availabilityStatus"><input type="text" name="availabilityStatus" placeholder="Select Availability" required></td>'
+                    +'<td class="aptImg"><input name="aptImg" type="hidden" class="imgLoc"><input class="uploadButton" type="file" name="aptImg" accept="image/png, image/jpg"></td>'
                     +amenities
                     +'<td><button type="submit" class="createApt" value="save"><img src="/icons/save.png" height="24" width="24"></button></td>'
                 +'</form>'
             +'</tr>'
         );
         $allApts.append(newApt);
+
+        var uploadButton = $('.uploadButton')
+        uploadButton.on('click', function(e){
+            // Initiate upload
+            e.preventDefault();
+            cloudinary.openUploadWidget({ cloud_name: 'dh7pmyskb', upload_preset: 'ml_default', tags: ['cgal']}, 
+            function(error, result) { 
+                if(error) console.log(error);
+                // If NO error, log image data to console
+                var id = result[0].public_id;
+
+                console.log(result);
+                $('.imgLoc').val(result[0].url);
+            });
+            $(this).remove();
+        });
+        
         $(".createApt").on('click', function(e){
             e.preventDefault();
             console.log("trying to create");
@@ -172,13 +191,16 @@ $(window).on('load',function(){
                     numBeds:  $(this).parents('td').siblings('.numBeds').find("input").val(),
                     numBaths:  $(this).parents('td').siblings('.numBaths').find("input").val(),
                     dateAvailable:  $(this).parents('td').siblings('.dateAvailable').find("input").val(),
-                    availabilityStatus:  $(this).parents('td').siblings('.availabilityStatus').find("input").val()
+                    availabilityStatus:  $(this).parents('td').siblings('.availabilityStatus').find("input").val(),
+                    aptImg: $(this).parents('td').siblings('.aptImg').find("input").val()
                 },
                 success: function(i,data){
                     console.log("Added to DB");
                     $(".newApt").show();
                     $(".createApt").remove();
+                    $(".uploadButton").remove();
                     $(".amenities").hide();
+
                 },
                 error: function(){
                     alert("Could not add to database");
@@ -390,3 +412,9 @@ $(window).on('load',function(){
 
 });
 
+function processImage(id) {
+    var options = {
+        client_hints: true,
+    };
+    return '<img src="'+ $.cloudinary.url(id, options) +'" style="width: 100%; height: auto"/>';
+}
