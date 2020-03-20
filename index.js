@@ -358,6 +358,7 @@ app.get('/assignment-details/:id', function(req, res, next) {
 
 });
 
+app.use('assignment-details', require('./assignment-details-node.js'));
 
 //Renders manager-portal page
 app.use('/manager-portal', require('./manager-node.js'));
@@ -396,6 +397,7 @@ app.get('/edit-technician/:id', function(req, res, next) {
         res.render('edit-technician', context);
     });
 });
+
 //update technician
 app.get('/edit-technicians',function(req,res,next){
     console.log("Updated Technican"); 
@@ -414,6 +416,7 @@ app.get('/edit-technicians',function(req,res,next){
         res.redirect('manager-portal');
     });
 });
+
 //delete technicians
 app.get('/delete-technicians',function(req,res,next){
     console.log("Deleting Technican"); 
@@ -428,6 +431,7 @@ app.get('/delete-technicians',function(req,res,next){
         res.redirect('manager-portal');
     });
 });
+
 //Renders new-technician page
 app.use('/new-technician', require("./new-technician-node.js"));
 
