@@ -24,7 +24,7 @@
                 <th>Date Submitted</th>
                 <th>Date Completed</th>
                 <th>Status</th>
-                <th>Set Status</th>
+                {{!-- <th>Status</th> --}}
                 <th>Add Details</th>
             </tr>
         </thead>
@@ -38,14 +38,7 @@
                 <td>{{wkOrdDateCompleted}}</td>
                 <td>{{wkOrdStatus}}</td>
                 <td>
-                    <form>
-                        <input type="radio" name="status" value="Not Started" id="Not Started" default>
-                        <label for="status"> Not Started </label><br>
-                        <input type="radio" name="status" value="In Progress" id="In Progress">
-                        <label for="status"> In Progress </label><br>
-                        <input type="radio" name="status" value="complete" id="complete">
-                        <label for="status"> Completed (will remove upon setting to complete)</label><br>
-                    </form>
+                    
                 </td>
                 <td><input type = "button" name = "details" value = "View Details"></td>
             </tr>
