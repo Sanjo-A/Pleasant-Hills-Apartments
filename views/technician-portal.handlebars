@@ -24,13 +24,14 @@
                 <th>Date Submitted</th>
                 <th>Date Completed</th>
                 <th>Status</th>
-                <!--<th>Set Status</th>-->
+                <th>Set Status</th>
+                <th>Add Details</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id = "workOrders">
             {{#each work_orders}}
-            <tr id="issue1">
-                <td>{{wkOrdID}}</td>
+            <tr id="{{this.id}}">
+                <td>{{id}}</td>
                 <td>{{aptNum}}</td>
                 <td>{{wkOrdDescription}}</td>
                 <td>{{wkOrdDateSubmitted}}</td>
@@ -40,12 +41,13 @@
                     <form>
                         <input type="radio" name="status" value="unaddressed" id="unaddressed" default>
                         <label for="status"> Unaddressed </label><br>
-                        <input type="radio" name="status" value="addressed" id="addressed">
+                        <input type="radio" name="status" value="inprogress" id="inprogress">
                         <label for="status"> Technician Sent Out </label><br>
                         <input type="radio" name="status" value="complete" id="complete">
                         <label for="status"> Completed (will remove upon setting to complete)</label><br>
                     </form>
                 </td>
+                <td><input type = "button" name = "details" value = "Add Details"></td>
             </tr>
             {{/each}}
         </tbody>

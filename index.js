@@ -310,6 +310,23 @@ app.get('/apartment-details/:id', function(req, res, next) {
 //Renders technician-portal page
 app.use('/technician-portal', require("./technician-node.js"));
 
+//Renders assignment-details page
+app.get('/assignment-details/:id', function(req, res, next) {
+    var context = {};
+    mysql.pool.query('SELECT * FROM work_orders where wkOrdID =? ',[req.params.id],function(err,results,fields){
+        if(err){
+            console.log("Error showing work order detalis");
+            res.end();
+            return;
+        }           
+        context.mainMessage = "Add Assignment Details";
+        console.log(context);
+        res.render('assignment-details', context);
+    });
+
+});
+
+
 //Renders manager-portal page
 app.use('/manager-portal', require('./manager-node.js'));
 

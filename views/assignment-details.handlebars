@@ -1,0 +1,16 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+<div>
+    <h1>{{mainMessage}}</h1>
+</div>
+
+<div>
+    Service Needed: <input type = "text" name = "serviceType"></br>
+    Materials Cost: <input type = "number" name = "cost" min = "0"> </br>
+    Assign Technician: <select id = "techs">
+        {{#each technicians}}
+        <option value ="{{id}}">{{techFName}} {{techLName}}</option>
+        {{/each}}
+    </select>
+</div>

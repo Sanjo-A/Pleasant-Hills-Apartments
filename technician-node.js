@@ -3,7 +3,7 @@ module.exports = function(){
     var router = express.Router();
 
     function getWorkOrders(res, mysql, context, complete){
-        mysql.pool.query("SELECT wkOrdID, apartments.aptNumber AS aptNum, wkOrdDescription, wkOrdDateSubmitted, wkOrdDateCompleted, wkOrdStatus FROM work_orders INNER JOIN apartments ON work_orders.aptID = apartments.aptID", function(error, results, fields){
+        mysql.pool.query("SELECT wkOrdID as id, apartments.aptNumber AS aptNum, wkOrdDescription, wkOrdDateSubmitted, wkOrdDateCompleted, wkOrdStatus FROM work_orders INNER JOIN apartments ON work_orders.aptID = apartments.aptID", function(error, results, fields){
             if (error){
                 res.write(JSON.stringify(error));
                 res.end();
