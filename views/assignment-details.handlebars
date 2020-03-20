@@ -5,7 +5,7 @@
     <h1>{{mainMessage}}</h1>
 </div>
 
-<form>
+<form action = "/assignment-details" method = "post">
     <div class="row">
             <div class="col">
                 Service Needed: <input type = "text" name = "serviceType"></br>
@@ -18,19 +18,18 @@
                 </select>
             </div>
             <div class="col">
-                <input type="radio" name="status" value="unaddressed" id="unaddressed" default>
-                <label for="status"> Unaddressed </label><br>
+                <input type="radio" name="status" value="Not started" id="Not started" default>
+                <label for="status"> Not Started </label><br>
                 <input type="radio" name="status" value="inprogress" id="inprogress">
-                <label for="status"> Technician Sent Out </label><br>
+                <label for="status"> In Progress </label><br>
                 <input type="radio" name="status" value="complete" id="complete">
                 <label for="status"> Completed (will remove upon setting to complete)</label>
             </div>
-
     </div>
     <div class="row" id="submit">
         <div class="col"></div>
         <div class="col">
-            <button type="button" >Add Details</button>
+            <input type = "submit" value = "Add Details">
         </div>
         <div class="col"></div>
     </div>

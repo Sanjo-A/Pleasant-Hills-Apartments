@@ -13,20 +13,48 @@ module.exports = function(){
         });
     }
 
+    function getWorkOrd(res, mysql, context, complete){
+        var sql = "SELECT wkOrdID, aptID FROM work_orders WHERE wkOrdID = ?";
+        var inserts = [id];
+        mysql.pool.query(sql, inserts, function (error, results, fields){
+            if(error){
+                res.qrite(JSON.stringify(error));
+                res.end();
+            }
+            context.wkOrdID = results[0];
+            context.aptID = results[1];
+            complete;
+        });
+    }
 
-
-   //Renders assignment-details page
     router.get('/assignment-details/:id', function(req, res) {
         var callbackCount = 0;
         var context = {};
+        context.mainMessage = "Add details"
         var mysql = rep.app.get('mysql');
+        getWorkOrd(res, mysql, req.params.id, complete);
         getTechs(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 1){
+            if(callbackCount >= 2){
                 res.render('assignment-details', context);
             }
         }
+    });
+
+    router.post('assignment-details/:id', function(req,res) {
+        var mysql = req.app.get('mysql');
+        var sql = "INSERT INTO assignment_details (serviceType, materialCost, techID, wkOrdID, aptID) VALUES ?, ?, ?, ?, ?";
+        var inserts = [req.body.serviceType, req.body.materialCost, req.body.techID, req.params.wkOrdID, req.params.aptID];
+        sql = mysql.pool.query(sql, inserts, function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            else{
+                res.redirect('/technician-portal');
+            }
+        });
     });
 
     router.put('/assignment-details:id', function(req, res){
