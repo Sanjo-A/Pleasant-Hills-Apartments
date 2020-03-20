@@ -88,7 +88,7 @@ $(window).on('load',function(){
         }
     });
 
-    $(".newApartment").hide();//
+    // $(".newApartment").hide();//temporarily hide new apartment 
 
     // $('#allTechs > tr').hover(function(){
     //     $(this).css("cursor", "pointer");
@@ -145,7 +145,7 @@ $(window).on('load',function(){
         $(this).hide();
         var newApt = $(
             '<tr class="newApartment">'
-                +'<form class="createForm">'
+                +'<form class="createAptForm">'
                     +'<td class="aptNumber">'
                         + '<input type="number" name="aptNumber" min = "1" max= "9999" placeholder="Apartment Number" required>'
                     +'</td>'
@@ -273,23 +273,119 @@ $(window).on('load',function(){
     })
 
     $(".newTechnician").on("click", function(){
-
+        $(this).hide();
+        var newTech = $(
+            '<tr class="newTechnician">'
+                +'<form class="createForm">'
+                    +'<td class="techFName">'
+                        + '<input type="text" name="techFName" placeholder="First Name" required="true">'
+                    +'</td>'
+                    +'<td class="techLName"><input type="text" name="techLName" placeholder="Last Name" required></td>'
+                    +'<td class="techEmail"><input type="email" placeholder="Email" required></td>'
+                    +'<td class="techPhone"><input type="text" placeholder="Phone" pattern="[0-9]{10}|[0-9]{3}-[0-9]{3}-[0-9]{4}"  required></td>'
+                    +'<td><button type="submit" class="createTech" value="save"><img src="/icons/save.png" height="24" width="24"></button></td>'
+                +'</form>'
+            +'</tr>'
+        );
+        $allTechnicians.append(newTech);
+        $(".createTech").on("click", function(e){
+            e.preventDefault();
+            console.log("Trying to add technician");
+            $.ajax({
+                url: "/api/technicians",
+                type: "PUT",
+                data: {
+                    techFName: $(this).parents('td').siblings('.techFName').find("input").val(),
+                    techLName:  $(this).parents('td').siblings('.techLName').find("input").val(),
+                    techEmail:  $(this).parents('td').siblings('.techEmail').find("input").val(),
+                    techPhone:  $(this).parents('td').siblings('.techPhone').find("input").val(),
+                },
+                success: function(i, data){
+                    console.log("Added to DB");
+                    $(".newTechnician").show();
+                    $(".createTech").remove();
+                },
+                error: function(){
+                    alert("Could not add technician");
+                }
+            })
+        })
     })
-    $(".saveTechnician").on("click", function(){
-
+    $(".saveTechnican").on("submit", function(e){
+        e.preventDefault();
+        // count++;
+        console.log("saving technician");
+        // var $current = $(this).parent('.form');
+        // console.log($current > $(".aptID").text())
+        $.ajax({
+            url:"/api/technicians",
+            type:"POST",
+            data: $(this).serialize(),
+            success: function(i,data){
+                console.log(data);
+            },
+            error: function(){
+                alert('something went updating database');
+            }
+        })
     })
-    $(".deleteTechnician").on("click", function(){
-
+    $(".deleteTechnician").on("click", function(e){
+        e.preventDefault();
+        console.log("delete clicked");
+        $(this).parents('tr').hide();
+        $.ajax({
+            url:"/api/technicians",
+            type:"DELETE",
+            data: {
+                techID: $(this).parents('tr').attr('id')
+            },
+            success: function(i,data){
+                $(this).parents('tr').remove();
+            },
+            error: function(){
+                $(this).parents('tr').show();
+                alert('something went deleting from database');
+            }
+        });
     })
 
-    $(".newCustomer").on("click", function(){
 
+    $(".saveCustomer").on("submit", function(e){
+        e.preventDefault();
+        // count++;
+        console.log("saving customer");
+        // var $current = $(this).parent('.form');
+        // console.log($current > $(".aptID").text())
+        $.ajax({
+            url:"/api/customers",
+            type:"POST",
+            data: $(this).serialize(),
+            success: function(i,data){
+                console.log(data);
+            },
+            error: function(){
+                alert('something went updating database');
+            }
+        })
     })
-    $(".saveCustomer").on("click", function(){
-
-    })
-    $(".deleteCustomer").on("click", function(){
-
+    $(".deleteCustomer").on("click", function(e){
+        e.preventDefault();
+        console.log("delete clicked");
+        $(this).parents('tr').hide();
+        $.ajax({
+            url:"/api/customers",
+            type:"DELETE",
+            data: {
+                custID: $(this).parents('tr').attr('id')
+            },
+            success: function(i,data){
+                $(this).parents('tr').remove();
+            },
+            error: function(){
+                $(this).parents('tr').show();
+                alert('something went deleting from database');
+            }
+        });
     })
 
 });
