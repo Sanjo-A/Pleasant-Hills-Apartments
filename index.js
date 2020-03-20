@@ -78,7 +78,21 @@ app.route('/api/assignmentDetails')
 
     })
     .put(function(req,res,next){
-
+        console.log(req.body);
+        var context = {};
+        var sql = "INSERT INTO assignment-details (serviceType, materialCost, techID) VALUES(?,?,?)"
+        var vals = {
+            serviceType: [req.body.serviceType],
+            materialCost: [req.body.cost],
+            techID: [req.body.technican]
+        }
+        mysql.pool.query(sql,vals, function(error, results, fields){
+            if (error){
+                res.write(JSON.stringify(error));
+                return;
+            }
+            res.end();
+        })
     })
     .delete(function(req,res,next){
         

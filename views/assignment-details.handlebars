@@ -1,36 +1,36 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+<script src = "/js/assignment-details.js"></script>
 
 <div>
     <h1>{{mainMessage}}</h1>
 </div>
 
-<form>
+<form id="detailsForm">
     <div class="row">
             <div class="col">
                 Service Needed: <input type = "text" name = "serviceType"></br>
                 Materials Cost: <input type = "number" name = "cost" min = "0"> </br>
                 Assign Technician:
-                <select id = "techs" name="">
+                <select id = "techs" name="technician">
                     {{#each technicians}}
-                    <option value ="{{id}}">{{techFName}} {{techLName}}</option>
+                    <option value="{{techID}}">{{techFName}} {{techLName}}</option>
                     {{/each}}
                 </select>
             </div>
-            <div class="col">
+            {{!-- <div class="col">
                 <input type="radio" name="status" value="unaddressed" id="unaddressed" default>
                 <label for="status"> Unaddressed </label><br>
                 <input type="radio" name="status" value="inprogress" id="inprogress">
                 <label for="status"> Technician Sent Out </label><br>
                 <input type="radio" name="status" value="complete" id="complete">
                 <label for="status"> Completed (will remove upon setting to complete)</label>
-            </div>
+            </div> --}}
 
     </div>
     <div class="row" id="submit">
         <div class="col"></div>
         <div class="col">
-            <button type="button" >Add Details</button>
+            <button type="submit" >Add Details</button>
         </div>
         <div class="col"></div>
     </div>
