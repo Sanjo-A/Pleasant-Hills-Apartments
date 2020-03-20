@@ -6,11 +6,18 @@
 </div>
 
 <div>
+    <form>
     Service Needed: <input type = "text" name = "serviceType"></br>
     Materials Cost: <input type = "number" name = "cost" min = "0"> </br>
-    Assign Technician: <select id = "techs">
+    Assign Technician:
+     <select id = "techs" name="">
         {{#each technicians}}
         <option value ="{{id}}">{{techFName}} {{techLName}}</option>
         {{/each}}
     </select>
+    <p>
+        <button type="button" >Add Details</button>
+    </p>
+    </form>
+
 </div>

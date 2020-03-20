@@ -329,8 +329,17 @@ app.get('/assignment-details/:id', function(req, res, next) {
             return;
         }           
         context.mainMessage = "Add Assignment Details";
-        console.log(context);
-        res.render('assignment-details', context);
+        mysql.pool.query('SELECT * FROM technicians', function(err, result, fields){
+            if(err){
+                console.log("Error showing work order detalis");
+                res.end();
+                return;
+            }           
+            context.technicians = result;
+            console.log(context);
+            res.render('assignment-details', context);
+        })
+
     });
 
 });
