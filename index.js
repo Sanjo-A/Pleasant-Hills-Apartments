@@ -32,6 +32,50 @@ app.get('/', function(req, res, next) {
     res.render('home', context);
 });
 
+app.route('/api/workOrders')
+    .get(function(req,res,next){
+        var context = {};
+        mysql.pool.query("SELECT * FROM work_orders", function(error, results, fields){
+            if (error){
+                res.write(JSON.stringify(error));
+                return;
+            }
+            context.workOrders = results;
+            res.send(context.workOrders);
+        });
+    })
+    .post(function(req,res,next){
+
+    })
+    .put(function(req,res,next){
+
+    })
+    .delete(function(req,res,next){
+
+    })
+
+app.route('/api/assignmentDetails')
+    .get(function(req,res,next){
+        var context = {};
+        mysql.pool.query("SELECT * FROM assignment_details", function(error, results, fields){
+            if (error){
+                res.write(JSON.stringify(error));
+                return;
+            }
+            context.assignmentDetails = results;
+            res.send(context.assignmentDetails);
+        });
+    })
+    .post(function(req,res,next){
+
+    })
+    .put(function(req,res,next){
+
+    })
+    .delete(function(req,res,next){
+        
+    })
+
 app.route('/api/amenities')
     .get(function(req,res,next){//returns the entire database + any filters
         var context = {};
