@@ -319,21 +319,6 @@ app.get('/apartment-details/:id', function(req, res, next) {
 //Renders technician-portal page
 app.use('/technician-portal', require("./technician-node.js"));
 
-//Renders assignment-details page
-app.get('/assignment-details/:id', function(req, res, next) {
-    var context = {};
-    mysql.pool.query('SELECT * FROM work_orders where wkOrdID =? ',[req.params.id],function(err,results,fields){
-        if(err){
-            console.log("Error showing work order detalis");
-            res.end();
-            return;
-        }           
-        context.mainMessage = "Add Assignment Details";
-        console.log(context);
-        res.render('assignment-details', context);
-    });
-
-});
 
 
 //Renders manager-portal page
@@ -373,6 +358,7 @@ app.get('/edit-technician/:id', function(req, res, next) {
         res.render('edit-technician', context);
     });
 });
+
 //update technician
 app.get('/edit-technicians',function(req,res,next){
     console.log("Updated Technican"); 
@@ -391,6 +377,7 @@ app.get('/edit-technicians',function(req,res,next){
         res.redirect('manager-portal');
     });
 });
+
 //delete technicians
 app.get('/delete-technicians',function(req,res,next){
     console.log("Deleting Technican"); 
@@ -405,6 +392,7 @@ app.get('/delete-technicians',function(req,res,next){
         res.redirect('manager-portal');
     });
 });
+
 //Renders new-technician page
 app.use('/new-technician', require("./new-technician-node.js"));
 
