@@ -1,0 +1,20 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<div>
+    <h1>Update Work Order #{{workorder.id}}:</h1>
+    <form id="update-work-order" action="/technician-portal" method="post">
+        Description: <input type="text" name="Description" value="{{workorder.wkOrdDescription}}"><br>
+        Status: <select>
+            <option value = "Not Started">Not Started</option>
+            <option value = "In Progress">In Progress</option>
+            <option value = "Completed">Completed</option>
+        </select><br>
+        Date Completed: <input type ="date" name = "DateCompleted" value = "{{workorder.wkOrdDateCompleted}}"><br>
+        Technician: <select>
+            {{#each technicians}}
+            <option value ="{{id}}">{{techFName}} {{techLName}}</option>
+            {{/each}}
+        </select>
+    </form>
+    <button onclick="updateWorkOrder({{workOrder.id}})">Update</button>
+</div>

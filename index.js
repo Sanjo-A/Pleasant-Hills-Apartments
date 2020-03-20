@@ -62,42 +62,6 @@ app.route('/api/workOrders')
 
     })
 
-app.route('/api/assignmentDetails')
-    .get(function(req,res,next){
-        var context = {};
-        mysql.pool.query("SELECT * FROM assignment_details", function(error, results, fields){
-            if (error){
-                res.write(JSON.stringify(error));
-                return;
-            }
-            context.assignmentDetails = results;
-            res.send(context.assignmentDetails);
-        });
-    })
-    .post(function(req,res,next){
-
-    })
-    .put(function(req,res,next){
-        console.log(req.body);
-        var context = {};
-        var sql = "INSERT INTO assignment-details (serviceType, materialCost, techID) VALUES(?,?,?)"
-        var vals = {
-            serviceType: [req.body.serviceType],
-            materialCost: [req.body.cost],
-            techID: [req.body.technican]
-        }
-        mysql.pool.query(sql,vals, function(error, results, fields){
-            if (error){
-                res.write(JSON.stringify(error));
-                return;
-            }
-            res.end();
-        })
-    })
-    .delete(function(req,res,next){
-        
-    })
-
 app.route('/api/amenities')
     .get(function(req,res,next){//returns the entire database + any filters
         var context = {};
@@ -332,33 +296,6 @@ app.get('/apartment-details/:id', function(req, res, next) {
 
 //Renders technician-portal page
 app.use('/technician-portal', require("./technician-node.js"));
-
-//Renders assignment-details page
-app.get('/assignment-details/:id', function(req, res, next) {
-    var context = {};
-    mysql.pool.query('SELECT * FROM work_orders where wkOrdID =? ',[req.params.id],function(err,results,fields){
-        if(err){
-            console.log("Error showing work order detalis");
-            res.end();
-            return;
-        }           
-        context.mainMessage = "Add Assignment Details";
-        mysql.pool.query('SELECT * FROM technicians', function(err, result, fields){
-            if(err){
-                console.log("Error showing work order detalis");
-                res.end();
-                return;
-            }           
-            context.technicians = result;
-            console.log(context);
-            res.render('assignment-details', context);
-        })
-
-    });
-
-});
-
-app.use('assignment-details', require('./assignment-details-node.js'));
 
 //Renders manager-portal page
 app.use('/manager-portal', require('./manager-node.js'));

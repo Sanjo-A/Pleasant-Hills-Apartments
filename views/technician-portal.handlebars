@@ -24,8 +24,8 @@
                 <th>Date Submitted</th>
                 <th>Date Completed</th>
                 <th>Status</th>
-                {{!-- <th>Status</th> --}}
-                <th>Add Details</th>
+                <th>Update</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody id = "workOrders">
@@ -36,19 +36,9 @@
                 <td>{{wkOrdDescription}}</td>
                 <td>{{wkOrdDateSubmitted}}</td>
                 <td>{{wkOrdDateCompleted}}</td>
-                <td>{{wkOrdStatus}}</td>
-                <td>
-                    <form>
-                        <input type="radio" name="status" value="unaddressed" id="unaddressed" default>
-                        <label for="status"> Unaddressed </label><br>
-                        <input type="radio" name="status" value="inprogress" id="inprogress">
-                        <label for="status"> Technician Sent Out </label><br>
-                        <input type="radio" name="status" value="complete" id="complete">
-                        <label for="status"> Completed (will remove upon setting to complete)</label><br>
-                    </form>
-                </td>                    
-                </td>
-                <td><input type = "button" name = "details" value = "View Details"></td>
+                <td>{{wkOrdStatus}}</td>       
+                <td><a href = "/technician-portal/{{id}}" class = "button">Update</a></td>          
+                <td><input type = "button" name = "delete" value = "Delete"></td>
             </tr>
             {{/each}}
         </tbody>

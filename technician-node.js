@@ -9,15 +9,41 @@ module.exports = function(){
                 res.end();
             }
             console.log(results);
-            context.work_orders = results;
+            context.workorders = results;
             complete();
         })
+    }
+
+    function getTechnicians(res, mysql, context, complete){
+        mysql.pool.query("SELECT work_orders.techID, technicians.techFName, technicians.techLName FROM work_orders INNER JOIN technicians ON work_orders.techID = technicians.techID", function(error, results, fields){
+            if (error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            console.log(results);
+            context.technicians = results;
+            complete();
+        })
+    }
+
+    function getWorkOrder(res, mysql, context, id, complete){
+        var sql = "SELECT wkOrdID as id, wkOrdDescription, wkOrdDateSubmitted, wkOrdDateCompleted, wkOrdStatus, wkOrdImg, techID FROM work_orders WHERE wkOrdID = ?";
+        var inserts = [id];
+        mysql.pool.query(sql, inserts, function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.workorder = results[0];
+            complete();
+        });
     }
 
     // Display all work orders
     router.get('/', function(req, res){
         var callbackCount = 0;
         var context = {};
+        context.jsscripts = ["updateworkorder.js"];
         var mysql = req.app.get('mysql');
         // getWorkOrders(res, mysql, context, complete);
         // function complete(){
@@ -36,6 +62,21 @@ module.exports = function(){
             res.render('technician-portal', context);
         })
     })
+
+   router.get('/:id', function(req, res){
+        var callbackCount = 0;
+        var context = {};
+        context.jsscripts = ["updateworkorder.js"];
+        var mysql = req.app.get('mysql');
+        getTechnicians(res, mysql, context, complete);
+        getWorkOrder(res, mysql, req.params.id, complete);
+        function complete(){
+            callbackCount++;
+            if(callbackCount >= 2){
+                res.render('update-work-order', context);
+            }
+        }
+    });
 
     return router;
 }();
