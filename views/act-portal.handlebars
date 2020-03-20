@@ -1,7 +1,7 @@
   
 <link rel = "stylesheet" href = "/css/actPortal.css" type = "text/css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<script src = "/js/actPortal.js"></script>
+<script src = "/js/act-portal.js"></script>
 
 <div class="row">
     <div class="col-sm">
@@ -13,9 +13,11 @@
             <p>Submit Repair Request</p>
             <form id="request" >
                     <p>
-                        {{!-- <input type="text" placeholder="Describe your issue" required="true" id="description" name="description"> --}}
-                        <textarea rows="4" cols="50" name="description" form="request" id="description" placeholder="Describe your issue" required></textarea>
+                        <textarea rows="4" cols="50" name="wkOrdDescription" form="request" id="description" placeholder="Describe your issue" required></textarea>
 
+                    </p>
+                    <p>
+                        <input name="wkOrdImg" type="hidden" class="imgLoc"><input class="uploadButton" type="file" name="aptImg" accept="image/png, image/jpg">
                     </p>
                     <p>
                         <input type="submit" id="submit">

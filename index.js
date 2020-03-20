@@ -4,9 +4,6 @@
  * Assignment: CS 340 Step 3
  ****************************************************************/
 
-// IMGUR API STUFF:
-//     CLIENT ID: 6bc5cc08f8dfbcc
-//     CLIENT SECRET: 3087fc9094a520d146cc0efc5dce0f1c117a45e2
 
 var express = require('express');
 var app = express();
@@ -48,7 +45,18 @@ app.route('/api/workOrders')
 
     })
     .put(function(req,res,next){
-
+        var context = {};
+        var today = new Date();
+        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+        var sql = "INSERT INTO work_orders (wkOrdDescription, wkOrdDateSubmitted, wkOrdImg) VALUES("+JSON.stringify(req.body.wkOrdDescription)+", "+JSON.stringify(date)+", "+JSON.stringify(req.body.wkOrdImg)+")";
+        console.log(sql);
+        mysql.pool.query(sql, function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                return;
+            }
+            res.end();
+        });
     })
     .delete(function(req,res,next){
 
@@ -238,9 +246,10 @@ app.route('/api/apartments')
         });
     })
     .put(function(req,res,next){//insert new data
+        console.log(req.body);
         var context = {};
-        var sql = "INSERT INTO apartments(aptNumber, rent, numBeds, numBaths, dateAvailable, availabilityStatus) VALUES("+JSON.stringify(req.body.aptNumber)+","+JSON.stringify(req.body.rent)+","+JSON.stringify(req.body.numBeds)+","
-            +JSON.stringify(req.body.numBaths)+","+JSON.stringify(req.body.dateAvailable)+","+JSON.stringify(req.body.availabilityStatus)+");";
+        var sql = "INSERT INTO apartments(aptNumber, rent, numBeds, numBaths, dateAvailable, availabilityStatus, aptImg) VALUES("+JSON.stringify(req.body.aptNumber)+","+JSON.stringify(req.body.rent)+","+JSON.stringify(req.body.numBeds)+","
+            +JSON.stringify(req.body.numBaths)+","+JSON.stringify(req.body.dateAvailable)+","+JSON.stringify(req.body.availabilityStatus)+","+JSON.stringify(req.body.aptImg)+");";
 
         mysql.pool.query(sql, function(error, results, fields){
             if (error){
